@@ -15,10 +15,7 @@ apt install -y htop tmux tree
 apt install -y curl whois apt-transport-https ca-certificates gnupg-agent software-properties-common
 
 # Development.
-apt install -y cmake git git-lfs nodejs npm pgadmin3 postgresql-client python-pip python3-pip python-virtualenv
-
-# Libs.
-apt install -y libcairo2-dev libxcb1-dev libxcb-composite0-dev libxcb-randr0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev python-xcbgen libasound2-dev libmpdclient-dev libiw-dev xcb-proto
+apt install -y cmake git nodejs npm pgadmin3 postgresql-client python-pip python3-pip python-virtualenv
 
 # Security.
 apt install -y keepassxc
@@ -40,7 +37,8 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &
 dpkg -i google-chrome-stable_current_amd64.deb
 
 # Tweak.
-add-apt-repository universe
+add-apt-repository universe && \
+apt update && \
 apt install -y gnome-tweak-tool && \
 apt install -y gnome-shell-extensions
 
