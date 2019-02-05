@@ -12,10 +12,10 @@ apt upgrade -y
 apt install -y htop tmux tree
 
 # Network.
-apt install -y curl whois apt-transport-https ca-certificates gnupg-agent software-properties-common
+apt install -y curl whois net-tools apt-transport-https ca-certificates gnupg-agent software-properties-common
 
 # Development.
-apt install -y cmake git nodejs npm pgadmin3 postgresql-client python-pip python3-pip python-virtualenv
+apt install -y cmake git nodejs npm pgadmin3 postgresql-client-10 python-pip python3-pip python-virtualenv
 
 # Security.
 apt install -y keepassxc
@@ -48,3 +48,4 @@ snap install webstorm --classic
 snap install pycharm-professional --classic
 snap install intellij-idea-ultimate --classic
 snap install protobuf --classic
+snap install go --classic
