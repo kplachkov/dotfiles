@@ -13,7 +13,6 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 5
 # Appearance.
 mkdir ~/.themes
-# gsettings set org.gnome.desktop.interface gtk-theme "Ultimate-Dark-Orange"
 gsettings set org.gnome.desktop.interface icon-theme "Numix-Circle"
 gsettings set org.gnome.desktop.interface cursor-theme "DMZ-Black"
 gsettings set org.gnome.desktop.interface cursor-size 64
@@ -21,6 +20,8 @@ gsettings set org.gnome.desktop.interface clock-show-date true
 # Privacy.
 gsettings set org.gnome.desktop.privacy send-software-usage-stats false
 gsettings set org.gnome.desktop.privacy report-technical-problems false
+# Show hidden files.
+gsettings set org.gtk.Settings.FileChooser show-hidden true
 
 # Make sublime default text editor.
 if [[ -f /usr/share/applications/sublime_text.desktop ]]; then
