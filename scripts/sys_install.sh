@@ -9,7 +9,7 @@ apt update
 apt upgrade -y
 
 # System.
-apt install -y htop tmux tree
+apt install -y htop tmux tree most
 
 # Network.
 apt install -y curl whois net-tools apt-transport-https ca-certificates gnupg-agent software-properties-common
@@ -42,10 +42,11 @@ apt update && \
 apt install -y gnome-tweak-tool && \
 apt install -y gnome-shell-extensions
 
-# Snaps.
+# IDEs.
 snap install goland --classic
 snap install webstorm --classic
 snap install pycharm-professional --classic
 snap install intellij-idea-ultimate --classic
+
 snap install protobuf --classic
 snap install go --classic
