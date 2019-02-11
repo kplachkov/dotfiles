@@ -14,17 +14,23 @@ apt install -y htop tmux tree most
 # Network.
 apt install -y curl whois net-tools apt-transport-https ca-certificates gnupg-agent software-properties-common
 
-# Development.
-apt install -y cmake git nodejs npm pgadmin3 postgresql-client-10 python-pip python3-pip python-virtualenv
-
 # Security.
 apt install -y keepassxc
 
+# Development.
+apt install -y cmake git nodejs npm pgadmin3 postgresql-client-10 python-pip python3-pip python-virtualenv
+snap install go --classic
+snap install protobuf --classic
 # Docker.
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
 apt update && \
 apt install -y docker-ce docker-ce-cli containerd.io
+# IDEs.
+snap install goland --classic
+snap install webstorm --classic
+snap install pycharm-professional --classic
+snap install intellij-idea-ultimate --classic
 
 # Sublime.
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - && \
@@ -36,17 +42,14 @@ apt install -y sublime-text
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
 dpkg -i google-chrome-stable_current_amd64.deb
 
+# Appearance.
 # Tweak.
 add-apt-repository universe && \
 apt update && \
-apt install -y gnome-tweak-tool && \
+apt install -y gnome-tweak-tool
 apt install -y gnome-shell-extensions
-
-# IDEs.
-snap install goland --classic
-snap install webstorm --classic
-snap install pycharm-professional --classic
-snap install intellij-idea-ultimate --classic
-
-snap install protobuf --classic
-snap install go --classic
+apt install -y chrome-gnome-shell
+# Icons.
+add-apt-repository ppa:numix/ppa && \
+apt update && \
+apt install -y numix-icon-theme-circle
