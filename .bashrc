@@ -1,3 +1,9 @@
+# If not running interactively, don't do anything.
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # Load dotfiles.
 for file in ~/.{aliases,exports}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
