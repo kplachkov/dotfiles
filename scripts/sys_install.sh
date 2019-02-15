@@ -21,6 +21,10 @@ apt install -y keepassxc
 apt install -y cmake git nodejs npm pgadmin3 postgresql-client-10 python-pip python3-pip python-virtualenv
 snap install go --classic
 snap install protobuf --classic
+snap install google-cloud-sdk --classic
+snap install heroku --classic
+# Git LFS.
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 # Docker.
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
