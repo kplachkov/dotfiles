@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dotfilesdir=$(pwd)
-dotfiles=(.aliases .bashrc .exports)
+dotfiles=(.aliases .bashrc .exports .bash_options)
 
 # Install dotfiles.
 for dotf in "${dotfiles[@]}"

@@ -3,7 +3,19 @@ export EDITOR="subl"
 export PAGER="most"
 # Don't put duplicate lines or lines starting with space in the history.
 export HISTCONTROL=ignoreboth
-export HISTSIZE=1000
-export HISTFILESIZE=2000
+# Increase the maximum number of commands recorded.
+export HISTSIZE=10000
+# Increase the maximum number of lines of history.
+export HISTFILESIZE=10000
+# Don't add certain commands to the history file.
+export HISTIGNORE="clear:history:exit:pwd:* --help"
 # Save and reload the history after each command finishes in another bash session.
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
+export PYTHONIOENCODING="UTF-8"
+# Prefer US English and use UTF-8 encoding.
+export LANG="en_US"
+export LC_ALL="en_US.UTF-8"
+# Path.
+export GOPATH=$HOME/projects/go
+export PATH=/usr/local/go/bin:$GOPATH/bin:$HOME/.npm-global/bin:$PATH
