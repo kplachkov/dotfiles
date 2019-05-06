@@ -18,11 +18,12 @@ apt install -y curl whois net-tools apt-transport-https ca-certificates gnupg-ag
 apt install -y keepassxc
 
 # Development.
-apt install -y cmake git nodejs npm pgadmin3 postgresql-client-10 python-pip python3-pip python-virtualenv direnv
+apt install -y cmake git nodejs npm pgadmin3 postgresql-client-10 python-pip python3-pip python-virtualenv direnv python3-tk
 snap install go --classic
 snap install protobuf --classic
 snap install google-cloud-sdk --classic
 snap install heroku --classic
+snap install hugo --channel=extended
 # Git LFS.
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 # Docker.
