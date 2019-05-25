@@ -18,7 +18,7 @@ apt install -y curl whois net-tools apt-transport-https ca-certificates gnupg-ag
 apt install -y keepassxc
 
 # Development.
-apt install -y cmake git nodejs npm pgadmin3 postgresql-client-10 python-pip python3-pip python-virtualenv direnv python3-tk
+apt install -y cmake git nodejs npm postgresql-client-10 python-pip python3-pip python-virtualenv direnv python3-tk
 snap install go --classic
 snap install protobuf --classic
 snap install google-cloud-sdk --classic
@@ -35,11 +35,16 @@ apt install -y docker-ce docker-ce-cli containerd.io
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
 apt update && apt install -y yarn
+# pgAdmin 4.
+curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
+apt update && apt install -y pgadmin4
 # IDEs.
 snap install goland --classic
 snap install webstorm --classic
 snap install pycharm-professional --classic
 snap install intellij-idea-ultimate --classic
+snap install clion --classic
 
 # Sublime.
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - && \
