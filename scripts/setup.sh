@@ -12,9 +12,9 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-autom
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 7
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 5
 # Appearance.
-mkdir ~/.themes
 gsettings set org.gnome.desktop.interface icon-theme "Numix-Circle"
-gsettings set org.gnome.desktop.interface cursor-theme "DMZ-Black"
+gsettings set org.gnome.desktop.interface cursor-theme "Yaru"
+gsettings set org.gnome.desktop.interface gtk-theme "Yaru-dark"
 gsettings set org.gnome.desktop.interface cursor-size 64
 gsettings set org.gnome.desktop.interface clock-show-date true
 # Privacy.
