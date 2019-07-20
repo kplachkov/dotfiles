@@ -1,5 +1,7 @@
 # System.
 alias aptu="sudo apt update && sudo apt upgrade"
+alias scaledock="gsettings set org.gnome.desktop.interface text-scaling-factor 1.3"
+alias scalelap="gsettings set org.gnome.desktop.interface text-scaling-factor 1.1"
 
 # Navigation.
 alias ..="cd .."
