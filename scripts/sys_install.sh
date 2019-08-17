@@ -25,7 +25,6 @@ snap install google-cloud-sdk --classic
 snap install heroku --classic
 snap install hugo --channel=extended
 snap install docker
-snap install sublime-text --classic
 # Git LFS.
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 # Yarn.
@@ -43,6 +42,11 @@ snap install pycharm-professional --classic
 snap install intellij-idea-ultimate --classic
 snap install clion --classic
 snap install datagrip --classic
+# Sublime.
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - && \
+echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list && \
+apt update && \
+apt install -y sublime-text
 
 # Chrome.
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \

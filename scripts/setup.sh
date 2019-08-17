@@ -25,5 +25,5 @@ gsettings set org.gtk.Settings.FileChooser show-hidden true
 
 # Make sublime default text editor.
 if [[ -f /usr/share/applications/sublime_text.desktop ]]; then
-	sudo sed -i -e 's/gedit/sublime_text/g' /usr/share/applications/defaults.list
+	sudo sed -i -e 's/org.gnome.gedit/sublime_text/g' /usr/share/applications/defaults.list
 fi
