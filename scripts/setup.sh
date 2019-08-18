@@ -11,6 +11,9 @@ if [[ -f /usr/share/applications/sublime_text.desktop ]]; then
 	sudo sed -i -e 's/org.gnome.gedit/sublime_text/g' /usr/share/applications/defaults.list
 fi
 
+# Setup tmux manager.
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # Settings.
 # Night light.
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true

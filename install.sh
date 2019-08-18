@@ -2,7 +2,7 @@
 
 # Setup dotfiles.
 dotfilesdir=$(pwd)
-dotfiles=(.aliases .bashrc .bash_options .exports)
+dotfiles=(.aliases .bashrc .bash_options .exports .tmux.conf)
 
 for dotf in "${dotfiles[@]}"
 do
