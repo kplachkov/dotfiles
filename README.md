@@ -7,4 +7,4 @@ understand [what it does](install.sh). :warning:
 ```terminal
 $ bash ./install.sh
 ```
-`.bashrc`, `.aliases`, `.exports` and `.bash_options` will be linked in `$HOME`, if those files already exist -- they will be deleted.
+`.bashrc`, `.aliases`, `.exports` and `.bash_options` will be linked in `$HOME`, if those files already exist -- they will be replaced.

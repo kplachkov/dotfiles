@@ -1,14 +1,17 @@
 #!/bin/bash
 
+# Setup dotfiles.
 dotfilesdir=$(pwd)
-dotfiles=(.aliases .bashrc .exports .bash_options)
+dotfiles=(.aliases .bashrc .bash_options .exports)
 
-# Install dotfiles.
 for dotf in "${dotfiles[@]}"
 do
-    /bin/rm -rf ~/${dotf}
     /bin/ln -fs "$dotfilesdir/${dotf}" ~/
 done
+
+# Setup htop configuration.
+mkdir -p ~/.config/htop/
+/bin/ln -fs "$dotfilesdir/htoprc" ~/.config/htop/
 
 # Install and setup.
 sudo bash ./scripts/sys_install.sh

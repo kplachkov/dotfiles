@@ -8,6 +8,8 @@ fi
 apt update
 apt upgrade -y
 
+ubuntu-drivers autoinstall
+
 # System.
 apt install -y htop tmux tree most
 
