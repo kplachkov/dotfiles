@@ -15,6 +15,12 @@ fi
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Settings.
+# Keybindings.
+gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
+gsettings set org.gnome.desktop.wm.keybindings switch-applications "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Super>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Alt>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings close "['<Primary>space']"
 # Night light.
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
