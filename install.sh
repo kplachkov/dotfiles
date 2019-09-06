@@ -10,8 +10,16 @@ do
 done
 
 # Setup htop configuration.
-mkdir -p ~/.config/htop/
-/bin/ln -fs "$dotfilesdir/htoprc" ~/.config/htop/
+htopconfigdir=~/.config/htop/
+mkdir -p $htopconfigdir
+/bin/ln -fs "$dotfilesdir/htoprc" $htopconfigdir
+
+# Setup sublime configuration.
+subconfigdir=~/.config/sublime-text-3/Packages/User/
+mkdir -p $subconfigdir
+/bin/ln -fs "$dotfilesdir/config/sublime-text-3/Default (Linux).sublime-keymap" $subconfigdir
+/bin/ln -fs "$dotfilesdir/config/sublime-text-3/Preferences.sublime-settings" $subconfigdir
+/bin/ln -fs "$dotfilesdir/config/sublime-text-3/Package Control.sublime-settings" $subconfigdir
 
 # Install and setup.
 sudo bash ./scripts/sys_install.sh
