@@ -1,0 +1,8 @@
+<application>
+  <component name="ShowUsagesSettings">
+    <option name="GROUP_BY_FILE_STRUCTURE" value="true" />
+  </component>
+  <component name="UsageViewSettings">
+    <option name="IS_PREVIEW_USAGES" value="true" />
+  </component>
+</application>
