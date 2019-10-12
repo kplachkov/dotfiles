@@ -18,10 +18,11 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Keybindings.
 gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-group "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Super>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Super>Tab']"
-gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Alt>Tab', '<Primary><Alt>Right']"
-gsettings set org.gnome.desktop.wm.keybindings cycle-windows-backward "['<Shift><Alt>Tab', '<Primary><Alt>Left']"
+gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Alt>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings cycle-windows-backward "['<Shift><Alt>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Primary>F11']"
 gsettings set org.gnome.desktop.wm.keybindings close "['<Primary>space']"
 # Night light.
