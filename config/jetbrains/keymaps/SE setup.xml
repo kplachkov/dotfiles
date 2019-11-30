@@ -10,6 +10,24 @@
     <keyboard-shortcut first-keystroke="tab" />
   </action>
   <action id="EditorChooseLookupItemReplace" />
+  <action id="EditorDeleteToWordEndInDifferentHumpsMode">
+    <keyboard-shortcut first-keystroke="shift ctrl delete" />
+  </action>
+  <action id="EditorDeleteToWordStartInDifferentHumpsMode">
+    <keyboard-shortcut first-keystroke="shift ctrl back_space" />
+  </action>
+  <action id="EditorNextWordInDifferentHumpsMode">
+    <keyboard-shortcut first-keystroke="ctrl alt right" />
+  </action>
+  <action id="EditorNextWordInDifferentHumpsModeWithSelection">
+    <keyboard-shortcut first-keystroke="shift ctrl alt right" />
+  </action>
+  <action id="EditorPreviousWordInDifferentHumpsMode">
+    <keyboard-shortcut first-keystroke="ctrl alt left" />
+  </action>
+  <action id="EditorPreviousWordInDifferentHumpsModeWithSelection">
+    <keyboard-shortcut first-keystroke="shift ctrl alt left" />
+  </action>
   <action id="FileStructurePopup">
     <keyboard-shortcut first-keystroke="shift ctrl x" />
   </action>
@@ -19,8 +37,10 @@
   </action>
   <action id="HideActiveWindow">
     <keyboard-shortcut first-keystroke="shift escape" />
-    <keyboard-shortcut first-keystroke="ctrl escape" />
+    <keyboard-shortcut first-keystroke="alt escape" />
   </action>
+  <action id="JumpToLastChange" />
+  <action id="MoveElementRight" />
   <action id="NextTab" />
   <action id="PreviousTab" />
   <action id="SelectNextOccurrence">
@@ -28,8 +48,9 @@
     <keyboard-shortcut first-keystroke="ctrl back_slash" />
   </action>
   <action id="Switcher">
-    <keyboard-shortcut first-keystroke="alt back_quote" />
+    <keyboard-shortcut first-keystroke="alt tab" />
   </action>
+  <action id="Terminal.MoveToolWindowTabRight" />
   <action id="ToggleBookmark" />
   <action id="ToggleFullScreen">
     <keyboard-shortcut first-keystroke="f11" />
@@ -39,7 +60,7 @@
     <keyboard-shortcut first-keystroke="shift ctrl back_slash" />
   </action>
   <action id="Vcs.QuickListPopupAction">
-    <keyboard-shortcut first-keystroke="ctrl tab" />
+    <keyboard-shortcut first-keystroke="alt back_quote" />
   </action>
   <action id="VcsShowCurrentChangeMarker">
     <keyboard-shortcut first-keystroke="f1" />
