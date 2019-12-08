@@ -25,4 +25,4 @@ mkdir -p $subconfigdir
 sudo bash ./setup/sys_install.sh
 bash ./setup/pip_install.sh
 bash ./setup/settings.sh
-bash ./setup/manually.sh
+bash ./setup/manually_install.sh

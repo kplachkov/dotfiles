@@ -20,7 +20,7 @@ apt install -y curl whois net-tools apt-transport-https ca-certificates gnupg-ag
 apt install -y keepassxc
 
 # Development.
-apt install -y cmake git nodejs npm postgresql-client-10 python-pip python3-pip python-virtualenv direnv python3-tk
+apt install -y cmake git nodejs npm postgresql-client python-pip python3-pip python-virtualenv direnv python3-tk
 snap install go --classic
 snap install protobuf --classic
 snap install google-cloud-sdk --classic
