@@ -63,6 +63,6 @@ apt install -y gnome-tweak-tool
 apt install -y gnome-shell-extensions
 apt install -y chrome-gnome-shell
 # Icons.
-add-apt-repository ppa:numix/ppa && \
+add-apt-repository -y ppa:numix/ppa && \
 apt update && \
 apt install -y numix-icon-theme-circle
