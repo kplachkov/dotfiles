@@ -37,6 +37,8 @@ snap install pycharm-professional --classic
 snap install intellij-idea-ultimate --classic
 snap install clion --classic
 snap install datagrip --classic
+# tmux manager.
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Sublime.
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - && \
 echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list && \

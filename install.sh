@@ -22,7 +22,10 @@ mkdir -p $subconfigdir
 /bin/ln -fs "$dotfilesdir/config/sublime-text-3/Package Control.sublime-settings" $subconfigdir
 
 # Install and setup.
+bash ./setup/settings.sh
+
 sudo bash ./setup/sys_install.sh
 bash ./setup/pip_install.sh
-bash ./setup/settings.sh
 bash ./setup/manually_install.sh
+
+bash ./setup/default_apps.sh

@@ -1,19 +1,5 @@
 #!/bin/bash
 
-# Default applications.
-# Remove amazon.
-if [[ -f /usr/share/applications/ubuntu-amazon-default.desktop ]]; then
-	sudo rm /usr/share/applications/ubuntu-amazon-default.desktop
-fi
-
-# Make sublime default text editor.
-if [[ -f /usr/share/applications/sublime_text.desktop ]]; then
-	sudo sed -i -e 's/org.gnome.gedit/sublime_text/g' /usr/share/applications/defaults.list
-fi
-
-# Setup tmux manager.
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
 # Input sources.
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'bg+phonetic')]"
 gsettings set org.gnome.desktop.input-sources per-window true
@@ -52,3 +38,5 @@ gsettings set org.gnome.desktop.privacy send-software-usage-stats false
 gsettings set org.gnome.desktop.privacy report-technical-problems false
 # Show hidden files.
 gsettings set org.gtk.Settings.FileChooser show-hidden true
+# Favorite applications.
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop', 'syntevo-smartgit.desktop', 'sublime_text.desktop']"
