@@ -1,25 +1,25 @@
 #!/bin/bash
 
 # Setup dotfiles.
-dotfilesdir=$(pwd)
+dotfiles_dir=$(dirname "$(readlink -f "$0")")
 dotfiles=(.aliases .bashrc .bash_options .exports .tmux.conf)
 
 for dotf in "${dotfiles[@]}"
 do
-    /bin/ln -fs "$dotfilesdir/${dotf}" ~/
+    /bin/ln -fs "$dotfiles_dir/${dotf}" ~/
 done
 
 # Setup htop configuration.
-htopconfigdir=~/.config/htop/
-mkdir -p $htopconfigdir
-/bin/ln -fs "$dotfilesdir/htoprc" $htopconfigdir
+htop_config_dir=~/.config/htop/
+mkdir -p $htop_config_dir
+/bin/ln -fs "$dotfiles_dir/htoprc" $htop_config_dir
 
 # Setup sublime configuration.
-subconfigdir=~/.config/sublime-text-3/Packages/User/
-mkdir -p $subconfigdir
-/bin/ln -fs "$dotfilesdir/config/sublime-text-3/Default (Linux).sublime-keymap" $subconfigdir
-/bin/ln -fs "$dotfilesdir/config/sublime-text-3/Preferences.sublime-settings" $subconfigdir
-/bin/ln -fs "$dotfilesdir/config/sublime-text-3/Package Control.sublime-settings" $subconfigdir
+subl_config_dir=~/.config/sublime-text-3/Packages/User/
+mkdir -p $subl_config_dir
+/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Default (Linux).sublime-keymap" $subl_config_dir
+/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Preferences.sublime-settings" $subl_config_dir
+/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Package Control.sublime-settings" $subl_config_dir
 
 # Install and setup.
 bash ./setup/settings.sh
