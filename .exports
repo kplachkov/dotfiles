@@ -6,10 +6,10 @@ export PAGER="most"
 export HISTCONTROL=ignoreboth
 
 # Increase the maximum number of commands recorded.
-export HISTSIZE=10000
+export HISTSIZE=100000
 
 # Increase the maximum number of lines of history.
-export HISTFILESIZE=10000
+export HISTFILESIZE=100000
 
 # Don't add certain commands to the history file.
 export HISTIGNORE="clear:history:exit:pwd:* --help"
