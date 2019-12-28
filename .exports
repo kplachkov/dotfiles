@@ -20,5 +20,3 @@ export PYTHONIOENCODING="UTF-8"
 # Use US English and UTF-8 encoding.
 export LANG="en_US"
 export LC_ALL="en_US.UTF-8"
-
-export GOPATH="$HOME/projects/go"
