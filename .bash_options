@@ -32,6 +32,3 @@ shopt -s histappend
 # Match filenames in a case-insensitive fashion when performing
 # filename expansion.
 shopt -s nocaseglob
-
-# Update bash history in real time.
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"

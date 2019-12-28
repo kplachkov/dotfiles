@@ -1,22 +1,28 @@
+export LANG="en_US.UTF-8"
 export TERM="xterm-256color"
 export EDITOR="subl"
+export VISUAL="subl"
 export PAGER="most"
-
+export BROWSER="google-chrome"
 # Don't put duplicate lines or lines starting with space in the history.
 export HISTCONTROL=ignoreboth
-
 # Increase the maximum number of commands recorded.
 export HISTSIZE=100000
-
 # Increase the maximum number of lines of history.
 export HISTFILESIZE=100000
-
 # Don't add certain commands to the history file.
 export HISTIGNORE="clear:history:exit:pwd:* --help"
-
 # Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
 export PYTHONIOENCODING="UTF-8"
+# Update bash history in real time.
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-# Use US English and UTF-8 encoding.
-export LANG="en_US"
-export LC_ALL="en_US.UTF-8"
+export LC_ADDRESS=en_US.UTF-8
+export LC_NAME=en_US.UTF-8
+export LC_MONETARY=en_US.UTF-8
+export LC_PAPER=en_GB.UTF-8
+export LC_IDENTIFICATION=en_US.UTF-8
+export LC_TELEPHONE=en_US.UTF-8
+export LC_MEASUREMENT=en_GB.UTF-8
+export LC_TIME=en_GB.UTF-8
+export LC_NUMERIC=en_GB.UTF-8
