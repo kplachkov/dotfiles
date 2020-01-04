@@ -2,7 +2,7 @@
 
 # Setup dotfiles.
 dotfiles_dir=$(dirname "$(readlink -f "$0")")
-dotfiles=(.aliases .bashrc .bash_options .exports .tmux.conf)
+dotfiles=(.aliases .bashrc .bash_options .exports .inputrc .tmux.conf)
 
 for dotf in "${dotfiles[@]}"
 do

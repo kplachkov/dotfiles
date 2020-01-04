@@ -1,0 +1,41 @@
+# Set visible bell.
+set bell-style visible  # Options: none, visible, audible
+
+# Show completion options on first tab, begin cycling on second tab.
+set menu-complete-display-prefix on
+# Show all available completion options on second tab.
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+# Completion should ignore options case.
+set completion-ignore-case on
+# Prompt to show many completions.
+set completion-query-items 200
+# Match hidden files.
+set match-hidden-files on
+# Show extra file information when completing.
+set visible-stats on
+# Treat - and _ as equivalent in completion options.
+set completion-map-case on
+# Avoid duplicating text when completing an option mid-word.
+set skip-completed-text on
+# Show completion options in color.
+set colored-stats on
+# Highlight the search prefix.
+set colored-completion-prefix on
+
+# Append directories with a slash.
+set mark-directories on
+# Append symlinks with an at.
+set mark-symlinked-directories on
+
+# Hard-code some UTF-8 conversion defaults.
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
+
+# Use the text that has already been typed as the prefix for searching through commands.
+"\e[B": history-search-forward
+"\e[A": history-search-backward
+# Use Alt + Delete to delete the next word.
+"\e[3;3~": kill-word
