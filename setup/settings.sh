@@ -40,8 +40,9 @@ gsettings set org.gnome.desktop.input-sources per-window true
 # Night light.
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
-gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 7
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 5
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 5
+gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2000
 
 # Power.
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'

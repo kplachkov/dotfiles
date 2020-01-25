@@ -22,6 +22,9 @@ apt install -y keepassxc
 # Social.
 snap install skype --classic
 
+# Music.
+snap install spotify
+
 # Development.
 apt install -y cmake git nodejs npm postgresql-client python-pip python3-pip python-virtualenv direnv python3-tk
 snap install go --classic
@@ -60,6 +63,7 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &
 dpkg -i google-chrome-stable_current_amd64.deb
 
 # Appearance.
+# Hide cursor.
 apt install -y unclutter
 # Tweak.
 add-apt-repository universe && \
