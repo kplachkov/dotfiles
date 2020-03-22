@@ -11,13 +11,19 @@ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "[]"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "[]"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Super>Above_Tab', '<Control><Alt>Down']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Shift><Super>Above_Tab', '<Control><Alt>Up']"
+gsettings set org.gnome.shell.keybindings toggle-application-view "[]"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Control><Super><Shift>Down']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-up "['<Control><Super><Shift>Up']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Super>Above_Tab', '<Control><Super>Down']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Shift><Super>Above_Tab', '<Control><Super>Up']"
 gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
 gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Super>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings cycle-windows-backward "['<Shift><Super>Tab']"
-gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Primary>F11']"
+gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Alt>F11']"
 gsettings set org.gnome.desktop.wm.keybindings close "['<Primary>space']"
+gsettings set org.gnome.shell.keybindings switch-to-application-4 "['<Super>q']"
+gsettings set org.gnome.shell.keybindings switch-to-application-5 "['<Super>w']"
+gsettings set org.gnome.shell.keybindings switch-to-application-6 "['<Super>e']"
 
 # Custom keybindings.
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
@@ -66,4 +72,4 @@ gsettings set org.gnome.desktop.privacy report-technical-problems false
 gsettings set org.gtk.Settings.FileChooser show-hidden true
 
 # Favorite applications.
-gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop', 'syntevo-smartgit.desktop', 'sublime_text.desktop']"
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop', 'syntevo-smartgit.desktop', 'goland_goland.desktop', 'sublime_text.desktop']"
