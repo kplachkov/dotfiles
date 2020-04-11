@@ -1,0 +1,40 @@
+<code_scheme name="hackerman" version="173">
+  <option name="OTHER_INDENT_OPTIONS">
+    <value>
+      <option name="USE_TAB_CHARACTER" value="true" />
+    </value>
+  </option>
+  <CssCodeStyleSettings>
+    <option name="HEX_COLOR_UPPER_CASE" value="true" />
+    <option name="HEX_COLOR_LONG_FORMAT" value="true" />
+    <option name="ENFORCE_QUOTES_ON_FORMAT" value="true" />
+  </CssCodeStyleSettings>
+  <GoCodeStyleSettings>
+    <option name="REMOVE_REDUNDANT_IMPORT_ALIASES" value="true" />
+    <option name="ADD_LEADING_SPACE_TO_COMMENTS" value="true" />
+    <option name="MOVE_ALL_IMPORTS_IN_ONE_DECLARATION" value="true" />
+    <option name="MOVE_ALL_STDLIB_IMPORTS_IN_ONE_GROUP" value="true" />
+    <option name="GROUP_STDLIB_IMPORTS" value="true" />
+  </GoCodeStyleSettings>
+  <HTMLCodeStyleSettings>
+    <option name="HTML_ALIGN_TEXT" value="true" />
+    <option name="HTML_ENFORCE_QUOTES" value="true" />
+  </HTMLCodeStyleSettings>
+  <codeStyleSettings language="HTML">
+    <indentOptions>
+      <option name="INDENT_SIZE" value="2" />
+      <option name="USE_TAB_CHARACTER" value="true" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="JavaScript">
+    <indentOptions>
+      <option name="USE_TAB_CHARACTER" value="true" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="XML">
+    <indentOptions>
+      <option name="INDENT_SIZE" value="2" />
+      <option name="USE_TAB_CHARACTER" value="true" />
+    </indentOptions>
+  </codeStyleSettings>
+</code_scheme>

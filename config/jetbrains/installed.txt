@@ -1,0 +1,3 @@
+io.protostuff.protostuff-jetbrains-plugin
+name.kropp.intellij.makefile
+org.toml.lang

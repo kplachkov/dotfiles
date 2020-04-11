@@ -1,10 +1,37 @@
 <application>
+  <component name="CodeFoldingSettings">
+    <option name="COLLAPSE_IMPORTS" value="false" />
+    <option name="COLLAPSE_FILE_HEADER" value="false" />
+  </component>
   <component name="DefaultFont">
-    <option name="FONT_SIZE" value="20" />
-    <option name="FONT_SCALE" value="1.25" />
+    <option name="FONT_SIZE" value="16" />
+    <option name="FONT_FAMILY" value="DejaVu Sans Mono" />
   </component>
   <component name="EditorSettings">
     <option name="USE_SOFT_WRAPS" value="" />
+    <option name="SOFT_WRAP_FILE_MASKS" value="*.md; *.txt; *.rst; *.adoc" />
+    <option name="IS_DND_ENABLED" value="false" />
     <option name="IS_WHEEL_FONTCHANGE_ENABLED" value="true" />
+  </component>
+  <component name="SqlFoldingSettings">
+    <option name="COLLAPSE_LONG_NUMBERS" value="false" />
+  </component>
+  <component name="TodoConfiguration">
+    <pattern case-sensitive="true" pattern="\b(TODO)\b.*" />
+    <pattern icon="important" useCustomColors="true" case-sensitive="true" pattern="\b(WARNING)\b.*">
+      <option name="FOREGROUND" value="b81b00" />
+      <option name="FONT_TYPE" value="2" />
+      <option name="ERROR_STRIPE_COLOR" value="b81b00" />
+    </pattern>
+    <pattern icon="important" useCustomColors="true" case-sensitive="true" pattern="\b(HACK)\b.*">
+      <option name="FOREGROUND" value="a8178f" />
+      <option name="FONT_TYPE" value="2" />
+      <option name="ERROR_STRIPE_COLOR" value="a8178f" />
+    </pattern>
+  </component>
+  <component name="XmlFoldingSettings">
+    <option name="COLLAPSE_HTML_STYLE_ATTRIBUTE" value="false" />
+    <option name="COLLAPSE_ENTITIES" value="false" />
+    <option name="COLLAPSE_DATA_URI" value="false" />
   </component>
 </application>

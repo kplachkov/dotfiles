@@ -1,0 +1,172 @@
+<keymap version="1" name="hackerman" parent="Default for GNOME">
+  <action id="ActivateDatabaseToolWindow">
+    <keyboard-shortcut first-keystroke="alt 5" />
+  </action>
+  <action id="ActivateDebugToolWindow">
+    <keyboard-shortcut first-keystroke="alt 3" />
+  </action>
+  <action id="ActivateFavoritesToolWindow" />
+  <action id="ActivateRunToolWindow">
+    <keyboard-shortcut first-keystroke="alt 2" />
+  </action>
+  <action id="ActivateTODOToolWindow">
+    <keyboard-shortcut first-keystroke="alt 4" />
+  </action>
+  <action id="ActivateTerminalToolWindow" />
+  <action id="Back">
+    <mouse-shortcut keystroke="button4" />
+    <keyboard-shortcut first-keystroke="alt left" />
+  </action>
+  <action id="ChangesView.Revert">
+    <keyboard-shortcut first-keystroke="alt z" />
+  </action>
+  <action id="CollapseSelection">
+    <keyboard-shortcut first-keystroke="alt f" />
+  </action>
+  <action id="Console.TableResult.EditValue">
+    <keyboard-shortcut first-keystroke="enter" />
+    <keyboard-shortcut first-keystroke="alt enter" />
+  </action>
+  <action id="Console.TableResult.PreviousPage" />
+  <action id="ContextHelp" />
+  <action id="DebugClass">
+    <keyboard-shortcut first-keystroke="alt d" />
+  </action>
+  <action id="Debugger.RemoveAllBreakpoints">
+    <keyboard-shortcut first-keystroke="shift alt b" />
+  </action>
+  <action id="Diff.NextChange" />
+  <action id="Diff.PrevChange" />
+  <action id="EditSource" />
+  <action id="EditorChooseLookupItemDot">
+    <keyboard-shortcut first-keystroke="tab" />
+  </action>
+  <action id="EditorChooseLookupItemReplace" />
+  <action id="EditorDeleteToWordEndInDifferentHumpsMode">
+    <keyboard-shortcut first-keystroke="shift ctrl delete" />
+  </action>
+  <action id="EditorDeleteToWordStartInDifferentHumpsMode">
+    <keyboard-shortcut first-keystroke="shift ctrl back_space" />
+  </action>
+  <action id="EditorNextWordInDifferentHumpsMode">
+    <keyboard-shortcut first-keystroke="ctrl alt right" />
+  </action>
+  <action id="EditorNextWordInDifferentHumpsModeWithSelection">
+    <keyboard-shortcut first-keystroke="shift ctrl alt right" />
+  </action>
+  <action id="EditorPreviousWordInDifferentHumpsMode">
+    <keyboard-shortcut first-keystroke="ctrl alt left" />
+  </action>
+  <action id="EditorPreviousWordInDifferentHumpsModeWithSelection">
+    <keyboard-shortcut first-keystroke="shift ctrl alt left" />
+  </action>
+  <action id="EditorToggleCase">
+    <keyboard-shortcut first-keystroke="shift ctrl back_quote" />
+  </action>
+  <action id="EditorToggleColumnMode" />
+  <action id="FileStructurePopup">
+    <keyboard-shortcut first-keystroke="shift ctrl x" />
+  </action>
+  <action id="FindNext">
+    <keyboard-shortcut first-keystroke="ctrl l" />
+  </action>
+  <action id="FindWordAtCaret">
+    <keyboard-shortcut first-keystroke="alt n" />
+  </action>
+  <action id="Forward">
+    <mouse-shortcut keystroke="button5" />
+    <keyboard-shortcut first-keystroke="alt right" />
+  </action>
+  <action id="Generate">
+    <keyboard-shortcut first-keystroke="f2" />
+  </action>
+  <action id="Git.Branches" />
+  <action id="Git.Pull">
+    <keyboard-shortcut first-keystroke="alt p" />
+  </action>
+  <action id="GoGenerateConstructorAction">
+    <keyboard-shortcut first-keystroke="alt c" />
+  </action>
+  <action id="GoGenerateGetterAction">
+    <keyboard-shortcut first-keystroke="alt g" />
+  </action>
+  <action id="GoGenerateSetterAction">
+    <keyboard-shortcut first-keystroke="alt s" />
+  </action>
+  <action id="GotoNextError">
+    <keyboard-shortcut first-keystroke="alt e" />
+  </action>
+  <action id="GotoPreviousError">
+    <keyboard-shortcut first-keystroke="shift alt e" />
+  </action>
+  <action id="HideActiveWindow">
+    <keyboard-shortcut first-keystroke="alt escape" />
+  </action>
+  <action id="JumpToLastChange" />
+  <action id="JumpToLastWindow" />
+  <action id="MoveElementRight" />
+  <action id="NewElement">
+    <keyboard-shortcut first-keystroke="f3" />
+  </action>
+  <action id="NextTab" />
+  <action id="PreviousTab" />
+  <action id="QuickChangeScheme">
+    <keyboard-shortcut first-keystroke="f1" />
+  </action>
+  <action id="RenameElement">
+    <keyboard-shortcut first-keystroke="f4" />
+  </action>
+  <action id="Rerun">
+    <keyboard-shortcut first-keystroke="f7" />
+  </action>
+  <action id="RunClass">
+    <keyboard-shortcut first-keystroke="alt r" />
+  </action>
+  <action id="SelectAllOccurrences">
+    <keyboard-shortcut first-keystroke="ctrl alt back_slash" />
+  </action>
+  <action id="SelectNextOccurrence">
+    <keyboard-shortcut first-keystroke="ctrl back_slash" />
+  </action>
+  <action id="StepInto">
+    <keyboard-shortcut first-keystroke="f11" />
+  </action>
+  <action id="StepOut">
+    <keyboard-shortcut first-keystroke="f12" />
+  </action>
+  <action id="StepOver">
+    <keyboard-shortcut first-keystroke="f10" />
+  </action>
+  <action id="Stop">
+    <keyboard-shortcut first-keystroke="f8" />
+  </action>
+  <action id="Switcher">
+    <keyboard-shortcut first-keystroke="alt tab" />
+  </action>
+  <action id="TableResult.UnselectPreviousOccurrence">
+    <keyboard-shortcut first-keystroke="shift alt j" />
+  </action>
+  <action id="Terminal.MoveToolWindowTabRight" />
+  <action id="ToggleBookmark" />
+  <action id="ToggleLineBreakpoint">
+    <keyboard-shortcut first-keystroke="alt b" />
+  </action>
+  <action id="UnselectPreviousOccurrence">
+    <keyboard-shortcut first-keystroke="shift ctrl back_slash" />
+  </action>
+  <action id="Vcs.QuickListPopupAction">
+    <keyboard-shortcut first-keystroke="alt v" />
+  </action>
+  <action id="Vcs.RollbackChangedLines">
+    <keyboard-shortcut first-keystroke="alt z" />
+  </action>
+  <action id="VcsShowCurrentChangeMarker">
+    <keyboard-shortcut first-keystroke="alt back_quote" />
+  </action>
+  <action id="VcsShowNextChangeMarker">
+    <keyboard-shortcut first-keystroke="ctrl alt down" />
+  </action>
+  <action id="VcsShowPrevChangeMarker">
+    <keyboard-shortcut first-keystroke="ctrl alt up" />
+  </action>
+</keymap>

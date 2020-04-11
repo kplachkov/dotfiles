@@ -1,11 +1,14 @@
 <application>
   <component name="GeneralSettings">
     <option name="confirmExit" value="false" />
+    <option name="defaultProjectDirectory" value="$USER_HOME$/projects" />
+    <option name="processCloseConfirmation" value="TERMINATE" />
     <option name="showTipsOnStartup" value="false" />
   </component>
   <component name="Registry">
     <entry key="suggest.all.run.configurations.from.context" value="true" />
     <entry key="ide.balloon.shadow.size" value="0" />
     <entry key="editor.distraction.free.mode" value="true" />
+    <entry key="ide.tree.ui.experimental" value="false" />
   </component>
 </application>

@@ -1,0 +1,64 @@
+<application>
+  <component name="com.intellij.ide.ui.customization.CustomActionsSchema">
+    <group value="ShowAnnotateOperationsPopupGroup" is_group="true" action_type="-1" position="5">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="Vcs.Operations.Popup.NonVcsAware" is_group="true" action_type="-1" position="3">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="Vcs.Operations.Popup.Vcs.Providers" is_group="true" action_type="-1" position="2">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="Vcs.Operations.Popup.VcsAware" is_group="true" action_type="-1" position="0">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="CheckinProject" is_action="true" action_type="1" position="0">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="Vcs.Push" is_action="true" action_type="1" position="1">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="Git.Pull" is_action="true" action_type="1" position="2">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="ChangesView.Revert" is_action="true" action_type="1" position="3">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="Git.Branches" is_action="true" action_type="1" position="4">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="Vcs.ShowTabbedFileHistory" is_action="true" action_type="1" position="6">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="Git.Stash" is_action="true" action_type="1" position="8">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+    <group value="Git.Unstash" is_action="true" action_type="1" position="9">
+      <path value="root" />
+      <path value="VCS Operations Popup" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
+  </component>
+</application>

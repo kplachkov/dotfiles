@@ -1,0 +1,5 @@
+<application>
+  <component name="CompletionMLRankingSettings">
+    <option name="rankingEnabled" value="true" />
+  </component>
+</application>
