@@ -17,13 +17,13 @@
     <option name="COLLAPSE_LONG_NUMBERS" value="false" />
   </component>
   <component name="TodoConfiguration">
-    <pattern case-sensitive="true" pattern="\b(TODO)\b.*" />
-    <pattern icon="important" useCustomColors="true" case-sensitive="true" pattern="\b(WARNING)\b.*">
+    <pattern case-sensitive="true" pattern="\b ?(TODO)\b.*" />
+    <pattern icon="important" useCustomColors="true" case-sensitive="true" pattern="\b ?(WARNING)\b.*">
       <option name="FOREGROUND" value="b81b00" />
       <option name="FONT_TYPE" value="2" />
       <option name="ERROR_STRIPE_COLOR" value="b81b00" />
     </pattern>
-    <pattern icon="important" useCustomColors="true" case-sensitive="true" pattern="\b(HACK)\b.*">
+    <pattern icon="important" useCustomColors="true" case-sensitive="true" pattern="\b ?(HACK)\b.*">
       <option name="FOREGROUND" value="a8178f" />
       <option name="FONT_TYPE" value="2" />
       <option name="ERROR_STRIPE_COLOR" value="a8178f" />
