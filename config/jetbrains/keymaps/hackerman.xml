@@ -64,6 +64,7 @@
     <keyboard-shortcut first-keystroke="shift ctrl back_quote" />
   </action>
   <action id="EditorToggleColumnMode" />
+  <action id="ExportToTextFile" />
   <action id="FileStructurePopup">
     <keyboard-shortcut first-keystroke="shift ctrl x" />
   </action>
@@ -108,7 +109,13 @@
   <action id="NewElement">
     <keyboard-shortcut first-keystroke="f3" />
   </action>
+  <action id="NextDiff">
+    <keyboard-shortcut first-keystroke="f6" />
+  </action>
   <action id="NextTab" />
+  <action id="PreviousDiff">
+    <keyboard-shortcut first-keystroke="shift f6" />
+  </action>
   <action id="PreviousTab" />
   <action id="QuickChangeScheme">
     <keyboard-shortcut first-keystroke="f1" />
@@ -121,6 +128,9 @@
   </action>
   <action id="RunClass">
     <keyboard-shortcut first-keystroke="alt r" />
+  </action>
+  <action id="RunCoverage">
+    <keyboard-shortcut first-keystroke="alt o" />
   </action>
   <action id="SelectAllOccurrences">
     <keyboard-shortcut first-keystroke="ctrl alt back_slash" />
