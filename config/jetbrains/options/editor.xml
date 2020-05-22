@@ -10,6 +10,7 @@
   <component name="EditorSettings">
     <option name="USE_SOFT_WRAPS" value="" />
     <option name="SOFT_WRAP_FILE_MASKS" value="*.md; *.txt; *.rst; *.adoc" />
+    <option name="SHOW_QUICK_DOC_ON_MOUSE_OVER_ELEMENT" value="false" />
     <option name="IS_DND_ENABLED" value="false" />
     <option name="IS_WHEEL_FONTCHANGE_ENABLED" value="true" />
   </component>
@@ -17,13 +18,12 @@
     <option name="COLLAPSE_LONG_NUMBERS" value="false" />
   </component>
   <component name="TodoConfiguration">
-    <pattern case-sensitive="true" pattern="\b ?(TODO)\b.*" />
-    <pattern icon="important" useCustomColors="true" case-sensitive="true" pattern="\b ?(WARNING)\b.*">
+    <pattern case-sensitive="true" pattern="(\/\/|#|\/\*|&lt;!--|--) ?TODO\b.*" />
+    <pattern icon="important" useCustomColors="true" case-sensitive="true" pattern="(\/\/|#|\/\*|&lt;!--|--) ?WARNING\b.*">
       <option name="FOREGROUND" value="b81b00" />
       <option name="FONT_TYPE" value="2" />
-      <option name="ERROR_STRIPE_COLOR" value="b81b00" />
     </pattern>
-    <pattern icon="important" useCustomColors="true" case-sensitive="true" pattern="\b ?(HACK)\b.*">
+    <pattern icon="important" useCustomColors="true" case-sensitive="true" pattern="(\/\/|#|\/\*|&lt;!--|--) ?HACK\b.*">
       <option name="FOREGROUND" value="a8178f" />
       <option name="FONT_TYPE" value="2" />
       <option name="ERROR_STRIPE_COLOR" value="a8178f" />
