@@ -10,9 +10,6 @@ apt upgrade -y
 
 ubuntu-drivers autoinstall
 
-# System.
-apt install -y htop tmux tree most
-
 # Network.
 apt install -y curl whois net-tools apt-transport-https ca-certificates gnupg-agent software-properties-common
 
@@ -24,6 +21,9 @@ snap install skype --classic
 
 # Music.
 snap install spotify
+
+# Miscellaneous.
+apt install -y htop tmux tree most imwheel
 
 # Development.
 apt install -y cmake git nodejs npm postgresql-client python-pip python3-pip python-virtualenv direnv python3-tk

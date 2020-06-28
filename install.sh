@@ -2,7 +2,7 @@
 
 # Setup dotfiles.
 dotfiles_dir=$(dirname "$(readlink -f "$0")")
-dotfiles=(.aliases .bashrc .bash_options .exports .inputrc .tmux.conf)
+dotfiles=(.aliases .bashrc .bash_options .exports .imwheelrc .inputrc .tmux.conf)
 
 for dotf in "${dotfiles[@]}"
 do
@@ -20,6 +20,15 @@ mkdir -p $subl_config_dir
 /bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Default (Linux).sublime-keymap" $subl_config_dir
 /bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Preferences.sublime-settings" $subl_config_dir
 /bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Package Control.sublime-settings" $subl_config_dir
+
+# Setup autostart applications and scripts.
+autostart_dir=~/.config/autostart/
+mkdir -p $autostart_dir
+/bin/ln -fs "$dotfiles_dir/imwheel.desktop" $autostart_dir
+
+# Setup cursor configuration.
+mkdir -p /etc/default/
+sudo /bin/ln -fs "$dotfiles_dir/unclutter" /etc/default/
 
 # Install and setup.
 bash "$dotfiles_dir/setup/settings.sh"
