@@ -1,3 +1,6 @@
+PythonCore
 io.protostuff.protostuff-jetbrains-plugin
 name.kropp.intellij.makefile
+net.ashald.envfile
 org.toml.lang
+ru.adelf.idea.dotenv
