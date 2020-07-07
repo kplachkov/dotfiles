@@ -37,30 +37,30 @@ gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-1 "['<Super>1']
 gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-4 "['<Ctrl><Super>4']"
 gsettings set org.gnome.shell.extensions.dash-to-dock running-indicator-style 'DOTS'
 gsettings set org.gnome.shell.extensions.dash-to-dock hotkeys-overlay true
-gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-5 "['<Shift><Super>5']                                                          "
+gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-5 "['<Shift><Super>5']"
 gsettings set org.gnome.shell.extensions.dash-to-dock animation-time 0.10000000000000002                                                              
 gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-color '#e95420'                                                       
 gsettings set org.gnome.shell.extensions.dash-to-dock running-indicator-dominant-color false                                                          
 gsettings set org.gnome.shell.extensions.dash-to-dock hotkeys-show-dock false                                                                         
-gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-5 "['<Ctrl><Super>5']                                                            "
+gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-5 "['<Ctrl><Super>5']"
 gsettings set org.gnome.shell.extensions.dash-to-dock unity-backlit-items false                                                                       
 gsettings set org.gnome.shell.extensions.dash-to-dock animate-show-apps true                                                                          
-gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-2 "['<Super>2']                                                                       "
+gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-2 "['<Super>2']"
 gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-border-width 0                                                        
-gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-6 "['<Shift><Super>6']                                                          "
-gsettings set org.gnome.shell.extensions.dash-to-dock shortcut "['<Super>q']                                                                           "
+gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-6 "['<Shift><Super>6']"
+gsettings set org.gnome.shell.extensions.dash-to-dock shortcut "['<Super>q']"
 gsettings set org.gnome.shell.extensions.dash-to-dock customize-alphas false                                                                          
-gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-3 "['<Super>3']                                                                       "
-gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-6 "['<Ctrl><Super>6']                                                            "
+gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-3 "['<Super>3']"
+gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-6 "['<Ctrl><Super>6']"
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide true                                                                                   
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts true                                                                                
 gsettings set org.gnome.shell.extensions.dash-to-dock minimize-shift true                                                                             
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'                                                                          
-gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-7 "['<Shift><Super>7']                                                          "
-gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-10 "['<Super>0']                                                                      "
+gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-7 "['<Shift><Super>7']"
+gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-10 "['<Super>0']"
 gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-customize-running-dots true                                                        
-gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-4 "['<Super>4']                                                                       "
-gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-7 "['<Ctrl><Super>7']                                                            "
+gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-4 "['<Super>4']"
+gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-7 "['<Ctrl><Super>7']"
 gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.69999999999999996                                                          
 gsettings set org.gnome.shell.extensions.dash-to-dock middle-click-action 'launch'                                                                    
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false                                                                             
