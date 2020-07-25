@@ -1,16 +1,17 @@
 <keymap version="1" name="hackerman" parent="Default for GNOME">
   <action id="ActivateDatabaseToolWindow">
-    <keyboard-shortcut first-keystroke="alt 5" />
+    <keyboard-shortcut first-keystroke="alt 4" />
   </action>
   <action id="ActivateDebugToolWindow">
     <keyboard-shortcut first-keystroke="alt 3" />
   </action>
   <action id="ActivateFavoritesToolWindow" />
+  <action id="ActivateFindToolWindow" />
   <action id="ActivateRunToolWindow">
     <keyboard-shortcut first-keystroke="alt 2" />
   </action>
   <action id="ActivateTODOToolWindow">
-    <keyboard-shortcut first-keystroke="alt 4" />
+    <keyboard-shortcut first-keystroke="alt 5" />
   </action>
   <action id="ActivateTerminalToolWindow" />
   <action id="AutoIndentLines" />

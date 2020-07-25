@@ -64,6 +64,7 @@ gsettings set org.gnome.desktop.session idle-delay 120
 gsettings set org.gnome.desktop.interface icon-theme "Numix-Circle"
 gsettings set org.gnome.desktop.interface cursor-theme "Yaru"
 gsettings set org.gnome.desktop.interface gtk-theme "Yaru-dark"
+gsettings set org.gnome.shell.extensions.user-theme name "Yaru-dark"
 gsettings set org.gnome.desktop.interface cursor-size 64
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-weekday true

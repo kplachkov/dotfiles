@@ -33,6 +33,8 @@ snap install google-cloud-sdk --classic
 snap install heroku --classic
 snap install hugo --channel=extended
 snap install docker
+snap install postman
+snap install beekeeper-studio
 # IDEs.
 snap install goland --classic
 snap install webstorm --classic
@@ -50,13 +52,9 @@ apt install -y sublime-text
 # Git LFS.
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 # Yarn.
-curl -sSL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
 apt update && apt install -y yarn
-# pgAdmin 4.
-curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
-sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
-apt update && apt install -y pgadmin4
 
 # Chrome.
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
