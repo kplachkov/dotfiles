@@ -20,6 +20,14 @@
     </option>
   </component>
   <component name="TextDiffSettings">
+    <option name="PLACES_MAP">
+      <entry key="Default">
+        <PlaceSettings>
+          <option name="BREADCRUMBS_PLACEMENT" value="BOTTOM" />
+          <option name="SHOW_LINE_NUMBERS" value="false" />
+        </PlaceSettings>
+      </entry>
+    </option>
     <option name="SHARED_SETTINGS">
       <SharedSettings>
         <option name="MERGE_AUTO_APPLY_NON_CONFLICTED_CHANGES" value="true" />

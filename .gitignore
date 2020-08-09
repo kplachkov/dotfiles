@@ -1,0 +1,9 @@
+*.zip
+/config/jetbrains/codestyles/Default.xml
+/config/jetbrains/colors/_@user_Darcula.icls
+/config/jetbrains/colors/_@user_Default.icls
+/config/jetbrains/colors/_@user_High ontrast.icls
+/config/jetbrains/options/applicationLibraries.xml
+/config/jetbrains/options/docker.xml
+/config/jetbrains/options/jdk.table.xml
+/config/jetbrains/options/remote-servers.xml

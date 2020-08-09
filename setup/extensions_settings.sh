@@ -19,7 +19,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-2 "['<Shi
 gsettings set org.gnome.shell.extensions.dash-to-dock show-windows-preview true
 gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
 gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-2 "['<Ctrl><Super>2']"
-gsettings set org.gnome.shell.extensions.dash-to-dock autohide-in-fullscreen true
+gsettings set org.gnome.shell.extensions.dash-to-dock autohide-in-fullscreen false
 gsettings set org.gnome.shell.extensions.dash-to-dock icon-size-fixed true
 gsettings set org.gnome.shell.extensions.dash-to-dock scroll-action 'switch-workspace'
 gsettings set org.gnome.shell.extensions.dash-to-dock shift-middle-click-action 'launch'
