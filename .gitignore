@@ -7,3 +7,5 @@
 /config/jetbrains/options/docker.xml
 /config/jetbrains/options/jdk.table.xml
 /config/jetbrains/options/remote-servers.xml
+/config/jetbrains/options/databaseDrivers.xml
+/config/jetbrains/options/ide-features-trainer.xml
