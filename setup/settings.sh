@@ -58,13 +58,11 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'su
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 5400
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 3600
-gsettings set org.gnome.desktop.session idle-delay 120
 
 # Appearance.
 gsettings set org.gnome.desktop.interface icon-theme "Numix-Circle"
 gsettings set org.gnome.desktop.interface cursor-theme "Yaru"
 gsettings set org.gnome.desktop.interface gtk-theme "Yaru-dark"
-gsettings set org.gnome.shell.extensions.user-theme name "Yaru-dark"
 gsettings set org.gnome.desktop.interface cursor-size 64
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-weekday true
@@ -73,6 +71,9 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 # Privacy.
 gsettings set org.gnome.desktop.privacy send-software-usage-stats false
 gsettings set org.gnome.desktop.privacy report-technical-problems false
+
+# Formats.
+gsettings set org.gnome.system.locale region 'en_GB.UTF-8'
 
 # Show hidden files.
 gsettings set org.gtk.Settings.FileChooser show-hidden true
