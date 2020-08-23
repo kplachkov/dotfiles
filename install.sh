@@ -1,40 +1,62 @@
 #!/bin/bash
 
-# Setup dotfiles.
 dotfiles_dir=$(dirname "$(readlink -f "$0")")
-dotfiles=(.aliases .bashrc .bash_options .exports .imwheelrc .inputrc .tmux.conf)
 
-for dotf in "${dotfiles[@]}"
-do
-    /bin/ln -fs "$dotfiles_dir/${dotf}" ~/
-done
+. "$dotfiles_dir/setup/utils.sh"
 
-# Setup htop configuration.
-htop_config_dir=~/.config/htop/
-mkdir -p $htop_config_dir
-/bin/ln -fs "$dotfiles_dir/htoprc" $htop_config_dir
+function main {
+	disable_lock
 
-# Setup sublime configuration.
-subl_config_dir=~/.config/sublime-text-3/Packages/User/
-mkdir -p $subl_config_dir
-/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Default (Linux).sublime-keymap" $subl_config_dir
-/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Preferences.sublime-settings" $subl_config_dir
-/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Package Control.sublime-settings" $subl_config_dir
+	setup_configuration
+	install
 
-# Setup autostart applications and scripts.
-autostart_dir=~/.config/autostart/
-mkdir -p $autostart_dir
-/bin/ln -fs "$dotfiles_dir/imwheel.desktop" $autostart_dir
+	enable_lock
+	echo "Done."
+}
 
-# Setup cursor configuration.
-mkdir -p /etc/default/
-sudo /bin/ln -fs "$dotfiles_dir/unclutter" /etc/default/
+function setup_configuration {
+	echo "Setting up dotfiles"
+	dotfiles=(.aliases .bashrc .bash_options .exports .imwheelrc .inputrc .tmux.conf)
 
-# Install and setup.
-bash "$dotfiles_dir/setup/settings.sh"
+	for dotf in "${dotfiles[@]}"
+	do
+	    /bin/ln -fs "$dotfiles_dir/${dotf}" ~/
+	done
 
-sudo bash "$dotfiles_dir/setup/sys_install.sh"
-bash "$dotfiles_dir/setup/pip_install.sh"
-bash "$dotfiles_dir/setup/manually_install.sh"
+	echo "Setting up htop configuration"
+	htop_config_dir=~/.config/htop/
+	mkdir -p $htop_config_dir
+	/bin/ln -fs "$dotfiles_dir/htoprc" $htop_config_dir
 
-bash "$dotfiles_dir/setup/default_apps.sh"
+	echo "Setting up sublime configuration"
+	subl_config_dir=~/.config/sublime-text-3/Packages/User/
+	mkdir -p $subl_config_dir
+	/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Default (Linux).sublime-keymap" $subl_config_dir
+	/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Preferences.sublime-settings" $subl_config_dir
+	/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Package Control.sublime-settings" $subl_config_dir
+
+	echo "Setting up autostart applications and scripts"
+	autostart_dir=~/.config/autostart/
+	mkdir -p $autostart_dir
+	/bin/ln -fs "$dotfiles_dir/imwheel.desktop" $autostart_dir
+
+	echo "Setting up cursor configuration"
+	mkdir -p /etc/default/
+	sudo /bin/ln -fs "$dotfiles_dir/unclutter" /etc/default/
+
+	echo "Applying system settings"
+	bash "$dotfiles_dir/setup/settings.sh"
+}
+
+function install {
+	echo "Installing system software"
+	sudo bash "$dotfiles_dir/setup/sys_install.sh"
+
+	echo "Installing python libraries"
+	bash "$dotfiles_dir/setup/pip_install.sh"
+
+	echo "Setting up default applications"
+	sudo bash "$dotfiles_dir/setup/default_apps.sh"
+}
+
+main
