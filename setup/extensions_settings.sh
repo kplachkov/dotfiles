@@ -1,3 +1,7 @@
+#!/bin/bash
+
+echo "Applying gnome extensions settings"
+
 # Dash to dock.
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'DYNAMIC'
 gsettings set org.gnome.shell.extensions.dash-to-dock shortcut-text '<Super>q'

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Applying system settings"
+
 setup_dir=$(dirname "$(readlink -f "$0")")
 scripts_dir=${setup_dir/setup/scripts}
 

@@ -1,8 +1,10 @@
 #!/bin/bash
 
+echo "Setting up default applications"
+
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root"
-   exit 1
+	echo "Permission denied (try with sudo)"
+	exit 1
 fi
 
 # Remove amazon.
