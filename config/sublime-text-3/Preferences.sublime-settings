@@ -7,5 +7,7 @@
 	],
 	"spell_check": true,
 	"theme": "Adaptive.sublime-theme",
-	"remember_full_screen": true
+	"remember_full_screen": true,
+    "show_encoding": true,
+    "show_line_endings": true,
 }
