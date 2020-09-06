@@ -9,6 +9,7 @@ sudo apt install -y git
 
 echo "Downloading files"
 git clone $dotfiles_repository $dotfiles_dir
+git config --global url."git@github.com:".insteadOf "https://github.com/"
 
 echo "Installing setup"
 bash "$dotfiles_dir/setup/install.sh"
