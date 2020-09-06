@@ -15,10 +15,12 @@ while true; do
 done
 
 machine_name=$(sudo lshw | grep -m1 -oP "(?<=product: )(.*)")
-echo "Comment: $machine_name"
+distribution="$(lsb_release -i -s) $(lsb_release -r -s)"
+comment="$machine_name - $distribution"
+echo "Comment: $comment"
 
-ssh-keygen -q -t rsa -b 4096 -C "$machine_name" -P "$passphrase" -f ~/.ssh/id_rsa
-ssh-keygen -q -t ed25519 -C "$machine_name" -P "$passphrase" -f ~/.ssh/id_ed25519
+ssh-keygen -q -t rsa -b 4096 -C "$comment" -P "$passphrase" -f ~/.ssh/id_rsa
+ssh-keygen -q -t ed25519 -C "$comment" -P "$passphrase" -f ~/.ssh/id_ed25519
 
 unset passphrase
 unset passphrase_confirmation
