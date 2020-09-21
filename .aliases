@@ -17,7 +17,7 @@ alias serve="python3 -m http.server"
 
 # Network.
 alias hosts="subl /etc/hosts"
-alias lnet="sudo netstat -tupln"
+alias lsnet="sudo netstat -tupln"
 
 # Report.
 alias ll='ls -alhF'

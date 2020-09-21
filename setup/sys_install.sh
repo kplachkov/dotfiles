@@ -16,14 +16,15 @@ ubuntu-drivers autoinstall
 apt install -y curl whois net-tools apt-transport-https ca-certificates gnupg-agent software-properties-common
 
 # Development.
-apt install -y cmake git nodejs npm postgresql-client direnv
+apt install -y cmake git nodejs npm postgresql-client direnv ruby-dev shc
 apt install -y python3-pip python3-virtualenv python3-tk
 snap install go --classic
 snap install protobuf --classic
 snap install google-cloud-sdk --classic
+snap install docker
+snap install microk8s --classic && microk8s.enable registry && microk8s.enable helm
 snap install heroku --classic
 snap install hugo --channel=extended
-snap install docker
 snap install postman
 snap install beekeeper-studio
 # IDEs.
@@ -69,3 +70,7 @@ apt install -y htop tmux tree most imwheel xclip keepassxc
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 snap install skype --classic
 snap install spotify
+
+# Snap aliases.
+snap alias microk8s.kubectl kubectl
+snap alias microk8s.helm helm
