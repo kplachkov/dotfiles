@@ -1,13 +1,12 @@
 <scheme name="hackerman" version="142" parent_scheme="Darcula">
   <metaInfo>
-    <property name="ideVersion">2019.3.4.0.0</property>
     <property name="originalScheme">_@user_High сontrast</property>
   </metaInfo>
   <colors>
     <option name="ADDED_LINES_COLOR" value="9924" />
     <option name="ANNOTATIONS_COLOR" value="ffffff" />
     <option name="CARET_COLOR" value="ffffff" />
-    <option name="CARET_ROW_COLOR" value="281100" />
+    <option name="CARET_ROW_COLOR" value="381600" />
     <option name="CONSOLE_BACKGROUND_KEY" value="0" />
     <option name="DELETED_LINES_COLOR" value="ffa14f" />
     <option name="DOCUMENTATION_COLOR" value="281a33" />
@@ -509,8 +508,8 @@
     </option>
     <option name="IDENTIFIER_UNDER_CARET_ATTRIBUTES">
       <value>
-        <option name="BACKGROUND" value="3b0a" />
-        <option name="ERROR_STRIPE_COLOR" value="8c1a" />
+        <option name="BACKGROUND" value="3f006f" />
+        <option name="ERROR_STRIPE_COLOR" value="9200ff" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
@@ -551,7 +550,6 @@
         <option name="BACKGROUND" value="ffffff" />
       </value>
     </option>
-    <option name="JAVA_KEYWORD" baseAttributes="" />
     <option name="JSP_DIRECTIVE_NAME" baseAttributes="" />
     <option name="KOTLIN_BACKING_FIELD_VARIABLE">
       <value />
@@ -765,7 +763,7 @@
     </option>
     <option name="TYPO">
       <value>
-        <option name="EFFECT_COLOR" value="7e2626" />
+        <option name="EFFECT_COLOR" value="ff0000" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
     </option>
@@ -789,7 +787,7 @@
     </option>
     <option name="WRITE_IDENTIFIER_UNDER_CARET_ATTRIBUTES">
       <value>
-        <option name="BACKGROUND" value="471747" />
+        <option name="BACKGROUND" value="5c255c" />
         <option name="ERROR_STRIPE_COLOR" value="b336b3" />
       </value>
     </option>

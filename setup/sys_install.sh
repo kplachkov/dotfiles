@@ -18,6 +18,7 @@ apt install -y curl whois net-tools apt-transport-https ca-certificates gnupg-ag
 # Development.
 apt install -y cmake git nodejs npm postgresql-client direnv ruby-dev shc
 apt install -y python3-pip python3-virtualenv python3-tk
+apt install libseccomp-dev
 snap install go --classic
 snap install protobuf --classic
 snap install google-cloud-sdk --classic

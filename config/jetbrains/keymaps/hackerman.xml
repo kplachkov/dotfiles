@@ -124,7 +124,7 @@
     <keyboard-shortcut first-keystroke="shift up" />
   </action>
   <action id="ExtractInterface">
-    <keyboard-shortcut first-keystroke="ctrl alt i" />
+    <keyboard-shortcut first-keystroke="ctrl i" />
   </action>
   <action id="FileStructurePopup">
     <keyboard-shortcut first-keystroke="f1" />
@@ -186,6 +186,9 @@
   <action id="Hg.Commit.And.Push.Executor" />
   <action id="HideActiveWindow">
     <keyboard-shortcut first-keystroke="alt escape" />
+  </action>
+  <action id="ImplementMethods">
+    <keyboard-shortcut first-keystroke="ctrl alt i" />
   </action>
   <action id="Inline" />
   <action id="JumpToLastChange">
