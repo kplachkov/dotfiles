@@ -22,6 +22,8 @@ function setup {
 	bash "$dotfiles_dir/setup/autostart_apps.sh"
 
 	bash "$dotfiles_dir/setup/ssh_keys.sh"
+
+	bash "$dotfiles_dir/setup/gpg_key.sh"
 }
 
 function install {

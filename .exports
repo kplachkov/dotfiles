@@ -17,6 +17,8 @@ export PYTHONIOENCODING="UTF-8"
 # Update bash history in real time.
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+export GOPATH="$HOME/go"
+
 export LC_ADDRESS=en_US.UTF-8
 export LC_NAME=en_US.UTF-8
 export LC_MONETARY=en_US.UTF-8

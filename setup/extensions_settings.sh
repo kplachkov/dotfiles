@@ -39,7 +39,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-running true
 gsettings set org.gnome.shell.extensions.dash-to-dock force-straight-corner false
 gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-1 "['<Super>1']"
 gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-4 "['<Ctrl><Super>4']"
-gsettings set org.gnome.shell.extensions.dash-to-dock running-indicator-style 'DASHES'
+gsettings set org.gnome.shell.extensions.dash-to-dock running-indicator-style 'DOTS'
 gsettings set org.gnome.shell.extensions.dash-to-dock hotkeys-overlay true
 gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-5 "['<Shift><Super>5']"
 gsettings set org.gnome.shell.extensions.dash-to-dock animation-time 0.10000000000000002
@@ -98,7 +98,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys true
 gsettings set org.gnome.shell.extensions.user-theme name "Yaru-dark"
 
 # Auto move windows.
-gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['webstorm_webstorm.desktop:2', 'goland_goland.desktop:2', 'sublime_text.desktop:2', 'google-chrome.desktop:1', 'syntevo-smartgit.desktop:1', 'org.gnome.Terminal.desktop:1']"
+gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['webstorm_webstorm.desktop:2', 'goland_goland.desktop:2', 'sublime_text.desktop:2', 'google-chrome.desktop:1', 'syntevo-smartgit.desktop:1', 'org.gnome.Terminal.desktop:1', 'postman_postman.desktop:2']"
 
 # Desktop icons.
 gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
