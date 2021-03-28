@@ -15,6 +15,7 @@ ubuntu-drivers autoinstall
 # Network.
 apt install -y curl whois net-tools apt-transport-https \
 ca-certificates gnupg-agent software-properties-common nmap
+snap install ufw
 
 # Development.
 apt install -y cmake git nodejs npm postgresql-client direnv ruby-dev shc
