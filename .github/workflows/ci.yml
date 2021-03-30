@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Test
+    name: "Test"
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -17,14 +17,31 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up env
-        run: set -euxo pipefail
+      - name: "Set up environment"
+        run: |
+          set -euxo pipefail
+          chmod -R 700 .
 
-      - name: Test
-        run: sudo bash test.sh
+      - name: "Test system software installation"
+        run: sudo setup/sys_install.sh
+
+      - name: "Test python libraries installation"
+        run: sudo setup/pip_install.sh
+
+      - name: "Test configuration set up"
+        run: sudo setup/configuration.sh
+
+      - name: "Test autostart applications set up"
+        run: sudo setup/autostart_apps.sh
+
+      - name: "Test default applications set up"
+        run: sudo setup/default_apps.sh
+
+      - name: "Test extra applications set up"
+        run: sudo setup/extra_apps.sh
 
   lint:
-    name: Lint
+    name: "Lint"
     runs-on: ubuntu-latest
 
     steps:
