@@ -3,11 +3,11 @@
 echo "Setting up SSH keys"
 
 while true; do
-	read -s -p "Enter passphrase: " passphrase
-	read -s -p $'\nConfirm passphrase: ' passphrase_confirmation
+	read -r -s -p "Enter passphrase: " passphrase
+	read -r -s -p $'\nConfirm passphrase: ' passphrase_confirmation
 	echo ""
 
-	if [[ "$passphrase" == "$passphrase_confirmation" ]]; then
+	if [[ $passphrase == "$passphrase_confirmation" ]]; then
 		break
 	fi
 

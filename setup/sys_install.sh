@@ -14,7 +14,7 @@ ubuntu-drivers autoinstall
 
 # Network.
 apt install -y curl whois net-tools apt-transport-https \
-ca-certificates gnupg-agent software-properties-common nmap
+	ca-certificates gnupg-agent software-properties-common nmap
 snap install ufw
 
 # Development.
@@ -30,6 +30,8 @@ snap install heroku --classic
 snap install hugo --channel=extended
 snap install postman
 snap install beekeeper-studio
+snap install shellcheck
+snap install shfmt
 # IDEs.
 snap install goland --classic
 snap install webstorm --classic
@@ -38,35 +40,36 @@ snap install intellij-idea-ultimate --classic
 snap install clion --classic
 snap install datagrip --classic
 # Sublime.
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - && \
-echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list && \
-apt update && \
-apt install -y sublime-text
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - &&
+	echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list &&
+	apt update &&
+	apt install -y sublime-text
 # Git LFS.
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 # Yarn.
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-apt update && apt install -y yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list &&
+	apt update && apt install -y yarn
 
 # Chrome.
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-dpkg -i google-chrome-stable_current_amd64.deb && \
-rm google-chrome-stable_current_amd64.deb
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
+	dpkg -i google-chrome-stable_current_amd64.deb &&
+	rm google-chrome-stable_current_amd64.deb
 
 # Appearance.
 # Hide cursor.
 apt install -y unclutter
 # Tweak.
-add-apt-repository universe && \
-apt update && \
-apt install -y gnome-tweak-tool
+add-apt-repository universe &&
+	apt update &&
+	apt install -y gnome-tweak-tool
+
 apt install -y gnome-shell-extensions
 apt install -y chrome-gnome-shell
 # Icons.
-add-apt-repository -y ppa:numix/ppa && \
-apt update && \
-apt install -y numix-icon-theme-circle
+add-apt-repository -y ppa:numix/ppa &&
+	apt update &&
+	apt install -y numix-icon-theme-circle
 
 # Miscellaneous.
 apt install -y htop tmux tree most imwheel xclip keepassxc

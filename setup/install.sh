@@ -1,7 +1,9 @@
 #!/bin/bash
 
-declare -r dotfiles_dir=$(dirname $(dirname "$(readlink -f "$0")"))
+declare -r dotfiles_dir
+dotfiles_dir=$(dirname "$(dirname "$(readlink -f "$0")")")
 
+# shellcheck source=setup/utils.sh
 . "$dotfiles_dir/setup/utils.sh"
 
 function main {
