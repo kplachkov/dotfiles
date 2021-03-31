@@ -20,23 +20,23 @@ jobs:
 
       - name: "Set up environment"
         run: |
-          set -euxo pipefail
+          set -eo pipefail
           chmod -R 700 .
 
       - name: "Test system software installation"
-        run: sudo install/system_software.sh
+        run: if ! $(sudo install/system_software.sh); then exit 1; fi
 
       - name: "Test python applications and libraries installation"
-        run: sudo install/python_software.sh
+        run: if ! $(sudo install/python_software.sh); then exit 1; fi
 
       - name: "Test configuration set up"
-        run: sudo install/configuration.sh
+        run: if ! $(sudo install/configuration.sh); then exit 1; fi
 
       - name: "Test autostart applications set up"
-        run: sudo install/autostart_apps.sh
+        run: if ! $(sudo install/autostart_apps.sh); then exit 1; fi
 
       - name: "Test default applications set up"
-        run: sudo install/default_apps.sh
+        run: if ! $(sudo install/default_apps.sh); then exit 1; fi
 
   lint:
     name: "Lint"
