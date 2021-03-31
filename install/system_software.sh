@@ -1,14 +1,13 @@
 #!/bin/bash
 
-echo "Installing system software"
-
 if [[ $EUID -ne 0 ]]; then
 	echo "Permission denied (try with sudo)"
 	exit 1
 fi
 
-apt update
-apt upgrade -y
+echo "Installing system software"
+
+apt update && apt upgrade -y
 
 ubuntu-drivers autoinstall
 

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo "Setting up default applications"
-
 if [[ $EUID -ne 0 ]]; then
 	echo "Permission denied (try with sudo)"
 	exit 1
 fi
+
+echo "Setting up default applications"
 
 # Remove amazon.
 if [[ -f /usr/share/applications/ubuntu-amazon-default.desktop ]]; then

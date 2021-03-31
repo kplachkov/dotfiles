@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo "Setting up firewall"
-
 if [[ $EUID -ne 0 ]]; then
 	echo "Permission denied (try with sudo)"
 	exit 1
 fi
+
+echo "Setting up firewall"
 
 read -r -p "Allow a device to connect to GSConnect [y/N]: " reply
 if [[ $reply =~ ^[Yy]$ ]]; then

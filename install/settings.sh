@@ -2,8 +2,8 @@
 
 echo "Applying system settings"
 
-setup_dir=$(dirname "$(readlink -f "$0")")
-scripts_dir=${setup_dir/setup/scripts}
+cwd=$(dirname "$(readlink -f "$0")")
+scripts_dir=${cwd/install/scripts}
 
 # Keybindings.
 gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "[]"
