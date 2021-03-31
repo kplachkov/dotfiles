@@ -1,5 +1,8 @@
 # [KP](https://github.com/kplachkov)'s dotfiles
-The Software Engineer's setup.
+
+[![CI](https://github.com/kplachkov/dotfiles/workflows/CI/badge.svg)](https://github.com/kplachkov/dotfiles/actions?query=workflow%3ACI)
+
+The Software Engineer's setup. Ubuntu dotfiles, scripts and configurations.
 
 ## Installation
 :warning: **DO NOT** run this setup if you do not fully
