@@ -1,7 +1,7 @@
 #!/bin/bash
 
-declare -r dotfiles_dir
 dotfiles_dir=$(dirname "$(dirname "$(readlink -f "$0")")")
+declare -r dotfiles_dir
 
 echo "Setting up dotfiles"
 

@@ -21,22 +21,21 @@ jobs:
       - name: "Set up environment"
         run: |
           set -eo pipefail
-          chmod -R 700 .
 
       - name: "Test system software installation"
-        run: if ! $(sudo install/system_software.sh); then exit 1; fi
+        run: if ! result=$(sudo install/system_software.sh); then exit $result; fi
 
       - name: "Test python applications and libraries installation"
-        run: if ! $(sudo install/python_software.sh); then exit 1; fi
+        run: if ! result=$(sudo install/python_software.sh); then exit $result; fi
 
       - name: "Test configuration set up"
-        run: if ! $(sudo install/configuration.sh); then exit 1; fi
+        run: if ! result=$(sudo install/configuration.sh); then exit $result; fi
 
       - name: "Test autostart applications set up"
-        run: if ! $(sudo install/autostart_apps.sh); then exit 1; fi
+        run: if ! result=$(sudo install/autostart_apps.sh); then exit $result; fi
 
       - name: "Test default applications set up"
-        run: if ! $(sudo install/default_apps.sh); then exit 1; fi
+        run: if ! result=$(sudo install/default_apps.sh); then exit $result; fi
 
   lint:
     name: "Lint"

@@ -1,14 +1,23 @@
 #!/bin/bash
 
-declare -r dotfiles_repository="https://github.com/kplachkov/dotfiles.git"
+declare -r dotfiles_https_url="https://github.com/kplachkov/dotfiles.git"
+declare -r dotfiles_ssh_url="git@github.com:kplachkov/dotfiles.git"
+
 declare -r dotfiles_dir="$HOME/projects/dotfiles"
 
-echo "Installing required software"
-sudo apt update && sudo apt install -y git
+function main {
+	download
 
-echo "Downloading files"
-git clone $dotfiles_repository "$dotfiles_dir" &&
-	(cd "$dotfiles_dir" && git remote set-url origin git@github.com:kplachkov/dotfiles.git)
+	"$dotfiles_dir/install/main.sh"
+}
 
-echo "Installing setup"
-bash "$dotfiles_dir/install/main.sh"
+function download {
+	echo "Downloading files"
+
+	sudo apt-get update && sudo apt-get install -y git
+
+	git clone "$dotfiles_https_url" "$dotfiles_dir" &&
+		(cd "$dotfiles_dir" && git remote set-url origin "$dotfiles_ssh_url")
+}
+
+main
