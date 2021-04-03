@@ -1,3 +1,5 @@
+.idea
+
 *.zip
 /config/jetbrains/codestyles/Default.xml
 /config/jetbrains/colors/_@user_Darcula.icls

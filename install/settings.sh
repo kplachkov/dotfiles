@@ -2,8 +2,8 @@
 
 echo "Applying system settings"
 
-setup_dir=$(dirname "$(readlink -f "$0")")
-scripts_dir=${setup_dir/setup/scripts}
+cwd=$(dirname "$(readlink -f "$0")")
+scripts_dir=${cwd/install/scripts}
 
 # Keybindings.
 gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "[]"
@@ -32,7 +32,7 @@ gsettings set org.gnome.desktop.wm.keybindings close "['<Primary><Super>space']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
 # Shutdown computer.
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "shutdown"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "bash $scripts_dir/shutdown.sh"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "$scripts_dir/shutdown.sh"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Primary><Super>End"
 # Start tmux.
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "tmux"

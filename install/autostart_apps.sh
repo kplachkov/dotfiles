@@ -1,6 +1,7 @@
 #!/bin/bash
 
-declare -r dotfiles_dir=$(dirname $(dirname "$(readlink -f "$0")"))
+dotfiles_dir=$(dirname "$(dirname "$(readlink -f "$0")")")
+declare -r dotfiles_dir
 
 echo "Setting up autostart applications"
 
