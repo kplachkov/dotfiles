@@ -26,6 +26,7 @@ function install_ops_software {
 
 	snap install ufw
 
+	install_virtualbox
 	install_tmux_plugins
 }
 
@@ -33,6 +34,7 @@ function install_dev_software {
 	apt-get install -y cmake nodejs npm postgresql-client direnv ruby-dev shc
 	apt-get install -y python3-pip python3-virtualenv python3-tk
 	apt-get install -y libseccomp-dev
+
 	snap install go --classic
 	snap install protobuf --classic
 	snap install google-cloud-sdk --classic
@@ -45,42 +47,18 @@ function install_dev_software {
 	snap install shellcheck
 	snap install shfmt
 
-	# Git.
-	apt-get install -y git
-	curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
-
-	# Yarn.
-	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&
-		add-apt-repository "deb https://dl.yarnpkg.com/debian/ stable main" &&
-		apt-get install -y yarn
-
-	# IDEs.
-	snap install goland --classic
-	snap install webstorm --classic
-	snap install pycharm-professional --classic
-	snap install intellij-idea-ultimate --classic
-	snap install clion --classic
-	snap install datagrip --classic
-
-	# Sublime.
-	curl -sS https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - &&
-		add-apt-repository "deb https://download.sublimetext.com/ apt/stable/" &&
-		apt-get install -y sublime-text
+	install_git
+	install_yarn
+	install_ides
+	install_sublime_text
 }
 
 function install_common_software {
-	install_browsers
-
 	apt-get install -y imwheel keepassxc
 	snap install skype
 	snap install spotify
-}
 
-function install_browsers {
-	# Chrome.
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
-		dpkg -i google-chrome-stable_current_amd64.deb &&
-		rm google-chrome-stable_current_amd64.deb
+	install_browsers
 }
 
 function install_theme_software {
@@ -97,12 +75,51 @@ function install_theme_software {
 		apt-get install -y numix-icon-theme-circle
 }
 
+function install_browsers {
+	# Chrome.
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
+		dpkg -i google-chrome-stable_current_amd64.deb &&
+		rm google-chrome-stable_current_amd64.deb
+}
+
+function install_git {
+	apt-get install -y git
+	curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+}
+
+function install_virtualbox {
+	curl -sS https://www.virtualbox.org/download/oracle_vbox_2016.asc | apt-key add - &&
+		add-apt-repository "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian $(lsb_release -c -s) contrib" &&
+		apt-get install -y virtualbox-6.1
+}
+
 function install_tmux_plugins {
 	if ! command -v git &>/dev/null; then
 		apt-get install -y git
 	fi
 
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
+function install_yarn {
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&
+		add-apt-repository "deb https://dl.yarnpkg.com/debian/ stable main" &&
+		apt-get install -y yarn
+}
+
+function install_ides {
+	snap install goland --classic
+	snap install webstorm --classic
+	snap install pycharm-professional --classic
+	snap install intellij-idea-ultimate --classic
+	snap install clion --classic
+	snap install datagrip --classic
+}
+
+function install_sublime_text {
+	curl -sS https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - &&
+		add-apt-repository "deb https://download.sublimetext.com/ apt/stable/" &&
+		apt-get install -y sublime-text
 }
 
 install_system_software
