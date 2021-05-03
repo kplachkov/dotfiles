@@ -3,29 +3,47 @@
 dotfiles_dir=$(dirname "$(dirname "$(readlink -f "$0")")")
 declare -r dotfiles_dir
 
-echo "Setting up dotfiles"
+dotfiles=(.aliases .bashrc .bash_options .exports .imwheelrc .inputrc .profile .tmux.conf)
 
-dotfiles=(.aliases .bashrc .bash_options .exports .imwheelrc .inputrc .tmux.conf)
+htop_config_dir="$HOME/.config/htop/"
+subl_config_dir="$HOME/.config/sublime-text-3/Packages/User/"
 
-for dotf in "${dotfiles[@]}"; do
-	/bin/ln -fs "$dotfiles_dir/${dotf}" ~/
-done
+function main {
+	set_dotfiles
+	set_htop_config
+	set_sublime_text_config
+	set_cursor_config
+}
 
-echo "Setting up htop configuration"
+function set_dotfiles {
+	echo "Setting up dotfiles"
 
-htop_config_dir=~/.config/htop/
-mkdir -p $htop_config_dir
-/bin/ln -fs "$dotfiles_dir/htoprc" $htop_config_dir
+	for dotfile in "${dotfiles[@]}"; do
+		/bin/ln -fs "$dotfiles_dir/${dotfile}" "$HOME"
+	done
+}
 
-echo "Setting up sublime configuration"
+function set_htop_config {
+	echo "Setting up htop configuration"
 
-subl_config_dir=~/.config/sublime-text-3/Packages/User/
-mkdir -p $subl_config_dir
-/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Default (Linux).sublime-keymap" $subl_config_dir
-/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Preferences.sublime-settings" $subl_config_dir
-/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Package Control.sublime-settings" $subl_config_dir
+	mkdir -p "$htop_config_dir"
+	/bin/ln -fs "$dotfiles_dir/htoprc" "$htop_config_dir"
+}
 
-echo "Setting up cursor configuration"
+function set_sublime_text_config {
+	echo "Setting up sublime text configuration"
 
-mkdir -p /etc/default/
-sudo /bin/ln -fs "$dotfiles_dir/unclutter" /etc/default/
+	mkdir -p "$subl_config_dir"
+	/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Default (Linux).sublime-keymap" "$subl_config_dir"
+	/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Preferences.sublime-settings" "$subl_config_dir"
+	/bin/ln -fs "$dotfiles_dir/config/sublime-text-3/Package Control.sublime-settings" "$subl_config_dir"
+}
+
+function set_cursor_config {
+	echo "Setting up cursor configuration"
+
+	mkdir -p /etc/default/
+	sudo /bin/ln -fs "$dotfiles_dir/unclutter" /etc/default/
+}
+
+main
