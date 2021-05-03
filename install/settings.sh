@@ -45,6 +45,12 @@ gsettings set org.gnome.desktop.input-sources per-window true
 gsettings set org.gnome.desktop.peripherals.keyboard repeat true
 gsettings set org.gnome.desktop.peripherals.keyboard delay 345
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 20
+# Mouse keys.
+gsettings set org.gnome.desktop.a11y.keyboard mousekeys-enable true
+gsettings set org.gnome.desktop.a11y.keyboard mousekeys-max-speed 1100
+gsettings set org.gnome.desktop.a11y.keyboard mousekeys-init-delay 60
+gsettings set org.gnome.desktop.a11y.keyboard mousekeys-accel-time 600
+gsettings set org.gnome.desktop.a11y.keyboard mousekeys-accel-time 600
 # Mouse.
 gsettings set org.gnome.desktop.peripherals.mouse speed 1.0
 
