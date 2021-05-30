@@ -32,7 +32,7 @@ function install_ops_software {
 
 function install_dev_software {
 	apt-get install -y cmake nodejs npm postgresql-client direnv ruby-dev shc
-	apt-get install -y python3-pip python3-virtualenv python3-tk
+	apt-get install -y python3-pip pipenv python3-tk
 	apt-get install -y libseccomp-dev
 
 	snap install go --classic
@@ -44,8 +44,6 @@ function install_dev_software {
 	snap install hugo --channel=extended
 	snap install postman
 	snap install beekeeper-studio
-	snap install shellcheck
-	snap install shfmt
 
 	install_git
 	install_yarn

@@ -22,7 +22,7 @@ export HISTSIZE=100000
 # Increase the maximum number of lines of history.
 export HISTFILESIZE=100000
 # Don't add certain commands to the history file.
-export HISTIGNORE="clear:history:exit:pwd:reboot:shutdown now:cd:cd *:ll:ll *:-:aptu:which *"
+export HISTIGNORE="clear:history:exit:pwd:reboot:shutdown now:cd:cd *:ll:-:aptu:which *"
 # Update bash history in real time.
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
