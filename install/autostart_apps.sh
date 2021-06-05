@@ -7,5 +7,5 @@ echo "Setting up autostart applications"
 
 autostart_dir=~/.config/autostart/
 
-mkdir -p $autostart_dir
-/bin/ln -fs "$dotfiles_dir/imwheel.desktop" $autostart_dir
+mkdir -p "$autostart_dir"
+ln -fs "$dotfiles_dir"/config/autostart/* "$autostart_dir"
