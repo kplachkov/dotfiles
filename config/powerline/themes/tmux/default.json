@@ -1,0 +1,36 @@
+{
+  "segments": {
+    "right": [
+      {
+        "function": "powerline.segments.common.sys.system_load",
+        "priority": 50
+      },
+      {
+        "function": "powerline.segments.common.bat.battery",
+        "priority": 40,
+        "args": {
+          "offline": ""
+        }
+      },
+      {
+        "function": "powerline.segments.common.time.date",
+        "priority": 20,
+        "args": {
+          "format": "%H:%M",
+          "istime": true
+        }
+      },
+      {
+        "function": "powerline.segments.common.time.date",
+        "priority": 10,
+        "name": "date",
+        "args": {
+          "format": "%a %d %b %Y"
+        }
+      },
+      {
+        "function": "powerline.segments.common.net.hostname"
+      }
+    ]
+  }
+}
