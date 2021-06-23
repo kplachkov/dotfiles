@@ -22,7 +22,8 @@ function install_system_software {
 function install_ops_software {
 	apt-get install -y curl whois net-tools apt-transport-https \
 		ca-certificates gnupg-agent software-properties-common nmap \
-		htop tmux tree most xclip powerline fonts-powerline
+		htop tmux tree most xclip powerline fonts-powerline \
+		qemu-kvm virt-manager
 
 	snap install ufw
 
