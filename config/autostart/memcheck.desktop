@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=bash -c '~/projects/dotfiles/scripts/memcheck.sh'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=memcheck
+Name=memcheck
+Comment[en_US]=
+Comment=
