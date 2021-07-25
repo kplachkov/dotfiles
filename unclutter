@@ -6,4 +6,4 @@
 START_UNCLUTTER="true"
 
 # Options passed to unclutter, see 'man unclutter' for details.
-EXTRA_OPTS="-idle 1 -root -reset"
+EXTRA_OPTS="-idle 1 -root"

@@ -37,5 +37,7 @@ set convert-meta off
 # Use the text that has already been typed as the prefix for searching through commands.
 "\e[B": history-search-forward
 "\e[A": history-search-backward
+# Ctrl + f to forward search history.
+"\C-f": forward-search-history
 # Use Alt + Delete to delete the next word.
 "\e[3;3~": kill-word
