@@ -10,4 +10,7 @@
 	"remember_full_screen": true,
     "show_encoding": true,
     "show_line_endings": true,
+    "save_on_focus_lost": true,
+    "remember_workspace": false,
+    "hot_exit": "disabled"
 }

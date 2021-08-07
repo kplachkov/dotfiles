@@ -14,7 +14,7 @@ function install_system_software {
 
 	install_dev_software
 
-	install_theme_software
+	install_ux_software
 
 	install_common_software
 }
@@ -53,16 +53,15 @@ function install_dev_software {
 }
 
 function install_common_software {
-	apt-get install -y imwheel keepassxc
+	snap install keepassxc
 	snap install skype
 	snap install spotify
 
 	install_browsers
 }
 
-function install_theme_software {
-	# Hide cursor.
-	apt-get install -y unclutter
+function install_ux_software {
+	apt-get install -y unclutter imwheel xdotool
 
 	# Tweak.
 	add-apt-repository universe && apt-get install -y gnome-tweak-tool
