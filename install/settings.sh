@@ -2,8 +2,8 @@
 
 echo "Applying system settings"
 
-cwd=$(dirname "$(readlink -f "$0")")
-scripts_dir=${cwd/install/scripts}
+install_dir=$(dirname "$(readlink -f "$0")")
+scripts_dir=${install_dir/install/scripts}
 
 # Keybindings.
 gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "[]"
@@ -29,15 +29,19 @@ gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Alt>F11']"
 gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>q']"
 
 # Custom keybindings.
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/shutdown/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmux/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/shutdown/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/gtmux/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/workspace/']"
 # Shutdown computer.
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/shutdown/ name "shutdown"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/shutdown/ command "$scripts_dir/shutdown.sh"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/shutdown/ binding "<Primary><Super>End"
-# Start tmux.
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmux/ name "tmux"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmux/ command "gnome-terminal --full-screen -- $scripts_dir/run_tmux.sh"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmux/ binding "<Super>t"
+# Start tmux in full screen.
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/gtmux/ name "gtmux"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/gtmux/ command "$scripts_dir/gtmux.sh"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/gtmux/ binding "<Super>t"
+# Start workspace.
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/workspace/ name "workspace"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/workspace/ command "$scripts_dir/workspace.sh"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/workspace/ binding "<Super>w"
 
 # Keyboard.
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'bg+phonetic')]"
