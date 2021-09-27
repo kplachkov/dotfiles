@@ -56,6 +56,7 @@ function install_common_software {
 	snap install keepassxc
 	snap install skype
 	snap install spotify
+	apt install -y rawtherapee
 
 	install_browsers
 }

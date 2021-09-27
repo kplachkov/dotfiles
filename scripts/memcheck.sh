@@ -4,8 +4,8 @@ function memcheck() {
 	echo "Running memory check..."
 
 	local threshold=0.85 # [0, 1]
-	local normal_mem_interval=10
-	local low_mem_interval=60
+	local normal_mem_interval=3
+	local low_mem_interval=5
 
 	echo "Notifications threshold: $(echo "$threshold * 100" | bc)%"
 
