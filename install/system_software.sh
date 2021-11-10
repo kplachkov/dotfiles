@@ -1,23 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ $EUID -ne 0 ]]; then
 	echo "Permission denied (try with sudo)"
 	exit 1
 fi
-
-function install_system_software {
-	echo "Installing system software"
-
-	apt-get update && apt-get upgrade -y
-
-	install_ops_software
-
-	install_dev_software
-
-	install_ux_software
-
-	install_common_software
-}
 
 function install_ops_software {
 	apt-get install -y curl whois net-tools apt-transport-https \
@@ -56,7 +42,9 @@ function install_common_software {
 	snap install keepassxc
 	snap install skype
 	snap install spotify
-	apt install -y rawtherapee
+	snap install gimp
+	apt-get install -y imagemagick
+	apt-get install -y rawtherapee
 
 	install_browsers
 }
@@ -121,4 +109,18 @@ function install_sublime_text {
 		apt-get install -y sublime-text
 }
 
-install_system_software
+function main {
+	echo "Installing system software"
+
+	apt-get update
+
+	install_ops_software
+
+	install_dev_software
+
+	install_ux_software
+
+	install_common_software
+}
+
+main "$@"
