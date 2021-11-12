@@ -11,3 +11,6 @@
 /config/jetbrains/options/remote-servers.xml
 /config/jetbrains/options/databaseDrivers.xml
 /config/jetbrains/options/ide-features-trainer.xml
+/config/jetbrains/options/go.sdk.xml
+/config/jetbrains/options/laf.xml
+/config/jetbrains/installed.txt
