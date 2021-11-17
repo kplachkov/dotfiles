@@ -1,15 +1,38 @@
-#!/bin/bash
+#!/usr/bin/bash
 
-dotfiles_dir=$(dirname "$(dirname "$(readlink -f "$0")")")
-declare -r dotfiles_dir
+# shellcheck source=pkg/util/screen.sh
+. "$DOTFILES_PATH/pkg/util/screen.sh"
 
-# shellcheck source=install/utils.sh
-. "$dotfiles_dir/install/utils.sh"
+function init {
+	"$DOTFILES_PATH/install/settings.sh"
+
+	"$DOTFILES_PATH/install/configuration.sh"
+
+	"$DOTFILES_PATH/install/ssh_keys.sh"
+
+	"$DOTFILES_PATH/install/pgp_keys.sh"
+}
+
+function install {
+	/usr/bin/sudo /usr/bin/ubuntu-drivers autoinstall
+
+	"$DOTFILES_PATH/install/system_software.sh"
+
+	"$DOTFILES_PATH/install/python_software.sh"
+}
+
+function post_install {
+	"$DOTFILES_PATH/install/firewall.sh"
+
+	"$DOTFILES_PATH/install/default_apps.sh"
+
+	"$DOTFILES_PATH/install/extra_apps.sh"
+}
 
 function main {
 	echo "Installing setup"
 
-	disable_lock
+	util::disable_screen_lock
 
 	init
 
@@ -17,39 +40,9 @@ function main {
 
 	post_install
 
-	enable_lock
+	util::enable_screen_lock
 
 	echo "Done."
 }
 
-function init {
-	"$dotfiles_dir/install/settings.sh"
-
-	"$dotfiles_dir/install/configuration.sh"
-
-	"$dotfiles_dir/install/ssh_keys.sh"
-
-	"$dotfiles_dir/install/gpg_key.sh"
-}
-
-function install {
-	sudo ubuntu-drivers autoinstall
-
-	sudo "$dotfiles_dir/install/system_software.sh"
-
-	"$dotfiles_dir/install/python_software.sh"
-}
-
-function post_install {
-	sudo "$dotfiles_dir/install/firewall.sh"
-
-	"$dotfiles_dir/install/autostart_apps.sh"
-
-	sudo "$dotfiles_dir/install/default_apps.sh"
-
-	"$dotfiles_dir/install/extra_apps.sh"
-
-	sudo "$dotfiles_dir/install/snap_aliases.sh"
-}
-
-main
+main "$@"

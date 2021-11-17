@@ -1,118 +1,161 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
-if [[ $EUID -ne 0 ]]; then
-	echo "Permission denied (try with sudo)"
-	exit 1
-fi
+# shellcheck source=pkg/log/log.sh
+. "$DOTFILES_PATH/pkg/log/log.sh"
 
 function install_ops_software {
-	apt-get install -y curl whois net-tools apt-transport-https \
-		ca-certificates gnupg-agent software-properties-common nmap \
-		htop tmux tree most xclip powerline fonts-powerline \
-		qemu-kvm virt-manager
+	/usr/bin/sudo /usr/bin/apt install -y \
+		curl \
+		whois \
+		net-tools \
+		apt-transport-https \
+		ca-certificates \
+		gnupg-agent \
+		software-properties-common \
+		nmap \
+		htop \
+		tmux \
+		tree \
+		most \
+		xclip \
+		powerline \
+		fonts-powerline \
+		qemu-kvm \
+		virt-manager
 
-	snap install ufw
+	/usr/bin/sudo /usr/bin/snap install ufw
 
 	install_virtualbox
 	install_tmux_plugins
 }
 
 function install_dev_software {
-	apt-get install -y cmake nodejs npm postgresql-client direnv ruby-dev shc
-	apt-get install -y python3-pip pipenv python3-tk
-	apt-get install -y libseccomp-dev
+	/usr/bin/sudo /usr/bin/apt install -y \
+		cmake \
+		nodejs \
+		npm \
+		postgresql-client \
+		direnv \
+		ruby-dev \
+		shc \
+		python3-pip \
+		pipenv \
+		python3-tk \
+		libseccomp-dev
 
-	snap install go --classic
-	snap install protobuf --classic
-	snap install google-cloud-sdk --classic
-	snap install docker
-	snap install microk8s --classic && microk8s.enable registry && microk8s.enable helm
-	snap install heroku --classic
-	snap install hugo --channel=extended
-	snap install postman
-	snap install beekeeper-studio
+	/usr/bin/sudo /usr/bin/snap install go --classic
+	/usr/bin/sudo /usr/bin/snap install protobuf --classic
+	/usr/bin/sudo /usr/bin/snap install google-cloud-sdk --classic
+	/usr/bin/sudo /usr/bin/snap install docker
+	/usr/bin/sudo /usr/bin/snap install heroku --classic
+	/usr/bin/sudo /usr/bin/snap install hugo --channel=extended
+	/usr/bin/sudo /usr/bin/snap install postman
+	/usr/bin/sudo /usr/bin/snap install beekeeper-studio
 
 	install_git
+	install_microk8s
 	install_yarn
 	install_ides
 	install_sublime_text
 }
 
 function install_common_software {
-	snap install keepassxc
-	snap install skype
-	snap install spotify
-	snap install gimp
-	apt-get install -y imagemagick
-	apt-get install -y rawtherapee
+	/usr/bin/sudo /usr/bin/apt install -y \
+		imagemagick \
+		rawtherapee
+
+	/usr/bin/sudo /usr/bin/snap install keepassxc
+	/usr/bin/sudo /usr/bin/snap install skype
+	/usr/bin/sudo /usr/bin/snap install spotify
+	/usr/bin/sudo /usr/bin/snap install gimp
 
 	install_browsers
 }
 
 function install_ux_software {
-	apt-get install -y unclutter imwheel xdotool
+	/usr/bin/sudo /usr/bin/apt install -y \
+		unclutter \
+		imwheel \
+		xdotool
 
 	# Tweak.
-	add-apt-repository universe && apt-get install -y gnome-tweak-tool
-	apt-get install -y gnome-shell-extensions
-	apt-get install -y chrome-gnome-shell
+	/usr/bin/sudo /usr/bin/add-apt-repository universe &&
+		/usr/bin/sudo /usr/bin/apt install -y gnome-tweak-tool
+
+	/usr/bin/sudo /usr/bin/apt install -y \
+		gnome-shell-extensions \
+		chrome-gnome-shell
 
 	# Icons.
-	add-apt-repository -y ppa:numix/ppa &&
-		apt-get install -y numix-icon-theme-circle
+	/usr/bin/sudo /usr/bin/apt install -y numix-icon-theme-circle
+}
+
+function install_custom_software {
+	/usr/bin/sudo /usr/bin/install "$DOTFILES_PATH/bin/memcheck" /usr/local/bin/
 }
 
 function install_browsers {
 	# Chrome.
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
-		dpkg -i google-chrome-stable_current_amd64.deb &&
+		/usr/bin/sudo /usr/bin/dpkg -i google-chrome-stable_current_amd64.deb &&
 		rm google-chrome-stable_current_amd64.deb
 }
 
 function install_git {
-	apt-get install -y git
-	curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+	/usr/bin/sudo /usr/bin/apt install -y git
+
+	curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | /usr/bin/sudo /usr/bin/bash
+}
+
+function install_microk8s {
+	/usr/bin/sudo /usr/bin/snap install microk8s --classic || return $?
+
+	/usr/bin/sudo /usr/sbin/usermod -a -G microk8s "$USER"
+	/usr/bin/sudo /usr/bin/chown -f -R "$USER" ~/.kube
+
+	sg microk8s -c "microk8s.enable registry ; microk8s.enable helm ; exit"
+
+	/usr/bin/sudo /usr/bin/snap alias microk8s.kubectl kubectl
+	/usr/bin/sudo /usr/bin/snap alias microk8s.helm helm
 }
 
 function install_virtualbox {
-	curl -sS https://www.virtualbox.org/download/oracle_vbox_2016.asc | apt-key add - &&
-		add-apt-repository "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian $(lsb_release -c -s) contrib" &&
-		apt-get install -y virtualbox-6.1
+	curl -sS https://www.virtualbox.org/download/oracle_vbox_2016.asc | /usr/bin/sudo /usr/bin/apt-key add - &&
+		/usr/bin/sudo /usr/bin/add-apt-repository "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian $(lsb_release -c -s) contrib" &&
+		/usr/bin/sudo /usr/bin/apt install -y virtualbox-6.1
 }
 
 function install_tmux_plugins {
-	if ! command -v git &>/dev/null; then
-		apt-get install -y git
-	fi
+	command -v git &>/dev/null || /usr/bin/sudo /usr/bin/apt install -y git || return $?
 
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
 function install_yarn {
-	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&
-		add-apt-repository "deb https://dl.yarnpkg.com/debian/ stable main" &&
-		apt-get install -y yarn
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | /usr/bin/sudo /usr/bin/apt-key add - &&
+		/usr/bin/sudo /usr/bin/add-apt-repository "deb https://dl.yarnpkg.com/debian/ stable main" &&
+		/usr/bin/sudo /usr/bin/apt install -y yarn
 }
 
 function install_ides {
-	snap install goland --classic
-	snap install webstorm --classic
-	snap install pycharm-professional --classic
-	snap install intellij-idea-ultimate --classic
-	snap install clion --classic
-	snap install datagrip --classic
+	/usr/bin/sudo /usr/bin/snap install goland --classic
+	/usr/bin/sudo /usr/bin/snap install webstorm --classic
+	/usr/bin/sudo /usr/bin/snap install pycharm-professional --classic
+	/usr/bin/sudo /usr/bin/snap install intellij-idea-ultimate --classic
+	/usr/bin/sudo /usr/bin/snap install clion --classic
+	/usr/bin/sudo /usr/bin/snap install datagrip --classic
 }
 
 function install_sublime_text {
-	curl -sS https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - &&
-		add-apt-repository "deb https://download.sublimetext.com/ apt/stable/" &&
-		apt-get install -y sublime-text
+	curl -sS https://download.sublimetext.com/sublimehq-pub.gpg | /usr/bin/sudo /usr/bin/apt-key add - &&
+		/usr/bin/sudo /usr/bin/add-apt-repository "deb https://download.sublimetext.com/ apt/stable/" &&
+		/usr/bin/sudo /usr/bin/apt install -y sublime-text
 }
 
 function main {
 	echo "Installing system software"
 
-	apt-get update
+	/usr/bin/sudo /usr/bin/apt update
 
 	install_ops_software
 
@@ -121,6 +164,8 @@ function main {
 	install_ux_software
 
 	install_common_software
+
+	install_custom_software
 }
 
 main "$@"
