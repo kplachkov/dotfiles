@@ -11,8 +11,8 @@ if [[ $reply =~ ^[Yy]$ ]]; then
 
 	read -r -p "Are you sure you want to allow ($device_ip) to connect to the computer [y/N]: " reply
 	if [[ $reply =~ ^[Yy]$ ]]; then
-		/usr/bin/sudo /usr/sbin/ufw allow from "$device_ip" to any port 1714:1764 proto udp
-		/usr/bin/sudo /usr/sbin/ufw allow from "$device_ip" to any port 1714:1764 proto tcp
+		/usr/bin/sudo /snap/bin/ufw allow from "$device_ip" to any port 1714:1764 proto udp
+		/usr/bin/sudo /snap/bin/ufw allow from "$device_ip" to any port 1714:1764 proto tcp
 	else
 		echo "Abort"
 	fi
@@ -20,5 +20,5 @@ if [[ $reply =~ ^[Yy]$ ]]; then
 	unset device_ip
 fi
 
-/usr/bin/sudo /usr/sbin/ufw enable
-/usr/bin/sudo /usr/sbin/ufw status
+/usr/bin/sudo /snap/bin/ufw enable
+/usr/bin/sudo /snap/bin/ufw status verbose
