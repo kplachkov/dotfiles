@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/bash
+
+# Display GTK+ dialog to shutdown the computer.
+#
+# Source: https://github.com/kplachkov/dotfiles
 
 if zenity \
 	--question \

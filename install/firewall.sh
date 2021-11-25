@@ -1,9 +1,7 @@
-#!/bin/bash
+#!/usr/bin/bash
 
-if [[ $EUID -ne 0 ]]; then
-	echo "Permission denied (try with sudo)"
-	exit 1
-fi
+# shellcheck source=pkg/log/log.sh
+. "$DOTFILES_PATH/pkg/log/log.sh"
 
 echo "Setting up firewall"
 
@@ -13,12 +11,14 @@ if [[ $reply =~ ^[Yy]$ ]]; then
 
 	read -r -p "Are you sure you want to allow ($device_ip) to connect to the computer [y/N]: " reply
 	if [[ $reply =~ ^[Yy]$ ]]; then
-		ufw allow from "$device_ip" to any port 1714:1764 proto udp
-		ufw allow from "$device_ip" to any port 1714:1764 proto tcp
+		/usr/bin/sudo /usr/sbin/ufw allow from "$device_ip" to any port 1714:1764 proto udp
+		/usr/bin/sudo /usr/sbin/ufw allow from "$device_ip" to any port 1714:1764 proto tcp
 	else
 		echo "Abort"
 	fi
+
+	unset device_ip
 fi
 
-ufw enable
-ufw status
+/usr/bin/sudo /usr/sbin/ufw enable
+/usr/bin/sudo /usr/sbin/ufw status

@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  DOTFILES_PATH: ${{ github.workspace }}
+
 jobs:
   test:
     name: "Test"
@@ -18,24 +21,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: "Set up environment"
-        run: |
-          set -eo pipefail
-
       - name: "Test system software installation"
-        run: if ! result=$(sudo install/system_software.sh); then exit $result; fi
+        run: install/system_software.sh
 
       - name: "Test python applications and libraries installation"
-        run: if ! result=$(sudo install/python_software.sh); then exit $result; fi
+        run: install/python_software.sh
 
-      - name: "Test configuration set up"
-        run: if ! result=$(sudo install/configuration.sh); then exit $result; fi
+      - name: "Test configuration setup"
+        run: install/configuration.sh
 
-      - name: "Test autostart applications set up"
-        run: if ! result=$(sudo install/autostart_apps.sh); then exit $result; fi
+      - name: "Test default applications setup"
+        run: install/default_apps.sh
 
-      - name: "Test default applications set up"
-        run: if ! result=$(sudo install/default_apps.sh); then exit $result; fi
+      - name: "Test settings setup"
+        run: install/settings.sh
 
   lint:
     name: "Lint"

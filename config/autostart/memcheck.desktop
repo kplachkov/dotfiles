@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=bash -c '~/projects/dotfiles/scripts/memcheck.sh'
+Exec=memcheck
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true

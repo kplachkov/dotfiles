@@ -1,0 +1,62 @@
+#!/usr/bin/bash
+
+# Low memory alerts and memory stats.
+#
+# The program checks the memory in defined time intervals
+# and prints a status of the memory. If the available memory
+# is below a certain threshold -- critical notifications
+# are sent.
+#
+# Source: https://github.com/kplachkov/dotfiles
+
+function alert {
+	local bell_interval=0.25
+
+	notify-send -u critical "$1"
+
+	printf '\a'
+	sleep $bell_interval
+	printf '\a'
+	sleep $bell_interval
+	printf '\a'
+}
+
+function print_memory_status {
+	echo "---"
+	echo "Memory status - $(date)"
+	echo "Used memory: $1"
+	echo "Total memory: $2"
+}
+
+function main {
+	echo "Running memory check..."
+
+	local threshold=0.85 # [0, 1]
+	local normal_mem_interval=3
+	local low_mem_interval=10
+
+	echo "Notifications threshold: $(echo "$threshold * 100" | bc)%"
+
+	while true; do
+		mem_total=$(free -m | awk '/^Mem:/{print $2}')
+		mem_used=$(free -m | awk '/^Mem:/{print $3}')
+		swap_total=$(free -m | awk '/^Swap:/{print $2}')
+		swap_used=$(free -m | awk '/^Swap:/{print $3}')
+
+		total=$(echo "$mem_total + $swap_total" | bc)
+		used=$(echo "$mem_used + $swap_used" | bc)
+
+		print_memory_status "$used" "$total"
+
+		if [[ $(printf "%.0f" "$(echo "$total * $threshold" | bc)") -gt $used ]]; then
+			sleep $normal_mem_interval
+			continue
+		fi
+
+		'alert' "Available memory is less than $(echo "100 - $threshold * 100" | bc)%"
+
+		sleep $low_mem_interval
+	done
+}
+
+main "$@"
