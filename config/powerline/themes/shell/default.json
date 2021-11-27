@@ -27,6 +27,10 @@
       {
         "function": "powerline.segments.shell.jobnum",
         "priority": 30
+      },
+      {
+        "function": "powerline.segments.shell.last_status",
+        "priority": 20
       }
     ]
   }
