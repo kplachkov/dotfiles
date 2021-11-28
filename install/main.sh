@@ -11,6 +11,8 @@ function init {
 	"$DOTFILES_PATH/install/ssh_keys.sh"
 
 	"$DOTFILES_PATH/install/pgp_keys.sh"
+
+	"$DOTFILES_PATH/install/locale.sh"
 }
 
 function install {
