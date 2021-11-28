@@ -27,14 +27,17 @@ jobs:
       - name: "Test python applications and libraries installation"
         run: install/python_software.sh
 
-      - name: "Test configuration setup"
+      - name: "Test setting up the configuration"
         run: install/configuration.sh
 
-      - name: "Test default applications setup"
+      - name: "Test setting up the default applications"
         run: install/default_apps.sh
 
-      - name: "Test settings setup"
+      - name: "Test setting up the settings"
         run: install/settings.sh
+
+      - name: "Test setting up the locales"
+        run: install/locale.sh
 
   lint:
     name: "Lint"
