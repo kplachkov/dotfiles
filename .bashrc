@@ -42,25 +42,30 @@ if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-. "/usr/share/powerline/bindings/bash/powerline.sh"
+if _have powerline-daemon; then
+	powerline-daemon -q
+	POWERLINE_BASH_CONTINUATION=1
+	POWERLINE_BASH_SELECT=1
+	. "/usr/share/powerline/bindings/bash/powerline.sh"
+fi
 
-# Completions
-if command -v kubectl &>/dev/null; then
+if _have kubectl; then
 	source <(kubectl completion bash)
 fi
 
-eval "$(pipenv --completion)"
+if _have pipenv; then
+	eval "$(pipenv --completion)"
+fi
 
-# pip bash completion start
-_pip_completion() {
-	COMPREPLY=($(COMP_WORDS="${COMP_WORDS[*]}" \
-		COMP_CWORD=$COMP_CWORD \
-		PIP_AUTO_COMPLETE=1 $1 2>/dev/null))
-}
-complete -o default -F _pip_completion pip3
-# pip bash completion end
+if _have pip3; then
+	_pip_completion() {
+		COMPREPLY=($(COMP_WORDS="${COMP_WORDS[*]}" \
+			COMP_CWORD=$COMP_CWORD \
+			PIP_AUTO_COMPLETE=1 $1 2>/dev/null))
+	}
+	complete -o default -F _pip_completion pip3
+fi
 
-eval "$(direnv hook bash)"
+if _have direnv; then
+	eval "$(direnv hook bash)"
+fi
