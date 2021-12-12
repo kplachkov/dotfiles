@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 export DOTFILES_PATH="$HOME/projects/dotfiles"
 

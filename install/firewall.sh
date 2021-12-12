@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # shellcheck source=pkg/log/log.sh
 . "$DOTFILES_PATH/pkg/log/log.sh"

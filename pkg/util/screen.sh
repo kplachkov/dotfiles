@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 function util::disable_screen_lock {
 	gsettings set org.gnome.desktop.screensaver lock-enabled false

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 function set_dotfiles {
 	echo "Setting up dotfiles"

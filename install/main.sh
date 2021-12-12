@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # shellcheck source=pkg/util/screen.sh
 . "$DOTFILES_PATH/pkg/util/screen.sh"
