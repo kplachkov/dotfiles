@@ -8,9 +8,9 @@ declare -r dotfiles_ssh_url="git@github.com:kplachkov/dotfiles.git"
 function download_files {
 	echo "Downloading files"
 
-	/usr/bin/sudo /usr/bin/apt update
+	sudo apt update
 
-	/usr/bin/sudo /usr/bin/apt install -y git || return $?
+	sudo apt install -y git || return $?
 	git clone "$dotfiles_https_url" "$DOTFILES_PATH" || return $?
 
 	(cd "$DOTFILES_PATH" && git remote set-url origin "$dotfiles_ssh_url")

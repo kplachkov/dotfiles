@@ -4,8 +4,7 @@
 . "$DOTFILES_PATH/pkg/log/log.sh"
 
 function install_dependencies {
-	command -v lshw &>/dev/null ||
-		/usr/bin/sudo /usr/bin/apt install -y lshw
+	_have lshw || sudo apt install -y lshw
 }
 
 function main {
@@ -31,7 +30,7 @@ function main {
 		echo $'\nPassphrases do not match. Try again...\n'
 	done
 
-	machine_name=$(/usr/bin/sudo /usr/bin/lshw | grep -m1 -oP "(?<=product: )(.*)")
+	machine_name=$(sudo lshw | grep -m1 -oP "(?<=product: )(.*)")
 	if [[ -z $machine_name ]]; then
 		log::error "Missing machine name"
 		return 1
@@ -46,8 +45,8 @@ function main {
 
 	echo "Comment: $comment"
 
-	/usr/bin/ssh-keygen -q -t rsa -b 4096 -C "$comment" -P "$passphrase" -f ~/.ssh/id_rsa
-	/usr/bin/ssh-keygen -q -t ed25519 -C "$comment" -P "$passphrase" -f ~/.ssh/id_ed25519
+	ssh-keygen -q -t rsa -b 4096 -C "$comment" -P "$passphrase" -f ~/.ssh/id_rsa
+	ssh-keygen -q -t ed25519 -C "$comment" -P "$passphrase" -f ~/.ssh/id_ed25519
 }
 
 main "$@"

@@ -43,7 +43,7 @@ function set_cursor_config {
 	echo "Setting up cursor configuration"
 
 	mkdir -p /etc/default/
-	/usr/bin/sudo /usr/bin/ln -fs "$DOTFILES_PATH/unclutter" /etc/default/
+	sudo ln -fs "$DOTFILES_PATH/unclutter" /etc/default/
 }
 
 function set_powerline_config {

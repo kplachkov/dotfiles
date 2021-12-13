@@ -16,7 +16,7 @@ function init {
 }
 
 function install {
-	/usr/bin/sudo /usr/bin/ubuntu-drivers autoinstall
+	sudo ubuntu-drivers autoinstall
 
 	"$DOTFILES_PATH/install/system_software.sh"
 

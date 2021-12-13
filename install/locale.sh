@@ -2,13 +2,13 @@
 
 echo "Setting up locales"
 
-/usr/bin/sudo /usr/bin/sed -E -i '/(en_US.UTF-8|en_GB.UTF-8)/s/^# //g' /etc/locale.gen || return $?
+sudo sed -E -i '/(en_US.UTF-8|en_GB.UTF-8)/s/^# //g' /etc/locale.gen || return $?
 
-/usr/bin/sudo /usr/sbin/locale-gen || return $?
+sudo locale-gen || return $?
 
 echo "Updating locales"
 
-/usr/bin/sudo /usr/sbin/update-locale \
+sudo update-locale \
 	LANG='en_US.UTF-8' \
 	LC_ADDRESS='en_US.UTF-8' \
 	LC_NAME='en_US.UTF-8' \
