@@ -1,5 +1,5 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 echo "Generating PGP keys"
 
-/usr/bin/gpg --full-generate-key
+gpg --full-generate-key

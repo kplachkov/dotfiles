@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Start multiple programs if they are not running already.
 #

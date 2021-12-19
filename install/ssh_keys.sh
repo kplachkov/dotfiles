@@ -1,18 +1,17 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-# shellcheck source=pkg/log/log.sh
-. "$DOTFILES_PATH/pkg/log/log.sh"
+# shellcheck source=lib/log.sh
+. "$DOTFILES_PATH/lib/log.sh" || retun $?
 
 function install_dependencies {
-	command -v lshw &>/dev/null ||
-		/usr/bin/sudo /usr/bin/apt install -y lshw
+	_have lshw || sudo apt install -y lshw
 }
 
 function main {
 	echo "Generating SSH keys"
 
 	if ! install_dependencies; then
-		log::error "Installing dependencies failed"
+		log_error "Installing dependencies failed"
 		return 1
 	fi
 
@@ -31,9 +30,9 @@ function main {
 		echo $'\nPassphrases do not match. Try again...\n'
 	done
 
-	machine_name=$(/usr/bin/sudo /usr/bin/lshw | grep -m1 -oP "(?<=product: )(.*)")
+	machine_name=$(sudo lshw | grep -m1 -oP "(?<=product: )(.*)")
 	if [[ -z $machine_name ]]; then
-		log::error "Missing machine name"
+		log_error "Missing machine name"
 		return 1
 	fi
 
@@ -46,8 +45,8 @@ function main {
 
 	echo "Comment: $comment"
 
-	/usr/bin/ssh-keygen -q -t rsa -b 4096 -C "$comment" -P "$passphrase" -f ~/.ssh/id_rsa
-	/usr/bin/ssh-keygen -q -t ed25519 -C "$comment" -P "$passphrase" -f ~/.ssh/id_ed25519
+	ssh-keygen -q -t rsa -b 4096 -C "$comment" -P "$passphrase" -f ~/.ssh/id_rsa
+	ssh-keygen -q -t ed25519 -C "$comment" -P "$passphrase" -f ~/.ssh/id_ed25519
 }
 
 main "$@"

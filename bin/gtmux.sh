@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Start tmux in full screen if its not running already.
 #
