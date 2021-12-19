@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# shellcheck source=pkg/log/log.sh
-. "$DOTFILES_PATH/pkg/log/log.sh"
-
 echo "Setting up firewall"
 
 read -r -p "Allow a device to connect to GSConnect [y/N]: " reply

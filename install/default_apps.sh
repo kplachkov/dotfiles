@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# shellcheck source=pkg/log/log.sh
-. "$DOTFILES_PATH/pkg/log/log.sh"
-
 echo "Setting up default applications"
 
 # Remove amazon.

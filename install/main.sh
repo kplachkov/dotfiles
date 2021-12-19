@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# shellcheck source=pkg/util/screen.sh
-. "$DOTFILES_PATH/pkg/util/screen.sh"
+# shellcheck source=lib/screen.sh
+. "$DOTFILES_PATH/lib/screen.sh" || retun $?
 
 function init {
 	"$DOTFILES_PATH/install/settings.sh"
@@ -34,7 +34,7 @@ function post_install {
 function main {
 	echo "Installing setup"
 
-	util::disable_screen_lock
+	disable_screen_lock
 
 	init
 
@@ -42,7 +42,7 @@ function main {
 
 	post_install
 
-	util::enable_screen_lock
+	enable_screen_lock
 
 	echo "Done."
 }

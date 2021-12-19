@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# shellcheck source=pkg/log/log.sh
-. "$DOTFILES_PATH/pkg/log/log.sh"
+# shellcheck source=lib/log.sh
+. "$DOTFILES_PATH/lib/log.sh" || retun $?
 
 function install_dependencies {
 	_have lshw || sudo apt install -y lshw
@@ -11,7 +11,7 @@ function main {
 	echo "Generating SSH keys"
 
 	if ! install_dependencies; then
-		log::error "Installing dependencies failed"
+		log_error "Installing dependencies failed"
 		return 1
 	fi
 
@@ -32,7 +32,7 @@ function main {
 
 	machine_name=$(sudo lshw | grep -m1 -oP "(?<=product: )(.*)")
 	if [[ -z $machine_name ]]; then
-		log::error "Missing machine name"
+		log_error "Missing machine name"
 		return 1
 	fi
 

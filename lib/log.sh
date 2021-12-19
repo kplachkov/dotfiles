@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-function log::fatal {
+function log_fatal {
 	echo "$1" >&2
 	exit 1
 }
 
-function log::error {
+function log_error {
 	echo "$1" >&2
 }
