@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
-Exec=memcheck
+Exec=memwatch
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
-Name[en_US]=memcheck
-Name=memcheck
+Name[en_US]=memwatch
+Name=memwatch
 Comment[en_US]=
 Comment=

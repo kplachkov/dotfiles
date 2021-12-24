@@ -21,6 +21,8 @@ function install {
 	"$DOTFILES_PATH/install/system_software.sh"
 
 	"$DOTFILES_PATH/install/python_software.sh"
+
+	"$DOTFILES_PATH/install/custom_software.sh"
 }
 
 function post_install {
