@@ -87,10 +87,6 @@ function install_ux_software {
 	sudo apt install -y numix-icon-theme-circle
 }
 
-function install_custom_software {
-	sudo install "$DOTFILES_PATH/bin/memcheck" /usr/local/bin/
-}
-
 function install_browsers {
 	# Chrome.
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
@@ -161,8 +157,6 @@ function main {
 	install_ux_software
 
 	install_common_software
-
-	install_custom_software
 }
 
 main "$@"
