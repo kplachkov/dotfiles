@@ -12,6 +12,8 @@ export HISTSIZE=100000
 export HISTFILESIZE=100000
 # Don't add certain commands to the history file.
 export HISTIGNORE="clear:history:exit:pwd:cd:ll:ls:-:reboot:shutdown now:aptuu:sudo -i"
+# Update bash history in real time.
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
 export PYTHONIOENCODING="UTF-8"
