@@ -1,7 +1,13 @@
 ".*"
-None,      Up,   Button4, 2
-None,      Down, Button5, 2
-Control_L, Up,   Control_L|Button4
-Control_L, Down, Control_L|Button5
-Shift_L,   Up,   Left,    2
-Shift_L,   Down, Right,   2
+None,       Up,      Button4,           2
+None,       Down,    Button5,           2
+Shift_L,    Up,      Left,              2
+Shift_L,    Down,    Right,             2
+Control_L,  Up,      Control_L|Button4
+Control_L,  Down,    Control_L|Button5
+None,       Thumb1,  End
+None,       Thumb2,  Home
+Control_L,  Thumb1,  Control_L|End
+Control_L,  Thumb2,  Control_L|Home
+Shift_L,    Thumb1,  Shift_L|End
+Shift_L,    Thumb2,  Shift_L|Home
