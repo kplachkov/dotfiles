@@ -1,6 +1,6 @@
 export TERM="xterm-256color"
-export EDITOR="subl -w --launch-or-new-window"
-export VISUAL="subl -w --launch-or-new-window"
+export EDITOR="subl --wait --launch-or-new-window --detached"
+export VISUAL="subl --wait --launch-or-new-window --detached"
 export PAGER="most"
 export BROWSER="google-chrome"
 
