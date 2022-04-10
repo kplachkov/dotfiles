@@ -93,4 +93,4 @@ gsettings set org.gnome.system.locale region 'en_GB.UTF-8'
 gsettings set org.gtk.Settings.FileChooser show-hidden true
 
 # Favorite applications.
-gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop', 'syntevo-smartgit.desktop']"
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop', 'sublime_text.desktop']"

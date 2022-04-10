@@ -8,10 +8,6 @@ if ! pgrep chrome; then
 	google-chrome &
 fi
 
-if ! pgrep smartgit.sh; then
-	~/smartgit/bin/smartgit.sh &
-fi
-
 if ! pgrep goland.sh; then
 	goland &
 fi
