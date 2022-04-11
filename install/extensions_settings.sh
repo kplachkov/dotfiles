@@ -98,7 +98,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys true
 gsettings set org.gnome.shell.extensions.user-theme name "Yaru-dark"
 
 # Auto move windows.
-gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['webstorm_webstorm.desktop:2', 'goland_goland.desktop:2', 'sublime_text.desktop:2', 'google-chrome.desktop:1', 'syntevo-smartgit.desktop:1', 'org.gnome.Terminal.desktop:1', 'postman_postman.desktop:2']"
+gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['webstorm_webstorm.desktop:2', 'goland_goland.desktop:2', 'sublime_text.desktop:2', 'google-chrome.desktop:1', 'org.gnome.Terminal.desktop:1', 'postman_postman.desktop:2']"
 
 # Desktop icons.
 gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
