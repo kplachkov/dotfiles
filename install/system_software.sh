@@ -7,10 +7,11 @@ function install_ops_software {
 		net-tools \
 		apt-transport-https \
 		ca-certificates \
-		gnupg-agent \
+		gnupg \
 		software-properties-common \
 		nmap \
 		htop \
+		iftop \
 		tmux \
 		tree \
 		most \
@@ -18,39 +19,34 @@ function install_ops_software {
 		powerline \
 		fonts-powerline \
 		qemu-kvm \
-		virt-manager
+		virt-manager \
+		ufw
 
-	sudo snap install ufw
-
-	install_virtualbox
 	install_tmux_plugins
 }
 
 function install_dev_software {
 	sudo apt install -y \
 		cmake \
-		nodejs \
-		npm \
-		postgresql-client \
-		direnv \
 		ruby-dev \
 		shc \
 		python3-pip \
 		pipenv \
 		python3-tk \
-		libseccomp-dev
+		libseccomp-dev \
+		protobuf-compiler
 
 	sudo snap install go --classic
-	sudo snap install protobuf --classic
-	sudo snap install google-cloud-sdk --classic
-	sudo snap install docker
-	sudo snap install heroku --classic
+	sudo snap install node --classic
 	sudo snap install hugo --channel=extended
 	sudo snap install postman
-	sudo snap install beekeeper-studio
 
 	install_git
-	install_microk8s
+	install_gcloud
+	install_heroku
+	install_kubectl
+	install_helm
+	install_beekeeper_studio
 	install_yarn
 	install_ides
 	install_sublime_text
@@ -59,12 +55,9 @@ function install_dev_software {
 function install_common_software {
 	sudo apt install -y \
 		imagemagick \
-		rawtherapee
-
-	sudo snap install keepassxc
-	sudo snap install skype
-	sudo snap install spotify
-	sudo snap install gimp
+		rawtherapee \
+		gimp \
+		keepassxc
 
 	install_browsers
 }
@@ -75,7 +68,6 @@ function install_ux_software {
 		imwheel \
 		xdotool
 
-	# Tweak.
 	sudo add-apt-repository universe &&
 		sudo apt install -y gnome-tweak-tool
 
@@ -83,8 +75,7 @@ function install_ux_software {
 		gnome-shell-extensions \
 		chrome-gnome-shell
 
-	# Icons.
-	sudo apt install -y numix-icon-theme-circle
+	install_numix
 }
 
 function install_browsers {
@@ -100,6 +91,40 @@ function install_git {
 	curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 }
 
+function install_gcloud {
+	sudo curl -fsSLo /usr/share/keyrings/cloud.google.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg &&
+		echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" |
+		sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list &&
+		sudo apt update && sudo apt install -y google-cloud-sdk
+}
+
+function install_kubectl {
+	sudo curl -fsSLo /usr/share/keyrings/kubernetes.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg &&
+		echo "deb [signed-by=/usr/share/keyrings/kubernetes.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" |
+		sudo tee /etc/apt/sources.list.d/kubernetes.list &&
+		sudo apt update && sudo apt install -y kubectl
+}
+
+function install_heroku {
+	curl https://cli-assets.heroku.com/install.sh | sh
+}
+
+function install_beekeeper_studio {
+	curl -fsSL https://deb.beekeeperstudio.io/beekeeper.key |
+		gpg --dearmor | sudo tee /usr/share/keyrings/beekeeper-studio.gpg >/dev/null &&
+		echo "deb [signed-by=/usr/share/keyrings/beekeeper-studio.gpg] https://deb.beekeeperstudio.io stable main" |
+		sudo tee /etc/apt/sources.list.d/beekeeper-studio.list &&
+		sudo apt update && sudo apt install -y beekeeper-studio
+}
+
+function install_docker {
+	curl https://get.docker.com | sh
+}
+
+function install_helm {
+	curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+}
+
 function install_microk8s {
 	sudo snap install microk8s --classic || return $?
 
@@ -112,12 +137,6 @@ function install_microk8s {
 	sudo snap alias microk8s.helm helm
 }
 
-function install_virtualbox {
-	curl -sS https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add - &&
-		sudo add-apt-repository "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian $(lsb_release -c -s) contrib" &&
-		sudo apt install -y virtualbox-6.1
-}
-
 function install_tmux_plugins {
 	_have git || sudo apt install -y git || return $?
 
@@ -125,24 +144,35 @@ function install_tmux_plugins {
 }
 
 function install_yarn {
-	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - &&
-		sudo add-apt-repository "deb https://dl.yarnpkg.com/debian/ stable main" &&
-		sudo apt install -y yarn
+	_have npm || sudo snap install node --classic || return $?
+
+	npm install --global yarn
 }
 
 function install_ides {
 	sudo snap install goland --classic
 	sudo snap install webstorm --classic
 	sudo snap install pycharm-professional --classic
-	sudo snap install intellij-idea-ultimate --classic
-	sudo snap install clion --classic
 	sudo snap install datagrip --classic
 }
 
 function install_sublime_text {
-	curl -sS https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - &&
-		sudo add-apt-repository "deb https://download.sublimetext.com/ apt/stable/" &&
-		sudo apt install -y sublime-text
+	curl -fsSL https://download.sublimetext.com/sublimehq-pub.gpg |
+		gpg --dearmor | sudo tee /usr/share/keyrings/sublime-text.gpg >/dev/null &&
+		echo "deb [signed-by=/usr/share/keyrings/sublime-text.gpg] https://download.sublimetext.com/ apt/stable/" |
+		sudo tee /etc/apt/sources.list.d/sublime-text.list &&
+		sudo apt update && sudo apt install -y sublime-text
+}
+
+function install_numix {
+	sudo apt install -y numix-icon-theme-circle
+
+	_have git || sudo apt install -y git || return $?
+
+	local numix_folders_path="$HOME/projects/numix-folders"
+
+	git clone https://github.com/numixproject/numix-folders.git "$numix_folders_path" &&
+		(cd "$numix_folders_path" && printf '6\ncustom\n676767\n973552\ne4e4e4\n' | sudo "$numix_folders_path/numix-folders" -t)
 }
 
 function main {

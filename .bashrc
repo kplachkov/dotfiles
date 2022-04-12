@@ -65,7 +65,3 @@ if _have pip3; then
 	}
 	complete -o default -F _pip_completion pip3
 fi
-
-if _have direnv; then
-	eval "$(direnv hook bash)"
-fi
