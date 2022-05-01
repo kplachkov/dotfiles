@@ -4,7 +4,7 @@
 . "$DOTFILES_PATH/lib/log.sh" || retun $?
 
 function install_dependencies {
-	_have lshw || sudo apt install -y lshw
+	havecmd lshw || sudo apt install -y lshw
 }
 
 function main {

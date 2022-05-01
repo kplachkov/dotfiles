@@ -1,67 +1,163 @@
+#!/usr/bin/env bash
+
 # If not running interactively, don't do anything.
 case $- in
 *i*) ;;
 *) return ;;
 esac
 
-# Load additional settings.
-for file in ~/.{aliases,bash_options,exports}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file"
-done
-unset file
+function source_rcs() {
+  for file in ~/.{aliasrc,cmdrc,exportrc}; do
+    # shellcheck disable=SC1090
+    [ -r "$file" ] && [ -f "$file" ] && source "$file"
+  done
+}
 
-# Make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+function configure_less() {
+  # Make less more friendly for non-text input files, see lesspipe(1)
+  [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+}
 
-# Set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-	debian_chroot=$(cat /etc/debian_chroot)
-fi
+function set_ps1() {
+  if havecmd powerline-daemon; then
+    powerline-daemon -q
+    export POWERLINE_BASH_CONTINUATION=1
+    export POWERLINE_BASH_SELECT=1
+    . "/usr/share/powerline/bindings/bash/powerline.sh"
+    return 0
+  fi
 
-# Set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-xterm-color | *-256color) color_prompt=yes ;;
-esac
+  # Set variable identifying the chroot you work in (used in the prompt below)
+  if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+  	debian_chroot=$(cat /etc/debian_chroot)
+  fi
 
-if [ "$color_prompt" = yes ]; then
-	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt
+  # Set a fancy prompt (non-color, unless we know we "want" color)
+  case "$TERM" in
+  xterm-color | *-256color) color_prompt=yes ;;
+  esac
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm* | rxvt*)
-	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-	;;
-*) ;;
-esac
+  if [ "$color_prompt" = yes ]; then
+  	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  else
+  	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  fi
 
-if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
+  # If this is an xterm set the title to user@host:dir
+  case "$TERM" in
+  xterm* | rxvt*)
+  	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  	;;
+  *) ;;
+  esac
+}
 
-if _have powerline-daemon; then
-	powerline-daemon -q
-	POWERLINE_BASH_CONTINUATION=1
-	POWERLINE_BASH_SELECT=1
-	. "/usr/share/powerline/bindings/bash/powerline.sh"
-fi
+function set_dir_colors() {
+  if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  fi
+}
 
-if _have kubectl; then
-	source <(kubectl completion bash)
-fi
+function set_bash_options() {
+  # Command name that is the name of a directory is executed
+  # as if it were the argument to the cd command. This option
+  # is only used by interactive shells.
+  shopt -s autocd
 
-if _have pipenv; then
-	eval "$(pipenv --completion)"
-fi
+  # Minor errors in the spelling of a directory component in a
+  # cd command will be corrected. The errors checked for are
+  # transposed characters, a missing character, and a character
+  # too many. If a correction is found, the corrected path is
+  # printed, and the command proceeds. This option is only
+  # used by interactive shells.
+  shopt -s cdspell
 
-if _have pip3; then
-	_pip_completion() {
-		COMPREPLY=($(COMP_WORDS="${COMP_WORDS[*]}" \
-			COMP_CWORD=$COMP_CWORD \
-			PIP_AUTO_COMPLETE=1 $1 2>/dev/null))
-	}
-	complete -o default -F _pip_completion pip3
-fi
+  # Check that a command found in the hash table exists before
+  # trying to execute it. If a hashed command no longer exists,
+  # a normal path search is performed.
+  shopt -s checkhash
+
+  # Attempt spelling correction on directory names during word
+  # completion if the directory name initially supplied does not
+  # exist.
+  shopt -s dirspell
+
+  # Include filenames beginning with a `.` in the results of
+  # filename expansion. The filenames `.` and `..` must always
+  # be matched explicitly, even if dotglob is set.
+  shopt -s dotglob
+
+  # Use extended pattern matching features.
+  shopt -s extglob
+
+  # Patterns which fail to match filenames during filename expansion
+  # result in an expansion error.
+  shopt -s failglob
+
+  # The pattern ‘**’ used in a filename expansion context will match
+  # all files and zero or more directories and subdirectories. If the
+  # pattern is followed by a ‘/’, only directories and subdirectories
+  # match.
+  shopt -s globstar
+
+  # The history list is appended to the file named by the value of the
+  # HISTFILE variable when the shell exits, rather than overwriting
+  # the file.
+  shopt -s histappend
+
+  # Give the user the opportunity to re-edit a failed history
+  # substitution.
+  shopt -s histreedit
+
+  # The results of history substitution are not immediately passed to
+  # the shell parser. Instead, the resulting line is loaded into the
+  # Readline editing buffer, allowing further modification.
+  shopt -s histverify
+
+  # Match filenames in a case-insensitive fashion when performing
+  # filename expansion.
+  shopt -s nocaseglob
+
+  # Treat a command name that doesn’t have any completions as a possible
+  # alias and attempt alias expansion. If it has an alias, Bash attempts
+  # programmable completion using the command word resulting from the
+  # expanded alias.
+  shopt -s progcomp_alias
+}
+
+function init_bash_completion() {
+  # Enable programmable completion features.
+  if ! shopt -oq posix; then
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+      . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+      . /etc/bash_completion
+    fi
+  fi
+
+  # shellcheck disable=SC1090
+  havecmd kubectl && source <(kubectl completion bash)
+
+  havecmd pipenv && eval "$(pipenv --completion)"
+
+  if havecmd pip3; then
+    _pip_completion() {
+      # shellcheck disable=SC2207
+      COMPREPLY=($(COMP_WORDS="${COMP_WORDS[*]}" \
+        COMP_CWORD=$COMP_CWORD \
+        PIP_AUTO_COMPLETE=1 $1 2>/dev/null))
+    }
+    complete -o default -F _pip_completion pip3
+  fi
+}
+
+function main() {
+  source_rcs
+  configure_less
+  set_ps1
+  set_dir_colors
+  set_bash_options
+  init_bash_completion
+}
+
+main "$@"
