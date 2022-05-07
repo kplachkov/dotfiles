@@ -3,7 +3,7 @@
 function set_dotfiles {
 	echo "Setting up dotfiles"
 
-	local dotfiles=(.aliases .bashrc .bash_options .exports .imwheelrc .inputrc .profile .tmux.conf)
+	local dotfiles=(.aliasrc .bashrc .cmdrc .exportrc .imwheelrc .inputrc .profile .tmux.conf)
 
 	for dotfile in "${dotfiles[@]}"; do
 		ln -fs "$DOTFILES_PATH/${dotfile}" "$HOME"
