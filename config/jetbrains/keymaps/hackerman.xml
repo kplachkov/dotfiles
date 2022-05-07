@@ -47,6 +47,15 @@
   <action id="Debugger.RemoveAllBreakpoints">
     <keyboard-shortcut first-keystroke="shift alt b" />
   </action>
+  <action id="Diff.ApplyLeftSide">
+    <keyboard-shortcut first-keystroke="shift alt right" />
+  </action>
+  <action id="Diff.ApplyRightSide">
+    <keyboard-shortcut first-keystroke="shift alt left" />
+  </action>
+  <action id="Diff.FocusOppositePane">
+    <keyboard-shortcut first-keystroke="ctrl tab" />
+  </action>
   <action id="Diff.NextChange" />
   <action id="Diff.PrevChange" />
   <action id="EditSource" />
@@ -218,7 +227,6 @@
     <keyboard-shortcut first-keystroke="f3" />
   </action>
   <action id="NextDiff">
-    <keyboard-shortcut first-keystroke="f6" />
     <keyboard-shortcut first-keystroke="alt down" />
   </action>
   <action id="NextEditorTab" />
@@ -232,7 +240,6 @@
   <action id="OptimizeImports" />
   <action id="PopupHector" />
   <action id="PreviousDiff">
-    <keyboard-shortcut first-keystroke="shift f6" />
     <keyboard-shortcut first-keystroke="alt up" />
   </action>
   <action id="PreviousEditorTab" />
@@ -250,6 +257,12 @@
   </action>
   <action id="Rerun">
     <keyboard-shortcut first-keystroke="f7" />
+  </action>
+  <action id="ResizeToolWindowLeft">
+    <keyboard-shortcut first-keystroke="ctrl alt left" />
+  </action>
+  <action id="ResizeToolWindowRight">
+    <keyboard-shortcut first-keystroke="ctrl alt right" />
   </action>
   <action id="RunClass">
     <keyboard-shortcut first-keystroke="alt r" />
@@ -328,4 +341,5 @@
   <action id="VcsShowPrevChangeMarker">
     <keyboard-shortcut first-keystroke="ctrl alt up" />
   </action>
+  <action id="tasks.switch" />
 </keymap>

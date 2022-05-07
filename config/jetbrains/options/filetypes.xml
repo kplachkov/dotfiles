@@ -1,17 +1,13 @@
 <application>
   <component name="FileTypeManager" version="18">
     <extensionMap>
-      <mapping pattern="IntelliJ IDEA Global Settings" type="PLAIN_TEXT" />
       <mapping pattern=".dockerignore" type="Docker File" />
       <mapping pattern="Procfile" type="PLAIN_TEXT" />
       <mapping pattern="CNAME" type="PLAIN_TEXT" />
       <mapping pattern="LICENSE" type="PLAIN_TEXT" />
       <mapping pattern=".envrc" type="PLAIN_TEXT" />
       <mapping ext="desktop" type="PLAIN_TEXT" />
-      <mapping pattern=".exports" type="Shell Script" />
       <mapping pattern=".profile" type="Shell Script" />
-      <mapping pattern=".aliases" type="Shell Script" />
-      <mapping pattern=".bash_options" type="Shell Script" />
       <removed_mapping ext="bat" approved="true" type="PLAIN_TEXT" />
       <removed_mapping ext="cmd" approved="true" type="PLAIN_TEXT" />
       <removed_mapping ext="dockerfile" approved="true" type="textmate" />
