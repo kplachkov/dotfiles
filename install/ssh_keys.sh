@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 
-# shellcheck source=lib/log.sh
-. "$DOTFILES_PATH/lib/log.sh" || retun $?
+# shellcheck source=lib/neofetch.sh
+. "$DOTFILES_PATH/lib/neofetch.sh"
 
-function install_dependencies {
-	havecmd lshw || sudo apt install -y lshw
+function gen_identity() {
+	hardware_model=$(neofetchval model) || return $?
+	distro=$(neofetchval distro --distro_shorthand tiny --os_arch off) || return $?
+	desktop_env=$(neofetchval de) || return $?
+
+	echo "$hardware_model - $distro - $desktop_env"
 }
 
 function main {
 	echo "Generating SSH keys"
-
-	if ! install_dependencies; then
-		log_error "Installing dependencies failed"
-		return 1
-	fi
 
 	local passphrase
 	local passphrase_confirmation
@@ -30,18 +29,7 @@ function main {
 		echo $'\nPassphrases do not match. Try again...\n'
 	done
 
-	machine_name=$(sudo lshw | grep -m1 -oP "(?<=product: )(.*)")
-	if [[ -z $machine_name ]]; then
-		log_error "Missing machine name"
-		return 1
-	fi
-
-	distribution_id=$(lsb_release -i -s)
-	distribution_release=$(lsb_release -r -s)
-
-	distribution="$distribution_id $distribution_release"
-
-	comment="$machine_name - $distribution"
+	comment=$(gen_identity) || return $?
 
 	echo "Comment: $comment"
 

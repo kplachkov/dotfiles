@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Installing python applications and libraries"
+echo "Installing Python 3 applications and libraries"
 
 pip3 install \
 	ptpython \

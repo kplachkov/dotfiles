@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Applying gnome extensions settings"
+echo "Applying GNOME extensions settings"
 
 # Dash to dock.
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'DYNAMIC'

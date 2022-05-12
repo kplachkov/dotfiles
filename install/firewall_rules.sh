@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Setting up firewall"
+echo "Setting up firewall rules"
 
 read -r -p "Allow a device to connect to GSConnect [y/N]: " reply
 if [[ $reply =~ ^[Yy]$ ]]; then
@@ -8,8 +8,8 @@ if [[ $reply =~ ^[Yy]$ ]]; then
 
 	read -r -p "Are you sure you want to allow ($device_ip) to connect to the computer [y/N]: " reply
 	if [[ $reply =~ ^[Yy]$ ]]; then
-		sudo ufw allow from "$device_ip" to any port 1714:1764 proto udp
-		sudo ufw allow from "$device_ip" to any port 1714:1764 proto tcp
+		sudo ufw allow from "$device_ip" to any port 1714:1764 proto udp || return $?
+		sudo ufw allow from "$device_ip" to any port 1714:1764 proto tcp || return $?
 	else
 		echo "Abort"
 	fi
@@ -17,5 +17,5 @@ if [[ $reply =~ ^[Yy]$ ]]; then
 	unset device_ip
 fi
 
-sudo ufw enable
+sudo ufw enable || return $?
 sudo ufw status verbose

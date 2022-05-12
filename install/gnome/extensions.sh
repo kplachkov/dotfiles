@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Extra applications to install"
+echo "Opening GNOME extensions to be installed"
 
 xdg-open https://extensions.gnome.org/extension/307/dash-to-dock/
 xdg-open https://extensions.gnome.org/extension/19/user-themes/
