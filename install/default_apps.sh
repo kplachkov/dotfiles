@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-echo "Setting up default applications"
+echo "Setting up sublime as the default text editor"
 
-# Remove amazon.
-if [[ -f /usr/share/applications/ubuntu-amazon-default.desktop ]]; then
-	sudo rm /usr/share/applications/ubuntu-amazon-default.desktop
-fi
-
-# Make sublime the default text editor.
 if [[ -f /usr/share/applications/sublime_text.desktop ]]; then
 	sudo sed -i -e 's/org.gnome.gedit/sublime_text/g' /usr/share/applications/defaults.list
 fi

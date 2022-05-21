@@ -176,9 +176,11 @@ function install_numix {
 }
 
 function main {
-	echo "Installing system software"
+	echo "Installing Ubuntu software"
 
-	sudo apt update
+	sudo apt update && sudo apt upgrade -y
+
+	sudo ubuntu-drivers autoinstall
 
 	install_ops_software
 
