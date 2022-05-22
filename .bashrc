@@ -6,19 +6,19 @@ case $- in
 *) return ;;
 esac
 
-function source_rcs() {
+function _bashrc_source_rcs() {
   for file in ~/.{aliasrc,cmdrc,exportrc}; do
     # shellcheck disable=SC1090
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
   done
 }
 
-function configure_less() {
+function _bashrc_configure_less() {
   # Make less more friendly for non-text input files, see lesspipe(1)
   [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 }
 
-function set_ps1() {
+function _bashrc_set_ps1() {
   if havecmd powerline-daemon; then
     powerline-daemon -q
     export POWERLINE_BASH_CONTINUATION=1
@@ -52,13 +52,13 @@ function set_ps1() {
   esac
 }
 
-function set_dir_colors() {
+function _bashrc_set_dir_colors() {
   if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
   fi
 }
 
-function set_bash_options() {
+function _bashrc_set_options() {
   # Command name that is the name of a directory is executed
   # as if it were the argument to the cd command. This option
   # is only used by interactive shells.
@@ -125,7 +125,7 @@ function set_bash_options() {
   shopt -s progcomp_alias
 }
 
-function init_bash_completion() {
+function _bashrc_init_completion() {
   # Enable programmable completion features.
   if ! shopt -oq posix; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -151,13 +151,9 @@ function init_bash_completion() {
   fi
 }
 
-function main() {
-  source_rcs
-  configure_less
-  set_ps1
-  set_dir_colors
-  set_bash_options
-  init_bash_completion
-}
-
-main "$@"
+_bashrc_source_rcs
+_bashrc_configure_less
+_bashrc_set_ps1
+_bashrc_set_dir_colors
+_bashrc_set_options
+_bashrc_init_completion
