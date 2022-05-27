@@ -6,8 +6,16 @@ case $- in
 *) return ;;
 esac
 
+function _have() {
+	out=$(command -v "$@") || return $?
+	if [ $# -ne "$(printf "%s" "$out" | grep -c "^")" ]; then
+		# Partial match.
+		return 3
+	fi
+}
+
 function _bashrc_source_rcs() {
-  for file in ~/.{aliasrc,cmdrc,exportrc}; do
+  for file in ~/.{aliasrc,exportrc,exportrc_private}; do
     # shellcheck disable=SC1090
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
   done
@@ -19,7 +27,7 @@ function _bashrc_configure_less() {
 }
 
 function _bashrc_set_ps1() {
-  if havecmd powerline-daemon; then
+  if _have powerline-daemon; then
     powerline-daemon -q
     export POWERLINE_BASH_CONTINUATION=1
     export POWERLINE_BASH_SELECT=1
@@ -136,11 +144,11 @@ function _bashrc_init_completion() {
   fi
 
   # shellcheck disable=SC1090
-  havecmd kubectl && source <(kubectl completion bash)
+  _have kubectl && source <(kubectl completion bash)
 
-  havecmd pipenv && eval "$(pipenv --completion)"
+  _have pipenv && eval "$(pipenv --completion)"
 
-  if havecmd pip3; then
+  if _have pip3; then
     _pip_completion() {
       # shellcheck disable=SC2207
       COMPREPLY=($(COMP_WORDS="${COMP_WORDS[*]}" \

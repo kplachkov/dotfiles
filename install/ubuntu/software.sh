@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+. "$DOTFILES_PATH/lib/utils.sh" || exit $?
+
 function install_ops_software {
 	sudo apt install -y \
 		curl \
@@ -138,13 +140,13 @@ function install_microk8s {
 }
 
 function install_tmux_plugins {
-	havecmd git || sudo apt install -y git || return $?
+	have git || sudo apt install -y git || return $?
 
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
 function install_yarn {
-	havecmd npm || sudo snap install node --classic || return $?
+	have npm || sudo snap install node --classic || return $?
 
 	npm install --global yarn
 }
@@ -167,7 +169,7 @@ function install_sublime_text {
 function install_numix {
 	sudo apt install -y numix-icon-theme-circle
 
-	havecmd git || sudo apt install -y git || return $?
+	have git || sudo apt install -y git || return $?
 
 	local numix_folders_path="$HOME/projects/numix-folders"
 
@@ -176,7 +178,7 @@ function install_numix {
 }
 
 function main {
-	echo "Installing Ubuntu software"
+	echo "Installing system software"
 
 	sudo apt update && sudo apt upgrade -y
 

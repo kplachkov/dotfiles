@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# shellcheck source=lib/neofetch.sh
-. "$DOTFILES_PATH/lib/neofetch.sh"
+. "$DOTFILES_PATH/lib/utils.sh" || exit $?
 
 function gen_identity() {
 	hardware_model=$(neofetchval model) || return $?
