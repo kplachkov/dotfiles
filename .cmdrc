@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-havecmd() {
-  out=$(command -v "$@") || return 1
-  if [ $# -ne "$(printf "%s" "$out" | grep -c "^")" ]; then
-    # Partial match.
-    return 2
-  fi
-}

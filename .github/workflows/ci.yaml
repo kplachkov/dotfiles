@@ -12,39 +12,24 @@ env:
 jobs:
   test:
     name: "Test"
-    timeout-minutes: 90
+    timeout-minutes: 60
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
+        os: [ ubuntu-latest, macos-latest ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: "Test Ubuntu software installation"
-        run: install/ubuntu/software.sh
-
-      - name: "Test Python applications and libraries installation"
-        run: install/python_software.sh
-
-      - name: "Test setting up the configurations"
-        run: install/configs.sh
-
-      - name: "Test setting up the default applications"
-        run: install/default_apps.sh
-
-      - name: "Test setting up the GNOME settings"
-        run: install/gnome/settings.sh
-
-      - name: "Test setting up the Ubuntu locales"
-        run: install/ubuntu/locale.sh
+      - name: "Test installation"
+        run: make install
 
   lint:
     name: "Lint"
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - run: make setup
 
