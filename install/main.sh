@@ -13,8 +13,12 @@ function tolower() {
 	cat | tr "[:upper:]" "[:lower:]"
 }
 
-function linux_distro_base() {
-	grep -oP '(?<=^ID_LIKE=).*' /etc/os-release
+function have() {
+	out=$(command -v "$@") || return $?
+	if [ $# -ne "$(printf "%s" "$out" | grep -c "^")" ]; then
+		# Partial match.
+		return 3
+	fi
 }
 
 function install_utilities() {
@@ -37,18 +41,19 @@ function install_utilities() {
 }
 
 function install_linux_utilities() {
-	distro_base=$(linux_distro_base | tolower)
-
-	case $distro_base in
-	debian)
-		sudo apt update
-		sudo apt install -y git neofetch || return $?
-		;;
-	*)
-		echo "Unsupported Linux distribution base ($distro_base)" >&2
+	if have apt-get; then
+		sudo apt-get update
+		sudo apt-get install -y git neofetch || return $?
+	elif have dnf; then
+		sudo dnf install -y git neofetch || return $?
+	elif have pacman; then
+		sudo pacman -S git neofetch || return $?
+	elif have zypper; then
+		sudo zypper in -y git-core neofetch || return $?
+	else
+		echo "No supported package manager found" >&2
 		return 1
-		;;
-	esac
+	fi
 }
 
 function install_darwin_utilities() {
@@ -133,19 +138,13 @@ function try_partial_installation() {
 
 	echo "Searching for partial installation"
 
-	distro_base=$(linux_distro_base | tolower)
-
-	case $distro_base in
-	debian | ubuntu)
+	if have apt-get; then
 		echo "Found partial installation (Ubuntu)"
-
 		"$DOTFILES_PATH/install/ubuntu/main.sh"
-		;;
-	*)
-		log_error "No installation found for Linux distribution base ($distro_base)"
+	else
+		log_error "No partial installation found"
 		return 1
-		;;
-	esac
+	fi
 }
 
 function configure_desktop_env() {
