@@ -17,8 +17,8 @@ bash -c "$(wget -qO - https://raw.githubusercontent.com/kplachkov/dotfiles/maste
 Installation support based on OS:
 
 - Full: Ubuntu
-- Partial<sup>[a]</sup>: Debian-based
-- Minimal<sup>[b]</sup>: other Linux distributions and macOS
+- Partial<sup>[a]</sup>: Debian-based distributions
+- Minimal<sup>[b]</sup>: RHEL-based, Arch-based, openSUSE-based distributions and macOS
 
 High level representation of the installation process:
 
