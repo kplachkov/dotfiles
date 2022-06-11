@@ -9,8 +9,4 @@ pip3 install \
 	pandas \
 	matplotlib \
 	scikit-learn \
-	nltk \
-	seaborn \
-	tensorflow \
-	tensorflow-datasets \
-	tensorflow-hub
+	nltk
