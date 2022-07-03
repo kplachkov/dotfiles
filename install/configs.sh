@@ -65,15 +65,6 @@ function link_sublime_text_config() {
 	ln -fs "$DOTFILES_PATH/config/sublime-text-3/Package Control.sublime-settings" "$subl_config_dir"
 }
 
-function link_cursor_config() {
-	[[ $(uname | tolower) != linux ]] && return 0
-
-	echo "Setting up cursor configuration"
-
-	mkdir -p /etc/default/
-	sudo ln -fs "$DOTFILES_PATH/unclutter" /etc/default/
-}
-
 function link_powerline_config() {
 	echo "Setting up powerline configuration"
 
@@ -89,7 +80,6 @@ function main() {
 	link_htop_config
 	link_powerline_config
 	link_sublime_text_config
-	link_cursor_config
 }
 
 main "$@"

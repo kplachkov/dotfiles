@@ -31,8 +31,7 @@ function _bashrc_set_ps1() {
     powerline-daemon -q
     export POWERLINE_BASH_CONTINUATION=1
     export POWERLINE_BASH_SELECT=1
-    . "/usr/share/powerline/bindings/bash/powerline.sh"
-    return 0
+    . "/usr/share/powerline/bash/powerline.sh" && return 0
   fi
 
   # Set variable identifying the chroot you work in (used in the prompt below)
@@ -97,10 +96,6 @@ function _bashrc_set_options() {
 
   # Use extended pattern matching features.
   shopt -s extglob
-
-  # Patterns which fail to match filenames during filename expansion
-  # result in an expansion error.
-  shopt -s failglob
 
   # The pattern ‘**’ used in a filename expansion context will match
   # all files and zero or more directories and subdirectories. If the
