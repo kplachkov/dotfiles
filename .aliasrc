@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 # System.
 alias aptuu="sudo apt update && sudo apt upgrade"
 alias scaledock="gsettings set org.gnome.desktop.interface text-scaling-factor 1.3"

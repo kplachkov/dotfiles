@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # If not running interactively, don't do anything.
 case $- in
 *i*) ;;
@@ -15,7 +13,7 @@ function _have() {
 }
 
 function _bashrc_source_rcs() {
-  for file in ~/.{aliasrc,exportrc,exportrc_private}; do
+  for file in /etc/bashrc ~/.aliasrc; do
     # shellcheck disable=SC1090
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
   done
@@ -29,34 +27,8 @@ function _bashrc_configure_less() {
 function _bashrc_set_ps1() {
   if _have powerline-daemon; then
     powerline-daemon -q
-    export POWERLINE_BASH_CONTINUATION=1
-    export POWERLINE_BASH_SELECT=1
-    . "/usr/share/powerline/bash/powerline.sh" && return 0
+    . "/usr/share/powerline/bash/powerline.sh"
   fi
-
-  # Set variable identifying the chroot you work in (used in the prompt below)
-  if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-  	debian_chroot=$(cat /etc/debian_chroot)
-  fi
-
-  # Set a fancy prompt (non-color, unless we know we "want" color)
-  case "$TERM" in
-  xterm-color | *-256color) color_prompt=yes ;;
-  esac
-
-  if [ "$color_prompt" = yes ]; then
-  	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-  else
-  	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-  fi
-
-  # If this is an xterm set the title to user@host:dir
-  case "$TERM" in
-  xterm* | rxvt*)
-  	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-  	;;
-  *) ;;
-  esac
 }
 
 function _bashrc_set_dir_colors() {

@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 export TERM="xterm-256color"
 export EDITOR="subl --wait --launch-or-new-window --detached"
 export VISUAL="subl --wait --launch-or-new-window --detached"
@@ -21,3 +19,6 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export PYTHONIOENCODING="UTF-8"
 export GOPATH="$HOME/go"
 export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+
+export POWERLINE_BASH_CONTINUATION=1
+export POWERLINE_BASH_SELECT=1
