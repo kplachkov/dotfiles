@@ -22,7 +22,8 @@ function install_ops_software {
 		fonts-powerline \
 		qemu-kvm \
 		virt-manager \
-		ufw
+		ufw \
+		bat
 
 	install_tmux_plugins
 }
@@ -66,7 +67,6 @@ function install_common_software {
 
 function install_ux_software {
 	sudo apt install -y \
-		unclutter \
 		imwheel \
 		xdotool
 

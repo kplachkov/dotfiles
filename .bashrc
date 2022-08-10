@@ -27,7 +27,7 @@ function _bashrc_configure_less() {
 function _bashrc_set_ps1() {
   if _have powerline-daemon; then
     powerline-daemon -q
-    . "/usr/share/powerline/bash/powerline.sh"
+    . "$POWERLINE_BASH_CONFIG"
   fi
 }
 

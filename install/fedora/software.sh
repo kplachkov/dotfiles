@@ -10,7 +10,8 @@ function install_ops_software() {
 		powerline-fonts \
 		tmux \
 		tmux-powerline \
-		htop
+		htop \
+		bat
 
 	install_tmux_plugins
 }
@@ -34,9 +35,7 @@ function install_ux_software() {
 		imwheel \
 		numix-icon-theme-circle
 
-	if [[ $(neofetchval de | tolower) == *"gnome"* ]]; then
-		install_gnome_software
-	fi
+	isgnome && install_gnome_software
 }
 
 function install_gcloud() {
