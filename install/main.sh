@@ -122,13 +122,16 @@ function configure_distro() {
 	distro=$(neofetchval distro --distro_shorthand tiny --os_arch off | tolower)
 
 	case $distro in
-	ubuntu)
-		"$DOTFILES_PATH/install/ubuntu/main.sh"
+	*ubuntu*)
+		"$DOTFILES_PATH/install/ubuntu/main.sh" || return $?
+		;;
+	*fedora*)
+		"$DOTFILES_PATH/install/fedora/main.sh" || return $?
 		;;
 	*)
 		log_error "Unsupported distribution ($distro)"
 
-		try_partial_installation
+		try_partial_installation || return $?
 		;;
 	esac
 }
@@ -140,7 +143,10 @@ function try_partial_installation() {
 
 	if have apt-get; then
 		echo "Found partial installation (Ubuntu)"
-		"$DOTFILES_PATH/install/ubuntu/main.sh"
+		"$DOTFILES_PATH/install/ubuntu/main.sh" || return $?
+	elif have dnf; then
+		echo "Found partial installation (Fedora)"
+		"$DOTFILES_PATH/install/fedora/main.sh" || return $?
 	else
 		log_error "No partial installation found"
 		return 1
@@ -153,11 +159,12 @@ function configure_desktop_env() {
 	desktop_env=$(neofetchval de | tolower)
 
 	case $desktop_env in
-	gnome)
-		"$DOTFILES_PATH/install/gnome/main.sh"
+	*gnome*)
+		"$DOTFILES_PATH/install/gnome/main.sh" || return $?
 		;;
 	*)
 		log_error "Unsupported desktop environment ($desktop_env)"
+		return 1
 		;;
 	esac
 }

@@ -37,3 +37,23 @@ function trim() {
 
 	printf '%s' "$input"
 }
+
+function isdistro() {
+	[[ $(neofetchval distro --distro_shorthand tiny --os_arch off | tolower) == *"$1"* ]]
+}
+
+function isde() {
+	[[ $(neofetchval de | tolower) == *"$1"* ]]
+}
+
+function isfedora() {
+	isdistro fedora
+}
+
+function isubuntu() {
+	isdistro ubuntu
+}
+
+function isgnome() {
+	isde gnome
+}

@@ -8,10 +8,6 @@ if ! pgrep chrome; then
 	google-chrome &
 fi
 
-if ! pgrep goland.sh; then
-	goland &
-fi
-
 if ! pgrep --exact --full "tmux"; then
 	gnome-terminal --full-screen -- tmux
 elif [[ $(pgrep --count --exact --full "tmux") == 2 ]]; then
