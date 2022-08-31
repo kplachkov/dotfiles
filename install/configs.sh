@@ -11,10 +11,10 @@ fi
 function link_dotfiles() {
 	echo "Setting up dotfiles"
 
-	if isfedora; then
+	if is_fedora; then
 		POWERLINE_BASH_CONFIG="/usr/share/powerline/bash/powerline.sh"
 		POWERLINE_TMUX_CONFIG="/usr/share/tmux/powerline.conf"
-	elif isubuntu; then
+	elif is_ubuntu; then
 		POWERLINE_BASH_CONFIG="/usr/share/powerline/bindings/bash/powerline.sh"
 		POWERLINE_TMUX_CONFIG="/usr/share/powerline/bindings/tmux/powerline.conf"
 	fi
@@ -33,7 +33,7 @@ function link_dotfiles() {
 }
 
 function link_autostart_apps() {
-	[[ $(uname | tolower) != linux ]] && return 0
+	is_linux || return 0
 
 	echo "Setting up autostart applications"
 
@@ -55,7 +55,7 @@ function link_htop_config() {
 function link_sublime_text_config() {
 	echo "Setting up Sublime Text configuration"
 
-	case $(uname | tolower) in
+	case $(uname | to_lower) in
 	linux)
 		local subl_config_dir="$HOME/.config/sublime-text-3/Packages/User/"
 		;;
@@ -88,7 +88,6 @@ function main() {
 	link_autostart_apps
 	link_htop_config
 	link_powerline_config
-	link_sublime_text_config
 }
 
 main "$@"

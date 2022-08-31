@@ -10,7 +10,6 @@ function main() {
 
 	"$DOTFILES_PATH/install/ubuntu/software.sh"
 	"$DOTFILES_PATH/install/ubuntu/locale.sh"
-	"$DOTFILES_PATH/install/ubuntu/default_apps.sh"
 }
 
 main "$@"

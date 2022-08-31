@@ -5,7 +5,7 @@ export DOTFILES_PATH="${DOTFILES_PATH:-$HOME/projects/dotfiles}"
 declare -r dotfiles_https_url="https://github.com/kplachkov/dotfiles.git"
 declare -r dotfiles_ssh_url="git@github.com:kplachkov/dotfiles.git"
 
-function tolower() {
+function to_lower() {
 	if [ -t 0 ]; then
 		return 2
 	fi
@@ -24,7 +24,7 @@ function have() {
 function install_utilities() {
 	echo "Installing required utilities"
 
-	core=$(uname | tolower)
+	core=$(uname | to_lower)
 
 	case $core in
 	linux)
@@ -57,7 +57,7 @@ function install_linux_utilities() {
 }
 
 function install_darwin_utilities() {
-	distro=$(sw_vers -productName | tolower)
+	distro=$(sw_vers -productName | to_lower)
 
 	case $distro in
 	macos)
@@ -119,25 +119,19 @@ function source_functions() {
 function configure_distro() {
 	echo "Configuring distribution"
 
-	distro=$(neofetchval distro --distro_shorthand tiny --os_arch off | tolower)
-
-	case $distro in
-	*ubuntu*)
+	if is_ubuntu; then
 		"$DOTFILES_PATH/install/ubuntu/main.sh" || return $?
-		;;
-	*fedora*)
+	elif is_fedora; then
 		"$DOTFILES_PATH/install/fedora/main.sh" || return $?
-		;;
-	*)
-		log_error "Unsupported distribution ($distro)"
+	else
+		log_error "Unsupported distribution ($(get_distro))"
 
 		try_partial_installation || return $?
-		;;
-	esac
+	fi
 }
 
 function try_partial_installation() {
-	[[ $(uname | tolower) != linux ]] && return 0
+	is_linux || return 0
 
 	echo "Searching for partial installation"
 
@@ -156,20 +150,19 @@ function try_partial_installation() {
 function configure_desktop_env() {
 	echo "Configuring desktop environment"
 
-	desktop_env=$(neofetchval de | tolower)
-
-	case $desktop_env in
-	*gnome*)
+	if is_gnome; then
 		"$DOTFILES_PATH/install/gnome/main.sh" || return $?
-		;;
-	*)
-		log_error "Unsupported desktop environment ($desktop_env)"
+	else
+		log_error "Unsupported desktop environment ($(get_desktop_env))"
 		return 1
-		;;
-	esac
+	fi
 }
 
 function install_common() {
+	"$DOTFILES_PATH/install/software.sh"
+
+	"$DOTFILES_PATH/install/default_apps.sh"
+
 	"$DOTFILES_PATH/install/firewall_rules.sh"
 
 	"$DOTFILES_PATH/install/ssh_keys.sh"
@@ -177,10 +170,6 @@ function install_common() {
 	"$DOTFILES_PATH/install/pgp_keys.sh"
 
 	"$DOTFILES_PATH/install/configs.sh"
-
-	"$DOTFILES_PATH/install/python_software.sh"
-
-	"$DOTFILES_PATH/install/custom_software.sh"
 }
 
 function main() {

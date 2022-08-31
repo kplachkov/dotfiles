@@ -27,7 +27,6 @@ High level representation of the installation process:
 - Installing applications, scripts and libraries.
 - Configuring the settings of the desktop environment.
 - Generating PGP keys, SSH keys and firewall rules (requires input).
-- Installing Python 3 applications and libraries.
 - Linking the configuration of applications and the dotfiles (if the files already exist -- they will be replaced).
 
 ---
