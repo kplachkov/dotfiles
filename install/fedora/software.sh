@@ -2,40 +2,13 @@
 
 . "$DOTFILES_PATH/lib/utils.sh" || exit $?
 
-function install_ops_software() {
-	sudo dnf install -y \
-		most \
-		lshw \
-		powerline \
-		powerline-fonts \
-		tmux \
-		tmux-powerline \
-		htop \
-		bat
+function install_virtualization() {
+	sudo dnf install -y @virtualization &&
+		sudo usermod -a -G libvirt "$(whoami)" ||
+		return $?
 
-	install_tmux_plugins
-}
-
-function install_dev_software() {
-	install_nodejs
-	install_kubectl
-	install_gcloud
-	install_sublime_text
-}
-
-function install_common_software() {
-	sudo dnf install -y \
-		google-chrome-stable \
-		keepassxc \
-		rawtherapee
-}
-
-function install_ux_software() {
-	sudo dnf install -y \
-		imwheel \
-		numix-icon-theme-circle
-
-	isgnome && install_gnome_software
+	sudo systemctl start libvirtd
+	sudo systemctl enable libvirtd
 }
 
 function install_gcloud() {
@@ -64,17 +37,6 @@ EOF
 	sudo yum install -y kubectl
 }
 
-function install_tmux_plugins() {
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-}
-
-function install_nodejs() {
-	sudo dnf install -y nodejs &&
-		mkdir -p ~/.npm-global &&
-		npm config set prefix ~/.npm-global &&
-		npm install --global yarn
-}
-
 function install_sublime_text() {
 	sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg &&
 		sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo &&
@@ -98,13 +60,31 @@ function install_gnome_software() {
 function main() {
 	echo "Installing system software"
 
-	install_ops_software
+	sudo dnf install -y \
+		most \
+		lshw \
+		powerline \
+		powerline-fonts \
+		tmux \
+		tmux-powerline \
+		htop \
+		iftop \
+		bat \
+		golang \
+		nodejs \
+		google-chrome-stable \
+		keepassxc \
+		rawtherapee \
+		imwheel \
+		unclutter-xfixes \
+		papirus-icon-theme
 
-	install_dev_software
+	install_virtualization
+	install_kubectl
+	install_gcloud
+	install_vscode
 
-	install_ux_software
-
-	install_common_software
+	is_gnome && install_gnome_software
 }
 
 main "$@"

@@ -2,109 +2,33 @@
 
 . "$DOTFILES_PATH/lib/utils.sh" || exit $?
 
-function install_ops_software {
-	sudo apt install -y \
-		curl \
-		whois \
-		net-tools \
-		apt-transport-https \
-		ca-certificates \
-		gnupg \
-		software-properties-common \
-		nmap \
-		htop \
-		iftop \
-		tmux \
-		tree \
-		most \
-		xclip \
-		powerline \
-		fonts-powerline \
-		qemu-kvm \
-		virt-manager \
-		ufw \
-		bat
+function install_gnome_software {
+	sudo add-apt-repository universe
 
-	install_tmux_plugins
-}
-
-function install_dev_software {
-	sudo apt install -y \
-		cmake \
-		ruby-dev \
-		shc \
-		python3-pip \
-		pipenv \
-		python3-tk \
-		libseccomp-dev \
-		protobuf-compiler
-
-	sudo snap install go --classic
-	sudo snap install node --classic
-	sudo snap install hugo --channel=extended
-	sudo snap install postman
-
-	install_git
-	install_gcloud
-	install_heroku
-	install_kubectl
-	install_helm
-	install_beekeeper_studio
-	install_yarn
-	install_ides
-	install_sublime_text
-}
-
-function install_common_software {
-	sudo apt install -y \
-		imagemagick \
-		rawtherapee \
-		gimp \
-		keepassxc
-
-	install_browsers
-}
-
-function install_ux_software {
-	sudo apt install -y \
-		imwheel \
-		xdotool
-
-	sudo add-apt-repository universe &&
-		sudo apt install -y gnome-tweak-tool
-
-	sudo apt install -y \
+	sudo apt-get install -y \
+		gnome-tweak-tool \
 		gnome-shell-extensions \
 		chrome-gnome-shell
-
-	install_numix
 }
 
-function install_browsers {
-	# Chrome.
+function install_google_chrome {
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
 		sudo dpkg -i google-chrome-stable_current_amd64.deb &&
 		rm google-chrome-stable_current_amd64.deb
-}
-
-function install_git {
-	sudo apt install -y git
-
-	curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 }
 
 function install_gcloud {
 	sudo curl -fsSLo /usr/share/keyrings/cloud.google.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg &&
 		echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" |
 		sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list &&
-		sudo apt update && sudo apt install -y google-cloud-sdk
+		sudo apt-get update && sudo apt-get install -y google-cloud-sdk
 }
 
 function install_kubectl {
 	sudo curl -fsSLo /usr/share/keyrings/kubernetes.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg &&
 		echo "deb [signed-by=/usr/share/keyrings/kubernetes.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" |
 		sudo tee /etc/apt/sources.list.d/kubernetes.list &&
-		sudo apt update && sudo apt install -y kubectl
+		sudo apt-get update && sudo apt-get install -y kubectl
 }
 
 function install_heroku {
@@ -116,7 +40,7 @@ function install_beekeeper_studio {
 		gpg --dearmor | sudo tee /usr/share/keyrings/beekeeper-studio.gpg >/dev/null &&
 		echo "deb [signed-by=/usr/share/keyrings/beekeeper-studio.gpg] https://deb.beekeeperstudio.io stable main" |
 		sudo tee /etc/apt/sources.list.d/beekeeper-studio.list &&
-		sudo apt update && sudo apt install -y beekeeper-studio
+		sudo apt-get update && sudo apt-get install -y beekeeper-studio
 }
 
 function install_docker {
@@ -139,58 +63,72 @@ function install_microk8s {
 	sudo snap alias microk8s.helm helm
 }
 
-function install_tmux_plugins {
-	have git || sudo apt install -y git || return $?
-
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-}
-
-function install_yarn {
-	have npm || sudo snap install node --classic || return $?
-
-	npm install --global yarn
-}
-
-function install_ides {
-	sudo snap install goland --classic
-	sudo snap install webstorm --classic
-	sudo snap install pycharm-professional --classic
-	sudo snap install datagrip --classic
-}
-
 function install_sublime_text {
 	curl -fsSL https://download.sublimetext.com/sublimehq-pub.gpg |
 		gpg --dearmor | sudo tee /usr/share/keyrings/sublime-text.gpg >/dev/null &&
 		echo "deb [signed-by=/usr/share/keyrings/sublime-text.gpg] https://download.sublimetext.com/ apt/stable/" |
 		sudo tee /etc/apt/sources.list.d/sublime-text.list &&
-		sudo apt update && sudo apt install -y sublime-text
-}
-
-function install_numix {
-	sudo apt install -y numix-icon-theme-circle
-
-	have git || sudo apt install -y git || return $?
-
-	local numix_folders_path="$HOME/projects/numix-folders"
-
-	git clone https://github.com/numixproject/numix-folders.git "$numix_folders_path" &&
-		(cd "$numix_folders_path" && printf '6\ncustom\n676767\n973552\ne4e4e4\n' | sudo "$numix_folders_path/numix-folders" -t)
+		sudo apt-get update && sudo apt-get install -y sublime-text
 }
 
 function main {
 	echo "Installing system software"
 
-	sudo apt update && sudo apt upgrade -y
+	sudo apt-get update && sudo apt-get upgrade -y
 
 	sudo ubuntu-drivers autoinstall
 
-	install_ops_software
+	sudo apt-get install -y \
+		curl \
+		whois \
+		net-tools \
+		apt-transport-https \
+		ca-certificates \
+		gnupg \
+		software-properties-common \
+		nmap \
+		htop \
+		iftop \
+		tmux \
+		tree \
+		most \
+		xclip \
+		powerline \
+		fonts-powerline \
+		qemu-kvm \
+		virt-manager \
+		ufw \
+		bat \
+		git \
+		cmake \
+		ruby-dev \
+		shc \
+		python3-pip \
+		pipenv \
+		python3-tk \
+		libseccomp-dev \
+		protobuf-compiler \
+		imagemagick \
+		rawtherapee \
+		gimp \
+		keepassxc \
+		imwheel \
+		unclutter-xfixes \
+		papirus-icon-theme
 
-	install_dev_software
+	sudo snap install go --classic
+	sudo snap install node --classic
+	sudo snap install hugo --channel=extended
+	sudo snap install postman
 
-	install_ux_software
+	install_gcloud
+	install_heroku
+	install_kubectl
+	install_helm
+	install_beekeeper_studio
+	install_google_chrome
 
-	install_common_software
+	is_gnome && install_gnome_software
 }
 
 main "$@"

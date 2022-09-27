@@ -1,7 +1,4 @@
-# System.
-alias aptuu="sudo apt update && sudo apt upgrade"
-alias scaledock="gsettings set org.gnome.desktop.interface text-scaling-factor 1.3"
-alias scalelap="gsettings set org.gnome.desktop.interface text-scaling-factor 1.1"
+# shellcheck disable=SC2148
 
 # Navigation.
 alias ..="cd .."
@@ -13,6 +10,7 @@ alias -- -="cd -"
 
 # Development.
 alias serve="python3 -m http.server"
+alias edit='$EDITOR'
 
 # Network.
 alias edithosts='$EDITOR /etc/hosts'

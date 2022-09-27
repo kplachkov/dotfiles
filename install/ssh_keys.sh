@@ -3,9 +3,9 @@
 . "$DOTFILES_PATH/lib/utils.sh" || exit $?
 
 function gen_identity() {
-	hardware_model=$(neofetchval model) || return $?
-	distro=$(neofetchval distro --distro_shorthand tiny --os_arch off) || return $?
-	desktop_env=$(neofetchval de) || return $?
+	hardware_model=$(neofetch_val model) || return $?
+	distro=$(get_distro) || return $?
+	desktop_env=$(get_desktop_env) || return $?
 
 	echo "$hardware_model - $distro - $desktop_env"
 }

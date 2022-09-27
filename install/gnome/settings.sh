@@ -5,6 +5,7 @@ echo "Applying GNOME settings"
 # Keybindings.
 
 gsettings set org.gnome.desktop.wm.keybindings switch-applications "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-group "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows "[]"
@@ -85,7 +86,7 @@ gsettings set org.gnome.desktop.interface font-name 'Cantarell 12'
 
 # Miscellaneous
 
-gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop', 'sublime_text.desktop']"
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop']"
 
 gsettings set org.gnome.system.locale region 'en_GB.UTF-8'
 

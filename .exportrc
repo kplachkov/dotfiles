@@ -1,6 +1,8 @@
+# shellcheck disable=SC2148
+
 export TERM="xterm-256color"
-export EDITOR="subl --wait --launch-or-new-window --detached"
-export VISUAL="subl --wait --launch-or-new-window --detached"
+export EDITOR="code --wait --new-window"
+export VISUAL="code --wait --new-window"
 export PAGER="most"
 export BROWSER="google-chrome"
 
@@ -11,13 +13,14 @@ export HISTSIZE=100000
 # Increase the maximum number of lines of history.
 export HISTFILESIZE=100000
 # Don't add certain commands to the history file.
-export HISTIGNORE="clear:history:exit:pwd:cd:ll:ls:-:reboot:shutdown now:aptuu:sudo -i"
+export HISTIGNORE="clear:history:exit:pwd:cd:ll:ls:-:reboot:shutdown now:sudo -i"
 # Update bash history in real time.
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
 export PYTHONIOENCODING="UTF-8"
 export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
 export NPM_CONFIG_PREFIX="$HOME/.npm-global"
 
 export POWERLINE_BASH_CONTINUATION=1

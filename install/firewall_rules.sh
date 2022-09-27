@@ -2,7 +2,7 @@
 
 . "$DOTFILES_PATH/lib/utils.sh" || exit $?
 
-[[ $(uname | tolower) != linux ]] && exit 0
+have ufw || exit $?
 
 echo "Setting up firewall rules"
 

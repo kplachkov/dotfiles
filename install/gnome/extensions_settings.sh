@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
+. "$DOTFILES_PATH/lib/utils.sh" || exit $?
+
 echo "Applying GNOME extensions settings"
 
-if [[ $(gnome-extensions list) == *"auto-move-windows"* ]]; then
+if has_gnome_ext "auto-move-windows"; then
 	echo " - auto move windows"
 
-	gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['jetbrains-goland.desktop:2', 'jetbrains-webstorm.desktop:2', 'google-chrome.desktop:1', 'org.gnome.Terminal.desktop:1', 'sublime_text.desktop:1']"
+	gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['google-chrome.desktop:1', 'org.gnome.Terminal.desktop:1', 'code.desktop:2']"
 fi
 
-if [[ $(gnome-extensions list) == *"desktop-icons"* ]]; then
+if has_gnome_ext "desktop-icons"; then
 	echo " - desktop icons"
 
 	gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
@@ -16,14 +18,14 @@ if [[ $(gnome-extensions list) == *"desktop-icons"* ]]; then
 	gsettings set org.gnome.shell.extensions.desktop-icons icon-size 'small'
 fi
 
-if [[ $(gnome-extensions list) == *"user-theme"* ]]; then
-	ehco " - user theme"
+if has_gnome_ext "user-theme"; then
+	echo " - user theme"
 
 	gsettings set org.gnome.shell.extensions.user-theme name "Yaru-dark"
 fi
 
-if [[ $(gnome-extensions list) == *"dash-to-dock"* ]]; then
-	ehco " - dash to dock"
+if has_gnome_ext "dash-to-dock"; then
+	echo " - dash to dock"
 
 	gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'DYNAMIC'
 	gsettings set org.gnome.shell.extensions.dash-to-dock shortcut-text '<Super>q'
@@ -34,7 +36,7 @@ if [[ $(gnome-extensions list) == *"dash-to-dock"* ]]; then
 	gsettings set org.gnome.shell.extensions.dash-to-dock custom-background-color false
 	gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-1 "['<Shift><Super>1']"
 	gsettings set org.gnome.shell.extensions.dash-to-dock multi-monitor false
-	gsettings set org.gnome.shell.extensions.dash-to-dock height-fraction 0.90000000000000002
+	gsettings set org.gnome.shell.extensions.dash-to-dock height-fraction 0.9
 	gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-1 "['<Ctrl><Super>1']"
 	gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces false
 	gsettings set org.gnome.shell.extensions.dash-to-dock shift-click-action 'minimize'
@@ -52,7 +54,7 @@ if [[ $(gnome-extensions list) == *"dash-to-dock"* ]]; then
 	gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-border-color '#e95420'
 	gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-3 "['<Shift><Super>3']"
 	gsettings set org.gnome.shell.extensions.dash-to-dock pressure-threshold 200.0
-	gsettings set org.gnome.shell.extensions.dash-to-dock hide-delay 0.10000000000000002
+	gsettings set org.gnome.shell.extensions.dash-to-dock hide-delay 0.1
 	gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top false
 	gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-3 "['<Ctrl><Super>3']"
 	gsettings set org.gnome.shell.extensions.dash-to-dock show-favorites true
@@ -64,7 +66,7 @@ if [[ $(gnome-extensions list) == *"dash-to-dock"* ]]; then
 	gsettings set org.gnome.shell.extensions.dash-to-dock running-indicator-style 'DOTS'
 	gsettings set org.gnome.shell.extensions.dash-to-dock hotkeys-overlay true
 	gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-5 "['<Shift><Super>5']"
-	gsettings set org.gnome.shell.extensions.dash-to-dock animation-time 0.10000000000000002
+	gsettings set org.gnome.shell.extensions.dash-to-dock animation-time 0.1
 	gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-color '#e95420'
 	gsettings set org.gnome.shell.extensions.dash-to-dock running-indicator-dominant-color false
 	gsettings set org.gnome.shell.extensions.dash-to-dock hotkeys-show-dock false

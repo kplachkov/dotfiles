@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 # If not running interactively, don't do anything.
 case $- in
 *i*) ;;
@@ -27,6 +29,7 @@ function _bashrc_configure_less() {
 function _bashrc_set_ps1() {
   if _have powerline-daemon; then
     powerline-daemon -q
+    # shellcheck disable=SC1090
     . "$POWERLINE_BASH_CONFIG"
   fi
 }

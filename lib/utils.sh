@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function neofetchval() {
+function neofetch_val() {
 	out=$(neofetch "$@") || return $?
 	val=${out#*: }
 	echo "$val" | trim
@@ -14,7 +14,7 @@ function have() {
 	fi
 }
 
-function tolower() {
+function to_lower() {
 	if [ -t 0 ]; then
 		return 2
 	fi
@@ -38,22 +38,40 @@ function trim() {
 	printf '%s' "$input"
 }
 
-function isdistro() {
-	[[ $(neofetchval distro --distro_shorthand tiny --os_arch off | tolower) == *"$1"* ]]
+function get_desktop_env() {
+	neofetch_val de
 }
 
-function isde() {
-	[[ $(neofetchval de | tolower) == *"$1"* ]]
+function get_distro() {
+	neofetch_val distro --distro_shorthand tiny --os_arch off
 }
 
-function isfedora() {
-	isdistro fedora
+function is_linux() {
+	[[ $(uname | to_lower) == linux ]]
 }
 
-function isubuntu() {
-	isdistro ubuntu
+function is_distro() {
+	[[ $(get_distro | to_lower) == *"$1"* ]]
 }
 
-function isgnome() {
-	isde gnome
+function is_desktop_env() {
+	[[ $(get_desktop_env | to_lower) == *"$1"* ]]
+}
+
+function is_fedora() {
+	is_distro fedora
+}
+
+function is_ubuntu() {
+	is_distro ubuntu
+}
+
+function is_gnome() {
+	is_desktop_env gnome
+}
+
+function has_gnome_ext() {
+	is_gnome || return $?
+
+	[[ $(gnome-extensions list | to_lower) == *"$1"* ]]
 }
