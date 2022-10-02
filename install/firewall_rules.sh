@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-. "$DOTFILES_PATH/lib/utils.sh" || exit $?
-
-have ufw || exit $?
-
 echo "Setting up firewall rules"
 
 read -r -p "Allow a device to connect to GSConnect [y/N]: " reply
