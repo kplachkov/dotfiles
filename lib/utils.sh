@@ -50,6 +50,10 @@ function is_linux() {
 	[[ $(uname | to_lower) == linux ]]
 }
 
+function is_darwin() {
+	[[ $(uname | to_lower) == darwin ]]
+}
+
 function is_distro() {
 	[[ $(get_distro | to_lower) == *"$1"* ]]
 }

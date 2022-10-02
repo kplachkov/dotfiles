@@ -20,9 +20,6 @@ function install_bash_software() {
 function install_npm_software() {
 	echo "Installing NPM software"
 
-	mkdir -p ~/.npm-global
-	npm config set prefix ~/.npm-global || return $?
-
 	npm install --global yarn
 }
 

@@ -131,7 +131,7 @@ function configure_distro() {
 }
 
 function try_partial_installation() {
-	is_linux || return 0
+	is_linux || return 1
 
 	echo "Searching for partial installation"
 

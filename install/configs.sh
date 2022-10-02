@@ -25,15 +25,15 @@ function link_dotfiles() {
 		"export POWERLINE_BASH_CONFIG='$POWERLINE_BASH_CONFIG'" \
 		"export POWERLINE_TMUX_CONFIG='$POWERLINE_TMUX_CONFIG'" >~/.exportrc_private
 
-	local dotfiles=(.aliasrc .bash_profile .bashrc .exportrc .imwheelrc .inputrc .tmux.conf)
+	local dotfiles=(.aliasrc .bash_profile .bashrc .exportrc .gitconfig .imwheelrc .inputrc .npmrc .tmux.conf)
 
-	for dotfile in "${dotfiles[@]}"; do
-		ln -fs "$DOTFILES_PATH/${dotfile}" "$HOME"
+	for file in "${dotfiles[@]}"; do
+		ln -fs "$DOTFILES_PATH/$file" "$HOME"
 	done
 }
 
 function link_autostart_apps() {
-	is_linux || return 0
+	is_linux || return 1
 
 	echo "Setting up autostart applications"
 
@@ -55,18 +55,14 @@ function link_htop_config() {
 function link_sublime_text_config() {
 	echo "Setting up Sublime Text configuration"
 
-	case $(uname | to_lower) in
-	linux)
+	if is_linux; then
 		local subl_config_dir="$HOME/.config/sublime-text-3/Packages/User/"
-		;;
-	darwin)
+	elif is_darwin; then
 		local subl_config_dir="$HOME/Library/Application Support/Sublime Text 3/Packages/User/"
-		;;
-	*)
+	else
 		log_error "Unknown location of Sublime Text's configuration"
 		return 1
-		;;
-	esac
+	fi
 
 	mkdir -p "$subl_config_dir"
 	ln -fs "$DOTFILES_PATH/config/sublime-text-3/Default (Linux).sublime-keymap" "$subl_config_dir"
