@@ -70,6 +70,7 @@ function main() {
 		htop \
 		iftop \
 		bat \
+		alacritty \
 		golang \
 		nodejs \
 		google-chrome-stable \

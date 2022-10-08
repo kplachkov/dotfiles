@@ -79,11 +79,21 @@ function link_powerline_config() {
 	ln -fs "$DOTFILES_PATH"/config/powerline/* "$powerline_config_dir"
 }
 
+function link_alacritty_config() {
+	echo "Setting up alacritty configuration"
+
+	local alacritty_dir=~/.config/alacritty/
+
+	mkdir -p "$alacritty_dir"
+	ln -fs "$DOTFILES_PATH"/config/alacritty/* "$alacritty_dir"
+}
+
 function main() {
 	link_dotfiles
 	link_autostart_apps
 	link_htop_config
 	link_powerline_config
+	link_alacritty_config
 }
 
 main "$@"

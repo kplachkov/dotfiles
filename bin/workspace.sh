@@ -9,9 +9,9 @@ if ! pgrep chrome; then
 fi
 
 if ! pgrep --exact --full "tmux"; then
-	gnome-terminal --full-screen -- tmux
+	alacritty --command tmux
 elif [[ $(pgrep --count --exact --full "tmux") == 2 ]]; then
 	true # NOP
 elif ! pgrep --exact --full "tmux a"; then
-	gnome-terminal --full-screen -- tmux a
+	alacritty --command tmux a
 fi

@@ -71,7 +71,7 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-tim
 
 # Appearance.
 
-gsettings set org.gnome.desktop.interface icon-theme 'Numix-Circle'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.interface gtk-key-theme 'Adwaita'
@@ -86,7 +86,7 @@ gsettings set org.gnome.desktop.interface font-name 'Cantarell 12'
 
 # Miscellaneous
 
-gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop']"
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'Alacritty.desktop']"
 
 gsettings set org.gnome.system.locale region 'en_GB.UTF-8'
 
