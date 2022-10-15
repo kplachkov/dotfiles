@@ -7,7 +7,7 @@ echo "Applying GNOME extensions settings"
 if has_gnome_ext "auto-move-windows"; then
 	echo " - auto move windows"
 
-	gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['google-chrome.desktop:1', 'org.gnome.Terminal.desktop:1', 'code.desktop:2']"
+	gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['google-chrome.desktop:1', 'Alacritty.desktop:1', 'code.desktop:2']"
 fi
 
 if has_gnome_ext "desktop-icons"; then
