@@ -1,6 +1,5 @@
 # shellcheck disable=SC2148
 
-export TERM="xterm-256color"
 export EDITOR="code --wait --new-window"
 export VISUAL="code --wait --new-window"
 export PAGER="most"

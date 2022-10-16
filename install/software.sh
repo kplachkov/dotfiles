@@ -38,6 +38,10 @@ function install_numix_folders {
 		(cd "$numix_folders_path" && printf '6\ncustom\n676767\n973552\ne4e4e4\n' | sudo "$numix_folders_path/numix-folders" -t)
 }
 
+function install_helm {
+	curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+}
+
 function main() {
 	echo "Installing OS agnostic software"
 
