@@ -32,15 +32,15 @@ function link_dotfiles() {
 	done
 }
 
-function link_autostart_apps() {
+function link_autostart_config() {
 	is_linux || return 1
 
 	echo "Setting up autostart applications"
 
-	local autostart_dir=~/.config/autostart/
+	local autostart_config_dir="$HOME/.config/autostart/"
 
-	mkdir -p "$autostart_dir"
-	ln -fs "$DOTFILES_PATH"/config/autostart/* "$autostart_dir"
+	mkdir -p "$autostart_config_dir"
+	ln -fs "$DOTFILES_PATH"/config/autostart/* "$autostart_config_dir"
 }
 
 function link_htop_config() {
@@ -49,25 +49,7 @@ function link_htop_config() {
 	local htop_config_dir="$HOME/.config/htop/"
 
 	mkdir -p "$htop_config_dir"
-	ln -fs "$DOTFILES_PATH/htoprc" "$htop_config_dir"
-}
-
-function link_sublime_text_config() {
-	echo "Setting up Sublime Text configuration"
-
-	if is_linux; then
-		local subl_config_dir="$HOME/.config/sublime-text-3/Packages/User/"
-	elif is_darwin; then
-		local subl_config_dir="$HOME/Library/Application Support/Sublime Text 3/Packages/User/"
-	else
-		log_error "Unknown location of Sublime Text's configuration"
-		return 1
-	fi
-
-	mkdir -p "$subl_config_dir"
-	ln -fs "$DOTFILES_PATH/config/sublime-text-3/Default (Linux).sublime-keymap" "$subl_config_dir"
-	ln -fs "$DOTFILES_PATH/config/sublime-text-3/Preferences.sublime-settings" "$subl_config_dir"
-	ln -fs "$DOTFILES_PATH/config/sublime-text-3/Package Control.sublime-settings" "$subl_config_dir"
+	ln -fs "$DOTFILES_PATH"/config/htop/* "$htop_config_dir"
 }
 
 function link_powerline_config() {
@@ -82,15 +64,15 @@ function link_powerline_config() {
 function link_alacritty_config() {
 	echo "Setting up alacritty configuration"
 
-	local alacritty_dir=~/.config/alacritty/
+	local alacritty_config_dir="$HOME/.config/alacritty/"
 
-	mkdir -p "$alacritty_dir"
-	ln -fs "$DOTFILES_PATH"/config/alacritty/* "$alacritty_dir"
+	mkdir -p "$alacritty_config_dir"
+	ln -fs "$DOTFILES_PATH"/config/alacritty/* "$alacritty_config_dir"
 }
 
 function main() {
 	link_dotfiles
-	link_autostart_apps
+	link_autostart_config
 	link_htop_config
 	link_powerline_config
 	link_alacritty_config
