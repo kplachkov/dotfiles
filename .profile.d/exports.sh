@@ -16,11 +16,30 @@ export HISTIGNORE="clear:history:exit:pwd:cd:ll:ls:-:reboot:shutdown now:sudo -i
 # Update bash history in real time.
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-# Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
-export PYTHONIOENCODING="UTF-8"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
+
 export NPM_CONFIG_PREFIX="$HOME/.npm-global"
 
 export POWERLINE_BASH_CONTINUATION=1
 export POWERLINE_BASH_SELECT=1
+
+export HOMEBREW_NO_ANALYTICS=1
+
+# Set PATH so it includes user's private bin.
+
+if [ -d "$HOME/bin" ]; then
+	PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ]; then
+	PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$NPM_CONFIG_PREFIX/bin" ]; then
+	PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
+fi
+
+if [ -d "$GOBIN" ]; then
+	PATH="$GOBIN:$PATH"
+fi
