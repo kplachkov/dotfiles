@@ -336,7 +336,7 @@ draw_bold_text_with_bright_colors: true
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
-#bell:
+bell:
   # Visual Bell Animation
   #
   # Animation effect for flashing the screen when the visual bell is rung.
@@ -372,7 +372,9 @@ draw_bold_text_with_bright_colors: true
   #     program: notify-send
   #     args: ["Hello, World!"]
   #
-  #command: None
+  command:
+    program: pw-play
+    args: ["/usr/share/sounds/freedesktop/stereo/bell.oga", "--volume", "0.8"]
 
 selection:
   # This string contains all characters that are used as separators for
