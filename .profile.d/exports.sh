@@ -25,6 +25,7 @@ export POWERLINE_BASH_CONTINUATION=1
 export POWERLINE_BASH_SELECT=1
 
 export HOMEBREW_NO_ANALYTICS=1
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Set PATH so it includes user's private bin.
 

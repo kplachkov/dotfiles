@@ -25,18 +25,6 @@ EOM
 	sudo dnf install -y google-cloud-cli
 }
 
-function install_kubectl() {
-	cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
-enabled=1
-gpgcheck=1
-gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-EOF
-	sudo yum install -y kubectl
-}
-
 function install_vscode() {
 	sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc &&
 		sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' &&
@@ -57,6 +45,7 @@ function main() {
 	sudo dnf install -y \
 		most \
 		lshw \
+		nmap \
 		powerline \
 		powerline-fonts \
 		tmux \
@@ -65,8 +54,6 @@ function main() {
 		iftop \
 		bat \
 		alacritty \
-		golang \
-		nodejs \
 		google-chrome-stable \
 		keepassxc \
 		rawtherapee \
@@ -75,7 +62,6 @@ function main() {
 		papirus-icon-theme
 
 	install_virtualization
-	install_kubectl
 	install_gcloud
 	install_vscode
 
