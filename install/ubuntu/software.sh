@@ -24,13 +24,6 @@ function install_gcloud {
 		sudo apt-get update && sudo apt-get install -y google-cloud-sdk
 }
 
-function install_kubectl {
-	sudo curl -fsSLo /usr/share/keyrings/kubernetes.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg &&
-		echo "deb [signed-by=/usr/share/keyrings/kubernetes.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" |
-		sudo tee /etc/apt/sources.list.d/kubernetes.list &&
-		sudo apt-get update && sudo apt-get install -y kubectl
-}
-
 function install_beekeeper_studio {
 	curl -fsSL https://deb.beekeeperstudio.io/beekeeper.key |
 		gpg --dearmor | sudo tee /usr/share/keyrings/beekeeper-studio.gpg >/dev/null &&
@@ -84,13 +77,7 @@ function main {
 		unclutter-xfixes \
 		papirus-icon-theme
 
-	sudo snap install go --classic
-	sudo snap install node --classic
-	sudo snap install hugo --channel=extended
-	sudo snap install postman
-
 	install_gcloud
-	install_kubectl
 	install_beekeeper_studio
 	install_google_chrome
 

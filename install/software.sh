@@ -5,10 +5,27 @@ if [[ -z $DOTFILES_PATH ]]; then
 	exit 1
 fi
 
-function install_go_software() {
-	echo "Installing Go software"
+function install_homebrew() {
+	echo "Installing Homebrew"
 
-	go install github.com/jesseduffield/lazygit@latest
+	bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
+		eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" &&
+		brew analytics off
+}
+
+function install_homebrew_software() {
+	echo "Installing Homebrew software"
+
+	brew install go
+	brew install node
+	brew install helm
+	brew install kubectl
+	brew install minikube
+	brew install k9s
+	brew install lazygit
+	brew install shellcheck
+	brew install shfmt
+	brew install hugo
 }
 
 function install_bash_software() {
@@ -29,23 +46,22 @@ function install_tpm() {
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
-function install_numix_folders {
-	echo "Installing Numix Folders"
+function install_nerd_fonts() {
+	echo "Installing Nerd Fonts"
 
-	local numix_folders_path="$HOME/projects/numix-folders"
+	local nerd_fonts_path="$HOME/projects/nerd-fonts"
 
-	git clone https://github.com/numixproject/numix-folders.git "$numix_folders_path" &&
-		(cd "$numix_folders_path" && printf '6\ncustom\n676767\n973552\ne4e4e4\n' | sudo "$numix_folders_path/numix-folders" -t)
-}
-
-function install_helm {
-	curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+	git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git "$nerd_fonts_path" &&
+		cd "$nerd_fonts_path" &&
+		git sparse-checkout add patched-fonts/JetBrainsMono &&
+		"$nerd_fonts_path"/install.sh JetBrainsMono
 }
 
 function main() {
 	echo "Installing OS agnostic software"
 
-	install_go_software
+	install_homebrew
+	install_homebrew_software
 	install_bash_software
 	install_npm_software
 	install_tpm

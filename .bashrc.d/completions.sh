@@ -31,3 +31,17 @@ if _have pip3; then
 	}
 	complete -o default -F _pip_completion pip3
 fi
+
+if _have brew; then
+	HOMEBREW_PREFIX="$(brew --prefix)"
+
+	if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+		# shellcheck disable=SC1091
+		source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+	else
+		for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+			# shellcheck disable=SC1090
+			[[ -r ${COMPLETION} ]] && source "${COMPLETION}"
+		done
+	fi
+fi
