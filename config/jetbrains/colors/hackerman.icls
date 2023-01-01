@@ -271,7 +271,7 @@
     </option>
     <option name="DEFAULT_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="7ec3e6" />
+        <option name="FOREGROUND" value="499936" />
       </value>
     </option>
     <option name="DEFAULT_CLASS_REFERENCE">
@@ -344,7 +344,7 @@
     </option>
     <option name="DEFAULT_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="7ec3e6" />
+        <option name="FOREGROUND" value="499936" />
       </value>
     </option>
     <option name="DEFAULT_METADATA">

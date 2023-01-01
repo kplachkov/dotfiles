@@ -10,7 +10,7 @@
     <mask>*.js</mask>
     <mask>*.md</mask>
     <mask>*.py</mask>
-    <mask>*.go</mask>
     <mask>*.sh</mask>
+    <mask>*.go</mask>
   </component>
 </application>
