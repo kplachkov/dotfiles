@@ -52,7 +52,6 @@ function main {
 		iftop \
 		tmux \
 		tree \
-		most \
 		xclip \
 		powerline \
 		fonts-powerline \

@@ -2,7 +2,8 @@
 
 export EDITOR="code --wait --new-window"
 export VISUAL="code --wait --new-window"
-export PAGER="most"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
 export BROWSER="google-chrome"
 
 # Don't put duplicate lines or lines starting with space in the history.

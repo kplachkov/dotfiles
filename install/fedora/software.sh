@@ -43,7 +43,6 @@ function main() {
 	echo "Installing system software"
 
 	sudo dnf install -y \
-		most \
 		lshw \
 		nmap \
 		powerline \
