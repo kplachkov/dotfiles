@@ -82,6 +82,15 @@ function link_alacritty_config() {
 	ln -fs "$DOTFILES_PATH"/config/alacritty/* "$alacritty_config_dir"
 }
 
+function link_lazygit_config() {
+	echo "Setting up lazygit configuration"
+
+	local lazygit_config_dir="$HOME/.config/lazygit/"
+
+	mkdir -p "$lazygit_config_dir"
+	ln -fs "$DOTFILES_PATH"/config/lazygit/* "$lazygit_config_dir"
+}
+
 function main() {
 	link_dotfiles
 	generate_env_vars
@@ -89,6 +98,7 @@ function main() {
 	link_htop_config
 	link_powerline_config
 	link_alacritty_config
+	link_lazygit_config
 }
 
 main "$@"
