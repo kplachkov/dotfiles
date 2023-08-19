@@ -1,6 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=unclutter
-NoDisplay=true
-Comment=Hides the cursor on inactivity
-Exec=unclutter --timeout 1

@@ -11,8 +11,8 @@ gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "[]"
 gsettings set org.gnome.shell.keybindings toggle-application-view "[]"
-# Logout.
-# gsettings set org.gnome.settings-daemon.plugins.media-keys logout "['<Control><Super>Delete']"
+# Shutdown computer.
+gsettings set org.gnome.settings-daemon.plugins.media-keys logout "['<Control><Super>End']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Control><Super><Shift>Right']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Control><Super><Shift>Left']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>Above_Tab', '<Control><Super>Right']"
@@ -25,13 +25,7 @@ gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>q']"
 
 # Custom keybindings.
 
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/shutdown/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/gtmux/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/workspace/']"
-# Shutdown computer.
-# Native option:
-# gsettings set org.gnome.settings-daemon.plugins.media-keys power "['<Control><Super>End']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/shutdown/ name "shutdown"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/shutdown/ command "$DOTFILES_PATH/bin/shutdown.sh"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/shutdown/ binding "<Primary><Super>End"
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/gtmux/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/workspace/']"
 # Start tmux in full screen.
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/gtmux/ name "gtmux"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/gtmux/ command "$DOTFILES_PATH/bin/gtmux.sh"
@@ -60,7 +54,7 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 5
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 5
-gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2248
+gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2700
 
 # Power.
 
