@@ -73,7 +73,6 @@ function main {
 		gimp \
 		keepassxc \
 		imwheel \
-		unclutter-xfixes \
 		papirus-icon-theme
 
 	install_gcloud

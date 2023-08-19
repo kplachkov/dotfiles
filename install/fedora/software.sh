@@ -57,7 +57,6 @@ function main() {
 		keepassxc \
 		rawtherapee \
 		imwheel \
-		unclutter-xfixes \
 		papirus-icon-theme
 
 	install_virtualization
