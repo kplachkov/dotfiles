@@ -33,3 +33,4 @@ Installation types based on operating systems:
     - Arch-based distributions
     - openSUSE-based distributions
     - macOS
+
