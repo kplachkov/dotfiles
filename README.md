@@ -7,29 +7,22 @@ The Software Engineer's setup (dotfiles, packages, desktop environment settings,
 ## Installation
 
 ```shell
-bash -c "$(wget -qO - https://raw.githubusercontent.com/kplachkov/dotfiles/master/install/main.sh)"
+make auto-install
 ```
 
-High level representation of the installation process:
+Supported operating systems:
+- Fedora Workstation
+- Ubuntu Desktop
+- macOS
+- GitHub Codespaces
 
-- Downloading the repository (by default it is done at `~/projects/dotfiles`, use `DOTFILES_PATH` to change the
-  location).
-- Installing packages.
-- Configuring the settings of the desktop environment.
-- Generating PGP keys, SSH keys and firewall rules (requires input).
-- Linking the configurations of packages and the dotfiles (if the files already exist -- they will be replaced).
+High level representation of the automated installation:
+1. The automation determines the OS.
+2. The configurations of packages and the dotfiles are applied (if the files already exist -- they will be replaced).
+3. The settings of the desktop environment are applied.
+4. Software is installed.
 
-Installation types based on operating systems:
-
-- Full installation:
-    - Fedora
-    - Ubuntu
-
-- Partial installation (some packages may not be installed, and some configurations may be missing):
-    - RHEL-based distributions (excluding Fedora)
-    - Debian-based distributions (excluding Ubuntu)
-
-- Minimal installation (only the dotfiles and few packages and configurations will be installed):
-    - Arch-based distributions
-    - openSUSE-based distributions
-    - macOS
+More information:
+```shell
+make help
+```

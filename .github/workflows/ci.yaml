@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: "Test installation"
-        run: make install
+        run: make auto-install
 
   lint:
     name: "Lint"

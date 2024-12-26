@@ -1,11 +1,5 @@
 # shellcheck disable=SC2148
 
-export EDITOR="code --wait --new-window"
-export VISUAL="code --wait --new-window"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MANROFFOPT="-c"
-export BROWSER="google-chrome"
-
 # Don't put duplicate lines or lines starting with space in the history.
 export HISTCONTROL=ignoreboth
 # Increase the maximum number of commands recorded.
@@ -26,9 +20,22 @@ export POWERLINE_BASH_CONTINUATION=1
 export POWERLINE_BASH_SELECT=1
 
 export HOMEBREW_NO_ANALYTICS=1
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# Set PATH so it includes user's private bin.
+if _have /home/linuxbrew/.linuxbrew/bin/brew; then
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif _have /opt/homebrew/bin/brew; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if _have code; then
+	export EDITOR="code --wait --new-window"
+	export VISUAL="code --wait --new-window"
+fi
+
+if _have bat; then
+	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+	export MANROFFOPT="-c"
+fi
 
 if [ -d "$HOME/bin" ]; then
 	PATH="$HOME/bin:$PATH"
