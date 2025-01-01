@@ -20,8 +20,6 @@ _have minikube && source <(minikube completion bash)
 # shellcheck disable=SC1090
 _have kubectl && source <(kubectl completion bash)
 
-_have pipenv && eval "$(pipenv --completion)"
-
 if _have pip3; then
 	_pip_completion() {
 		# shellcheck disable=SC2207
