@@ -18,8 +18,8 @@ POWERLINE_RELEASE = 2.8.4
 POWERLINE_DIR = ~/.powerline
 
 macos: configuration homebrew homebrew-packages tpm ## Install macOS setup.
-	git -C $(POWERLINE_DIR) fetch || git clone -c advice.detachedHead=false --branch $(POWERLINE_RELEASE) --depth 1 $(POWERLINE_REPOSITORY) $(POWERLINE_DIR)
-	git -C $(POWERLINE_DIR) checkout $(POWERLINE_RELEASE)
+	git -C $(POWERLINE_DIR) fetch || git -c advice.detachedHead=false clone --branch $(POWERLINE_RELEASE) --depth 1 $(POWERLINE_REPOSITORY) $(POWERLINE_DIR)
+	git -C $(POWERLINE_DIR) -c advice.detachedHead=false checkout $(POWERLINE_RELEASE)
 
 github-codespaces: configuration apt-packages tpm ## Install GitHub Codespaces setup.
 
@@ -161,8 +161,8 @@ TPM_RELEASE = v3.1.0
 TPM_DIR = ~/.tmux/plugins/tpm
 
 tpm: ## Install Tmux Plugin Manager.
-	git -C $(TPM_DIR) fetch || git clone -c advice.detachedHead=false --branch $(TPM_RELEASE) --depth 1 $(TPM_REPOSITORY) $(TPM_DIR)
-	git -C $(TPM_DIR) checkout $(TPM_RELEASE)
+	git -C $(TPM_DIR) fetch || git -c advice.detachedHead=false clone --branch $(TPM_RELEASE) --depth 1 $(TPM_REPOSITORY) $(TPM_DIR)
+	git -C $(TPM_DIR) -c advice.detachedHead=false checkout $(TPM_RELEASE)
 
 ##@ Common
 
@@ -179,12 +179,12 @@ endef
 
 export EXPORTS_DF_SH_TEMPLATE
 configuration: ## Apply configurations of packages and dotfiles.
-	cp -r .profile.d ~/.profile.d
-	cp -r .bashrc.d ~/.bashrc.d
-	cp -r .config/alacritty ~/.config/alacritty
-	cp -r .config/powerline ~/.config/powerline
-	cp -r .config/lazygit ~/.config/lazygit
-	cp -r .config/htop ~/.config/htop
+	cp -r .profile.d ~/
+	cp -r .bashrc.d ~/
+	cp -r .config/alacritty ~/.config/
+	cp -r .config/powerline ~/.config/
+	cp -r .config/lazygit ~/.config/
+	cp -r .config/htop ~/.config/
 	cp .bash_profile ~/
 	cp .bashrc ~/
 	cp .gitconfig ~/
