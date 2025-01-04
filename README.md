@@ -22,7 +22,7 @@ High level representation of the automated installation:
 3. The settings of the desktop environment are applied.
 4. Software is installed.
 
-More information:
+For more information, run:
 ```shell
 make help
 ```
