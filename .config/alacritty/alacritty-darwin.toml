@@ -1,0 +1,13 @@
+[general]
+import = [
+    "~/.config/alacritty/base.toml",
+    "~/.config/alacritty/theme.toml"
+]
+
+[font]
+size = 18.0
+normal = { family = "Hack", style = "Regular" }
+
+[bell.command]
+args = ["-e", "beep"]
+program = "osascript"

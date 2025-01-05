@@ -1,0 +1,22 @@
+[general]
+live_config_reload = false
+
+[window]
+decorations = "None"
+startup_mode = "Fullscreen"
+
+[scrolling]
+history = 100000
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[selection]
+save_to_clipboard = false
+
+[cursor.style]
+shape = "Beam"
+blinking = "On"
+
+[mouse]
+hide_when_typing = true

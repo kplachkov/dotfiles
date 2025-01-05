@@ -1,0 +1,12 @@
+[general]
+import = [
+    "~/.config/alacritty/base.toml",
+    "~/.config/alacritty/theme.toml"
+]
+
+[font]
+size = 14.0
+
+[bell.command]
+args = ["/usr/share/sounds/freedesktop/stereo/bell.oga", "--volume", "0.8"]
+program = "pw-play"
