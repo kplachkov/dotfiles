@@ -6,6 +6,11 @@ help: ## Display this help.
 auto-install: ## Run automated installation.
 	@./install.sh
 
+define git_install
+	git -C $3 fetch || git -c advice.detachedHead=false clone --branch $2 --depth 1 $1 $3
+	git -C $3 -c advice.detachedHead=false checkout $2
+endef
+
 ##@ Operating systems
 
 fedora-workstation: configuration gnome dnf-packages tpm ## Install Fedora Workstation setup.
@@ -18,8 +23,7 @@ POWERLINE_RELEASE = 2.8.4
 POWERLINE_DIR = ~/.powerline
 
 macos: configuration homebrew homebrew-packages tpm ## Install macOS setup.
-	git -C $(POWERLINE_DIR) fetch || git -c advice.detachedHead=false clone --branch $(POWERLINE_RELEASE) --depth 1 $(POWERLINE_REPOSITORY) $(POWERLINE_DIR)
-	git -C $(POWERLINE_DIR) -c advice.detachedHead=false checkout $(POWERLINE_RELEASE)
+	$(call git_install,$(POWERLINE_REPOSITORY),$(POWERLINE_RELEASE),$(POWERLINE_DIR))
 
 github-codespaces: configuration apt-packages tpm ## Install GitHub Codespaces setup.
 
@@ -161,12 +165,12 @@ TPM_RELEASE = v3.1.0
 TPM_DIR = ~/.tmux/plugins/tpm
 
 tpm: ## Install Tmux Plugin Manager.
-	git -C $(TPM_DIR) fetch || git -c advice.detachedHead=false clone --branch $(TPM_RELEASE) --depth 1 $(TPM_REPOSITORY) $(TPM_DIR)
-	git -C $(TPM_DIR) -c advice.detachedHead=false checkout $(TPM_RELEASE)
+	$(call git_install,$(TPM_REPOSITORY),$(TPM_RELEASE),$(TPM_DIR))
 
 ##@ Common
 
 OS_ID = $(shell grep -oP '^ID="?\K[a-zA-Z0-9_ ]+' /etc/os-release 2>/dev/null || uname | tr "[:upper:]" "[:lower:]")
+KERNEL = $(shell uname -s | tr "[:upper:]" "[:lower:]")
 
 EXPORTS_DF_SH_PATH = ~/.profile.d/exports.df.sh
 
@@ -179,18 +183,18 @@ endef
 
 export EXPORTS_DF_SH_TEMPLATE
 configuration: ## Apply configurations of packages and dotfiles.
-	cp -r .profile.d ~/
-	cp -r .bashrc.d ~/
-	cp -r .config/alacritty ~/.config/
-	cp -r .config/powerline ~/.config/
-	cp -r .config/lazygit ~/.config/
-	cp -r .config/htop ~/.config/
-	cp .bash_profile ~/
-	cp .bashrc ~/
-	cp .gitconfig ~/
-	cp .inputrc ~/
-	cp .npmrc ~/
-	cp .tmux.conf ~/
+	cp .bash_profile .bashrc .gitconfig .inputrc .npmrc .tmux.conf ~/
+	cp -R .profile.d ~/
+	cp -R .bashrc.d ~/
+
+	cp -R .config/powerline ~/.config/
+	cp -R .config/lazygit ~/.config/
+	cp -R .config/htop ~/.config/
+
+	mkdir -p ~/.config/alacritty
+	cp .config/alacritty/base.toml .config/alacritty/theme.toml ~/.config/alacritty/
+	cp .config/alacritty/alacritty-$(KERNEL).toml ~/.config/alacritty/alacritty.toml
+
 ifeq ($(OS_ID),fedora)
 	printf "$$EXPORTS_DF_SH_TEMPLATE" \
 		'/usr/share/powerline/bash/powerline.sh' \
