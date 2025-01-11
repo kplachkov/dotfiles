@@ -6,10 +6,19 @@ help: ## Display this help.
 auto-install: ## Run automated installation.
 	@./install.sh
 
+OS_ID = $(shell grep -oP '^ID="?\K[a-zA-Z0-9_ ]+' /etc/os-release 2>/dev/null || uname | tr "[:upper:]" "[:lower:]")
+KERNEL = $(shell uname -s | tr "[:upper:]" "[:lower:]")
+
 define git_install
 	git -C $3 fetch || git -c advice.detachedHead=false clone --branch $2 --depth 1 $1 $3
 	git -C $3 -c advice.detachedHead=false checkout $2
 endef
+
+ifeq ($(OS_ID),darwin)
+brew = eval "$$(/opt/homebrew/bin/brew shellenv)" && brew
+else
+brew = eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew
+endif
 
 ##@ Operating systems
 
@@ -25,7 +34,15 @@ POWERLINE_DIR = ~/.powerline
 macos: configuration homebrew homebrew-packages tpm ## Install macOS setup.
 	$(call git_install,$(POWERLINE_REPOSITORY),$(POWERLINE_RELEASE),$(POWERLINE_DIR))
 
-github-codespaces: configuration apt-packages tpm ## Install GitHub Codespaces setup.
+github-codespaces: configuration apt-packages tpm homebrew ## Install GitHub Codespaces setup.
+	$(brew) install \
+		k9s \
+		lazygit \
+		shellcheck \
+		shfmt
+
+	cp -R ~/.profile.d/* ~/.bashrc.d/
+	rm ~/.npmrc
 
 ##@ Desktop environments
 
@@ -144,7 +161,7 @@ apt-packages: ## Install APT packages.
 	ln -fs /usr/bin/batcat ~/.local/bin/bat
 
 homebrew-packages: ## Install Homebrew packages.
-	brew install \
+	$(brew) install \
 		go \
 		node \
 		helm \
@@ -158,7 +175,7 @@ homebrew-packages: ## Install Homebrew packages.
 
 homebrew: ## Install Homebrew.
 	bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew analytics off
+	$(brew) analytics off
 
 TPM_REPOSITORY = https://github.com/tmux-plugins/tpm
 TPM_RELEASE = v3.1.0
@@ -168,9 +185,6 @@ tpm: ## Install Tmux Plugin Manager.
 	$(call git_install,$(TPM_REPOSITORY),$(TPM_RELEASE),$(TPM_DIR))
 
 ##@ Common
-
-OS_ID = $(shell grep -oP '^ID="?\K[a-zA-Z0-9_ ]+' /etc/os-release 2>/dev/null || uname | tr "[:upper:]" "[:lower:]")
-KERNEL = $(shell uname -s | tr "[:upper:]" "[:lower:]")
 
 EXPORTS_DF_SH_PATH = ~/.profile.d/exports.df.sh
 
