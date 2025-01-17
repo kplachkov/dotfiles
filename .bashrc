@@ -4,12 +4,6 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# If not running interactively, then return.
-case $- in
-*i*) ;;
-*) return ;;
-esac
-
 function _have() {
   out=$(command -v "$@") || return $?
   if [ $# -ne "$(printf "%s" "$out" | grep -c "^")" ]; then
@@ -17,6 +11,12 @@ function _have() {
     return 3
   fi
 }
+
+# If not running interactively, then return.
+case $- in
+*i*) ;;
+*) return ;;
+esac
 
 if [ -d ~/.bashrc.d ]; then
   for rc in ~/.bashrc.d/*; do

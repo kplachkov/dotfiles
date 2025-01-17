@@ -3,7 +3,6 @@
 # Enable programmable completion features.
 if ! shopt -oq posix; then
 	if [ -f /usr/share/bash-completion/bash_completion ]; then
-		# shellcheck disable=SC1091
 		. /usr/share/bash-completion/bash_completion
 	elif [ -f /etc/bash_completion ]; then
 		# shellcheck disable=SC1091

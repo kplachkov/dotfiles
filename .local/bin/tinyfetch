@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+
+function log_fatal {
+	echo "$1" >&2
+	exit 1
+}
+
+function log_error {
+	echo "$1" >&2
+}
+
+function to_lower() {
+	if [ -t 0 ]; then
+		return 2
+	fi
+
+	cat | tr "[:upper:]" "[:lower:]"
+}
+
+function trim() {
+	if [ -t 0 ]; then
+		return 2
+	fi
+
+	input=$(cat) || return $?
+
+	# Remove leading whitespace characters.
+	input="${input#"${input%%[![:space:]]*}"}"
+
+	# Remove trailing whitespace characters.
+	input="${input%"${input##*[![:space:]]}"}"
+
+	printf '%s' "$input"
+}
+
+KERNEL=$(uname -s | to_lower)
+
+function get_linux_distribution() {
+	source /etc/os-release
+
+	if [[ -z $ID ]]; then
+		log_error "Unknown OS."
+		return 3
+	fi
+
+	if [[ $ID == "ubuntu" && -z $DISPLAY && $TERM_PROGRAM == "vscode" ]]; then
+		echo "github-codespaces"
+		return
+	fi
+
+	if [[ $ID == "ubuntu" && -z $DISPLAY && -n $CI ]]; then
+		echo "github-ubuntu"
+		return
+	fi
+
+	if [[ -n $VARIANT_ID ]]; then
+		echo "$ID-$VARIANT_ID" | to_lower
+		return
+	fi
+
+	echo "$ID" | to_lower
+}
+
+function get_os() {
+	case $KERNEL in
+	linux)
+		get_linux_distribution || return $?
+		;;
+	darwin)
+		sw_vers -productName | to_lower
+		;;
+	*)
+		log_error "Unknown kernel ($KERNEL)."
+		return 2
+		;;
+	esac
+}
+
+function main() {
+	while getopts "ok" opt; do
+		case "$opt" in
+		o) os_opt=1 ;;
+		k) kernel_opt=1 ;;
+		?) exit 1 ;;
+		esac
+	done
+
+	if [[ -n $os_opt ]]; then
+		os=$(get_os || exit 1)
+		out="$os"
+	fi
+
+	if [[ -n $kernel_opt ]]; then
+		[[ -n $out ]] && out="-$out"
+		out="$KERNEL$out"
+	fi
+
+	if [[ -z $out ]]; then
+		os=$(get_os 2>/dev/null)
+
+		if [[ -z $os ]]; then
+			out="$KERNEL"
+		else
+			out="$KERNEL-$os"
+		fi
+	fi
+
+	echo "$out"
+}
+
+main "$@"

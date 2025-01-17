@@ -11,10 +11,11 @@ make auto-install
 ```
 
 Supported operating systems:
+- Fedora Silverblue
 - Fedora Workstation
-- Ubuntu Desktop
-- macOS
 - GitHub Codespaces
+- macOS
+- Ubuntu
 
 High level representation of the automated installation:
 1. The automation determines the OS.

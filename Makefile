@@ -6,33 +6,27 @@ help: ## Display this help.
 auto-install: ## Run automated installation.
 	@./install.sh
 
-OS_ID = $(shell grep -oP '^ID="?\K[a-zA-Z0-9_ ]+' /etc/os-release 2>/dev/null || uname | tr "[:upper:]" "[:lower:]")
-KERNEL = $(shell uname -s | tr "[:upper:]" "[:lower:]")
+OS = $(shell .local/bin/tinyfetch -o)
+KERNEL = $(shell .local/bin/tinyfetch -k)
 
 define git_install
 	git -C $3 fetch || git -c advice.detachedHead=false clone --branch $2 --depth 1 $1 $3
 	git -C $3 -c advice.detachedHead=false checkout $2
 endef
 
-ifeq ($(OS_ID),darwin)
+ifeq ($(KERNEL),darwin)
 brew = eval "$$(/opt/homebrew/bin/brew shellenv)" && brew
-else
+else ifeq ($(KERNEL),linux)
 brew = eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew
+else
+$(error Unsupported kernel ($(KERNEL)).)
 endif
 
 ##@ Operating systems
 
+fedora-silverblue: configuration gnome rpm-ostree-packages flatpaks tpm ## Install Fedora Silverblue setup.
+
 fedora-workstation: configuration gnome dnf-packages tpm ## Install Fedora Workstation setup.
-
-ubuntu-desktop: configuration gnome apt-packages tpm ## Install Ubuntu Desktop setup.
-	sudo ubuntu-drivers install
-
-POWERLINE_REPOSITORY = https://github.com/powerline/powerline
-POWERLINE_RELEASE = 2.8.4
-POWERLINE_DIR = ~/.powerline
-
-macos: configuration homebrew homebrew-packages tpm ## Install macOS setup.
-	$(call git_install,$(POWERLINE_REPOSITORY),$(POWERLINE_RELEASE),$(POWERLINE_DIR))
 
 github-codespaces: configuration apt-packages tpm homebrew ## Install GitHub Codespaces setup.
 	$(brew) install \
@@ -43,6 +37,16 @@ github-codespaces: configuration apt-packages tpm homebrew ## Install GitHub Cod
 
 	cp -R ~/.profile.d/* ~/.bashrc.d/
 	rm ~/.npmrc
+
+POWERLINE_REPOSITORY = https://github.com/powerline/powerline
+POWERLINE_RELEASE = 2.8.4
+POWERLINE_DIR = ~/.powerline
+
+macos: configuration homebrew homebrew-packages tpm ## Install macOS setup.
+	$(call git_install,$(POWERLINE_REPOSITORY),$(POWERLINE_RELEASE),$(POWERLINE_DIR))
+
+ubuntu: configuration gnome apt-packages tpm ## Install Ubuntu setup.
+	sudo ubuntu-drivers install
 
 ##@ Desktop environments
 
@@ -107,6 +111,17 @@ gnome: ## Apply GNOME settings.
 
 ##@ Software
 
+rpm-ostree-packages: ## Install RPM-OSTree packages.
+	sudo rpm-ostree install \
+		alacritty \
+		bat \
+		libavcodec-freeworld \
+		openssl \
+		powerline \
+		powerline-fonts \
+		tmux \
+		tmux-powerline
+
 dnf-packages: ## Install DNF packages.
 	sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
 		sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' && \
@@ -160,6 +175,11 @@ apt-packages: ## Install APT packages.
 	mkdir -p ~/.local/bin
 	ln -fs /usr/bin/batcat ~/.local/bin/bat
 
+flatpaks:
+	flatpak install flathub \
+		org.gnome.Boxes \
+		com.mattjakeman.ExtensionManager
+
 homebrew-packages: ## Install Homebrew packages.
 	$(brew) install \
 		go \
@@ -174,7 +194,7 @@ homebrew-packages: ## Install Homebrew packages.
 		hugo
 
 homebrew: ## Install Homebrew.
-	bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	NONINTERACTIVE=1 bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	$(brew) analytics off
 
 TPM_REPOSITORY = https://github.com/tmux-plugins/tpm
@@ -193,6 +213,7 @@ define EXPORTS_DF_SH_TEMPLATE
 
 export POWERLINE_BASH_CONFIG='%s'
 export POWERLINE_TMUX_CONFIG='%s'
+
 endef
 
 export EXPORTS_DF_SH_TEMPLATE
@@ -209,29 +230,29 @@ configuration: ## Apply configurations of packages and dotfiles.
 	cp .config/alacritty/base.toml .config/alacritty/theme.toml ~/.config/alacritty/
 	cp .config/alacritty/alacritty-$(KERNEL).toml ~/.config/alacritty/alacritty.toml
 
-ifeq ($(OS_ID),fedora)
+ifeq ($(OS),$(filter $(OS),fedora-silverblue fedora-workstation))
 	printf "$$EXPORTS_DF_SH_TEMPLATE" \
 		'/usr/share/powerline/bash/powerline.sh' \
 		'/usr/share/tmux/powerline.conf' \
 		> $(EXPORTS_DF_SH_PATH)
-else ifeq ($(OS_ID),ubuntu)
+else ifeq ($(OS),$(filter $(OS),github-codespaces github-ubuntu ubuntu))
 	printf "$$EXPORTS_DF_SH_TEMPLATE" \
 		'/usr/share/powerline/bindings/bash/powerline.sh' \
 		'/usr/share/powerline/bindings/tmux/powerline.conf' \
 		> $(EXPORTS_DF_SH_PATH)
-else ifeq ($(OS_ID),darwin)
+else ifeq ($(OS),macos)
 	printf "$$EXPORTS_DF_SH_TEMPLATE" \
 		'$(POWERLINE_DIR)/powerline/bindings/bash/powerline.sh' \
 		'$(POWERLINE_DIR)/powerline/bindings/tmux/powerline.conf' \
 		> $(EXPORTS_DF_SH_PATH)
 else
-	$(warning Unsupported OS/kernel ($(OS_ID)). Powerline may not work.)
+	$(warning Unsupported OS ($(OS)). Powerline may not work.)
 endif
 
 gpg-key: ## Generate GPG key.
 	@gpg --full-generate-key
 
-SSH_COMMENT = $(shell echo "$(USER) - $(OS_ID)")
+SSH_COMMENT = $(shell echo "$(USER) - $(OS)")
 
 ssh-keys: ## Generate SSH keys.
 	ssh-keygen -q -t rsa -b 4096 -C "$(SSH_COMMENT)" -f ~/.ssh/id_rsa
@@ -247,4 +268,4 @@ fmt: ## Format code.
 
 lint: ## Lint code.
 	@shfmt -d -s .
-	@shellcheck $$(shfmt -f .)
+	@shellcheck -x $$(shfmt -f .)

@@ -9,59 +9,38 @@ function log_error {
 	echo "$1" >&2
 }
 
-function to_lower() {
-	if [ -t 0 ]; then
-		return 2
-	fi
-
-	cat | tr "[:upper:]" "[:lower:]"
-}
-
-function trim() {
-	if [ -t 0 ]; then
-		return 2
-	fi
-
-	input=$(cat) || return $?
-
-	# Remove leading whitespace characters.
-	input="${input#"${input%%[![:space:]]*}"}"
-
-	# Remove trailing whitespace characters.
-	input="${input%"${input##*[![:space:]]}"}"
-
-	printf '%s' "$input"
-}
-
-function osfetch() {
-	grep -oP '^ID="?\K[a-zA-Z0-9_ ]+' /etc/os-release 2>/dev/null || uname | to_lower
+function tinyfetch() {
+	"$(dirname "$(readlink -f "$0")")"/.local/bin/tinyfetch "$@"
 }
 
 function main() {
 	echo "Starting automated installation..."
 
-	os_id=$(osfetch)
+	os=$(tinyfetch -o 2>/dev/null)
 
-	case $os_id in
-	ubuntu)
-		if [[ $TERM_PROGRAM == "vscode" || -z $DISPLAY ]]; then
-			echo "Installing GitHub Codespaces setup..."
-			make github-codespaces --no-print-directory || return $?
-		else
-			echo "Installing Ubuntu Desktop setup..."
-			make ubuntu-desktop --no-print-directory || return $?
-		fi
+	case $os in
+	fedora-silverblue)
+		echo "Installing Fedora Silverblue setup..."
+		make fedora-silverblue --no-print-directory || return $?
 		;;
-	fedora)
+	fedora-workstation)
 		echo "Installing Fedora Workstation setup..."
 		make fedora-workstation --no-print-directory || return $?
 		;;
-	darwin)
+	github-codespaces | github-ubuntu)
+		echo "Installing GitHub Codespaces setup..."
+		make github-codespaces --no-print-directory || return $?
+		;;
+	macos)
 		echo "Installing macOS setup..."
 		make macos --no-print-directory || return $?
 		;;
+	ubuntu)
+		echo "Installing Ubuntu setup..."
+		make ubuntu --no-print-directory || return $?
+		;;
 	*)
-		log_fatal "Unsupported OS/kernel ($os_id)."
+		log_fatal "Unsupported OS ($(tinyfetch))."
 		;;
 	esac
 

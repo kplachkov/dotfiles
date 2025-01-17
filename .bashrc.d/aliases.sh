@@ -12,11 +12,6 @@ alias -- -="cd -"
 alias serve="python3 -m http.server"
 alias edit='$EDITOR'
 
-# Network.
-alias edithosts='$EDITOR /etc/hosts'
-alias lshosts="cat /etc/hosts"
-alias lsnet="sudo netstat -tupln"
-
 # Report.
 alias ll='ls -alhF'
 alias la='ls -A'
